@@ -1,0 +1,9 @@
+[user]
+	email = niklas.dewally@gmail.com
+	name = Niklas Dewally
+[init]
+	defaultBranch = main
+[core]
+	editor = vim 
+[alias]
+	adog = log --all --decorate --oneline --graph
