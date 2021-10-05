@@ -1,3 +1,4 @@
+NETHOME=/cs$HOME
 unlink $NETHOME/.vimrc
 unlink $NETHOME/.vim
 unlink $NETHOME/.ssh/config
