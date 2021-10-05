@@ -7,9 +7,10 @@ echo "Removing existing symbolic links"
 
 # Allow dot files in symlink
 shopt -s dotglob
-
+shopt -s nullglob
 echo "Installing Vim config"
-ln -rs vim/* $NETHOME || { echo "Error installing vim config"; }
+ln -rs vim/.vim $NETHOME/.vim||{ rm -rf $NETHOME/.vim; ln -rs vim/.vim $NETHOME/.vim; } ||  { echo "Error installing vim config"; }
+ln -rs vim/.vimrc $NETHOME/.vimrc|| { echo "Error installing vim config"; }
 git submodule update --init --recursive
 vim +PluginInstall +qall
 vim +"call mkdp#util#install()" +qall # markdown preview installation

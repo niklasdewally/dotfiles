@@ -1,4 +1,5 @@
 #! /bin/sh
+git submodule update --init --recursive
 echo "Removing existing symbolic links"
 ./uninstall.sh 
 
