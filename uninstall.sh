@@ -3,6 +3,7 @@ unlink $HOME/.vim
 unlink $HOME/.ssh/config
 unlink $HOME/.gitconfig
 unlink $HOME/.gnuplot
+unlink $HOME/.config/rclone/rclone.conf
 unlink $HOME/bin/* || rm -i $HOME/bin/*
 unlink $HOME/.tmux  
 unlink $HOME/.zshrc

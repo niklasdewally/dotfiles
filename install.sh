@@ -28,8 +28,12 @@ ln -rs zsh/* $HOME || { echo "Error installing zsh config"; }
 echo "Installing gnuplot config"
 ln -rs gnuplot/* $HOME || { echo "Error installing gnuplut config"; }
 
+echo "Installing rclone config"
+mkdir -p $HOME/.config/rclone/
+ln -rs rclone/rclone.conf $HOME/.config/rclone/rclone.conf
+
 echo "Installing ~/bin scripts"
 ln -rs bin/* $HOME/bin || { echo "Error installing bin scripts"; }
 ln -rs bin-personal/* $HOME/bin || { echo "Error installing bin scripts"; }
-
+chmod +x $HOME/bin/*
 echo "Install Complete!"
