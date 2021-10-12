@@ -5,6 +5,7 @@
 
 " Use vims default filetype plugins
 " see :h ftplugin-doc for defaults for each language
+syntax on
 filetype plugin indent on
 " Python https://www.vimfromscratch.com/articles/vim-for-python/
 :  
@@ -41,6 +42,12 @@ Plugin 'vimsence/vimsence'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'airblade/vim-gitgutter' "show git diff info in airline
+" Language extras:
+Plugin 'idris-hackers/idris-vim'
+Plugin 'neovimhaskell/haskell-vim' 
+" NERDTree
+Plugin 'preservim/nerdtree'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -57,5 +64,5 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 :colorscheme gruvbox
 :set bg=dark
-let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_enable_on_vim_startup = 1
 let g:airline_theme='bubblegum'
