@@ -1,25 +1,6 @@
-" hybrid line numbers
-:set ruler
-:set number relativenumber
-:set nu rnu
-
-" Use vims default filetype plugins
-" see :h ftplugin-doc for defaults for each language
-syntax on
-filetype plugin indent on
-" Python https://www.vimfromscratch.com/articles/vim-for-python/
-:  
-au BufNewFile,BufRead *.py
-    \ set expandtab        |
-    \ set autoindent       |
-    \ set tabstop=4        |
-    \ set softtabstop=4    |
-    \ set shiftwidth=4     
-
 
 set nocompatible              " be iMproved, required
-filetype off                  " required
-
+filetype off                  " Required before vundle
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -62,7 +43,29 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-:colorscheme gruvbox
-:set bg=dark
+"
+" hybrid line numbers
+set ruler
+set number relativenumber
+set nu rnu
+
+" Use vims default filetype plugins
+" see :h ftplugin-doc for defaults for each language
+syntax on
+" Indent according to rules set by filetype
+filetype plugin indent on
+
+" Default, language agonostic tab/spaces indentation rules
+" For most languages, this is personal preference, so not built into vim.
+" Personal settings per filetype can be found in .vim/after/ftplugin/FILETYPE.vim
+" See :h filetype-plugins
+set autoindent " When indented, stay indented
+set shiftwidth=4 " Number of characters to indent by
+set tabstop=4 " Number of characters for tab key
+set expandtab " Pressing tab makes 4 spaces.
+
+
+colorscheme gruvbox
+set bg=dark
 "let g:indent_guides_enable_on_vim_startup = 1
 let g:airline_theme='bubblegum'
