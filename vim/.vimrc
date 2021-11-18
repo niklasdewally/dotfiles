@@ -27,6 +27,8 @@ Plugin 'airblade/vim-gitgutter' "show git diff info in airline
 " Language extras:
 Plugin 'idris-hackers/idris-vim'
 Plugin 'neovimhaskell/haskell-vim' 
+" HTML Matching tags
+Plugin 'gregsexton/matchtag'
 " NERDTree
 Plugin 'preservim/nerdtree'
 " All of your Plugins must be added before the following line
