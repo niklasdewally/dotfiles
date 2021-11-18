@@ -1,3 +1,8 @@
+" .vimrc of niklasdewally - edited 18/11/21
+
+"""""""""""""""""""""""""""""""
+" VUNDLE SETUP - DON'T TOUCH! "
+"""""""""""""""""""""""""""""""
 
 set nocompatible              " be iMproved, required
 filetype off                  " Required before vundle
@@ -10,6 +15,11 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGINS - Place github addresses of plugins here (github.com/<thisbit>) "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'morhetz/gruvbox'
 " Markdown plugins
 Plugin 'godlygeek/tabular'
@@ -31,11 +41,16 @@ Plugin 'neovimhaskell/haskell-vim'
 Plugin 'gregsexton/matchtag'
 " NERDTree
 Plugin 'preservim/nerdtree'
+
+
+"""""""""""""""""""""""""""""""
+" VUNDLE SETUP - DON'T TOUCH! "
+"""""""""""""""""""""""""""""""
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -44,30 +59,52 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" USER CONFIG - Edit from here at will! "
+"""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""
+" Line Numbers "
+""""""""""""""""
 " hybrid line numbers
 set ruler
 set number relativenumber
 set nu rnu
 
-" Use vims default filetype plugins
-" see :h ftplugin-doc for defaults for each language
+
+"""""""""""""""""""""""""""""""""""""""
+" Indentation and Syntax Highlighting "
+"""""""""""""""""""""""""""""""""""""""
+" Uses vims default filetype settings - providing indentation and/or plugins.
+" You can also make your own filetype plugins - see the docs and google for
+" more deatails.
+"
+" See: :h filetype.
+
+" Personal settings per filetype can be put in .vim/after/ftplugin/FILETYPE.vim
+" Write these like any vimrc file, but use setlocal instead of set.
+"
+" See: :h filetype-plugins
+
 syntax on
-" Indent according to rules set by filetype
 filetype plugin indent on
 
 " Default, language agonostic tab/spaces indentation rules
 " For most languages, this is personal preference, so not built into vim.
-" Personal settings per filetype can be found in .vim/after/ftplugin/FILETYPE.vim
-" See :h filetype-plugins
+" (however, python uses pep8 defaults)
+
 set autoindent " When indented, stay indented
 set shiftwidth=4 " Number of characters to indent by
 set tabstop=4 " Number of characters for tab key
 set expandtab " Pressing tab makes 4 spaces.
 
-
+"""""""""""""""""""""""""""""""""
+" Colour Schemes and Aesthetics "
+""""""""""""""""""""""""""""""""" 
 colorscheme gruvbox
 set bg=dark
 "let g:indent_guides_enable_on_vim_startup = 1
 let g:airline_theme='bubblegum'
+
+
