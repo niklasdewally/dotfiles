@@ -20,7 +20,11 @@ Plugin 'VundleVim/Vundle.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS - Place github addresses of plugins here (github.com/<thisbit>) "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Color schemes
 Plugin 'morhetz/gruvbox'
+Plugin 'sainnhe/everforest' " with everforest, you need to let g:everforest_background = 'hard'/'medium'/'soft'
+" there is also an airline theme (let g:airline_theme = 'everforest')
+
 " Markdown plugins
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
@@ -106,5 +110,4 @@ colorscheme gruvbox
 set bg=dark
 "let g:indent_guides_enable_on_vim_startup = 1
 let g:airline_theme='bubblegum'
-
 
