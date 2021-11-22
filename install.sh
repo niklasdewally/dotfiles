@@ -8,7 +8,7 @@ shopt -s dotglob
 
 echo "Installing Vim config"
 ln -rs vim/* $HOME || { echo "Error installing vim config"; }
-vim +PluginInstall +"call mkdp#util#install()" +qall
+vim +PlugInstall +qall
 #echo "Installing IntelliJ config"
 #ln -rs intelliJ/ $HOME || { echo "Error installing IntelliJ config"; }
 
