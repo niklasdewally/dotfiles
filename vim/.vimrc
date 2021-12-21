@@ -102,6 +102,6 @@ set expandtab " Pressing tab makes 4 spaces.
 " See the documentation for your preferred color-scheme for what to put here!
 " for gruvbox (my scheme of choice): https://github.com/morhetz/gruvbox
 
-set bg=dark " options: dark | light
+set bg=dark " options: dark : light
 colorscheme gruvbox
 let g:airline_theme='gruvbox'

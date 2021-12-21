@@ -116,3 +116,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export HUGO_PERSONAL=$HOME/src/website
