@@ -1,11 +1,12 @@
 [core]
 	editor = vim 
 	autocrlf = input
+    excludesFile=~/.gitignore.global
 [alias]
 	adog = log --all --decorate --oneline --graph
 [format]
 	pretty = oneline
 [include]
-    path=.gitconfig.local
+    path=~/.gitconfig.local
 [pull]
 	rebase = true
