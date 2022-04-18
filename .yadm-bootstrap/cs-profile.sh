@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# CS machine user configuration
+# -----------------------------
+# Modified 18/04/2022
+
+# Settings for desktop sessions only
+function desktopSettings (){
+    gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape_shifted_capslock']"
+}
+
+# Convinient symlinks to networked folders in ~/Documents, to replicate personal devices structure
+function symlinks () {
+    ln -sfn /cs/home/nd60/Documents/src $HOME/src
+    ln -sfn /cs/home/nd60/Documents/random $HOME/random
+    ln -sfn /cs/home/nd60/Documents/util $HOME/util
+}
+
+function enviromentVariables(){
+    export NETHOME=/cs/home/nd60
+    alias yadm="yadm -Y /cs/home/nd60/.yadm"
+}
+
+if [ "$DESKTOP_SESSION" == "gnome" ]
+then
+    desktopSettings
+fi
+
+symlinks
+enviromentVariables
