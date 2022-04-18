@@ -1,0 +1,9 @@
+[core]
+	editor = vim 
+	autocrlf = input
+[alias]
+	adog = log --all --decorate --oneline --graph
+[format]
+	pretty = oneline
+[include]
+    path=.gitconfig.local
