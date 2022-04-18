@@ -34,3 +34,4 @@ fi
 
 symlinks
 enviromentVariables
+loadDotfiles
