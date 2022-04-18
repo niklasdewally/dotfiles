@@ -7,7 +7,7 @@ Managed by YADM
 ## Host
 ```
 curl -fLo /cs/home/nd60/usr/bin/yadm https://github.com/TheLocehiliosan/yadm/raw/master/yadm && chmod a+x /cs/home/nd60/usr/bin/yadm
-alias yadm="yadm -Y /cs/home/nd60/.yadm"
+alias yadm="yadm -Y /cs/home/nd60/.yadm --yadm-data /cs/home/nd60/.yadm/data --yadm-bootstrap $HOME/.config/yadm/bootstrap"
 yadm clone ssh://git@github.com/niklasdewally/dotfiles --bootstrap
 ```
 

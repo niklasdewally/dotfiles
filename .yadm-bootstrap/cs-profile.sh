@@ -21,7 +21,7 @@ function enviromentVariables(){
 }
 
 function loadDotfiles(){
-    alias yadm="yadm -Y /cs/home/nd60/.yadm"
+    alias yadm="yadm -Y /cs/home/nd60/.yadm --yadm-data /cs/home/nd60/.yadm/data --yadm-bootstrap $HOME/.config/yadm/bootstrap"
     # Load dotfiles from yadm repo 
     yadm bootstrap
     yadm restore . 

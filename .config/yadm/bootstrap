@@ -1,3 +1,5 @@
 #!/bin/bash
-if [ $USER == "nd60"] 
+if [ $USER == "nd60" ]
+then
     ~/.yadm-bootstrap/cs-bootstrap.sh
+fi
