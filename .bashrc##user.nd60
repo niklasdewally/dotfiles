@@ -1,0 +1,5 @@
+#! Set aliases for bash shells when they are not the login shell
+alias yadm="yadm -Y /cs/home/nd60/.yadm --yadm-data /cs/home/nd60/.yadm/data --yadm-bootstrap $HOME/.config/yadm/bootstrap"
+# Load dotfiles from yadm repo 
+yadm bootstrap
+yadm restore . 
