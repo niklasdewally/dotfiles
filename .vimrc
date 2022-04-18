@@ -59,7 +59,13 @@ Plug 'airblade/vim-gitgutter' " show git diff info in airline
 Plug 'gregsexton/matchtag' " match HTML tags
 " Navigation
 Plug 'preservim/nerdtree'
+" Personal computers only
+if $USER == 'niklas'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'alok/notational-fzf-vim'
+endif 
 call plug#end()
+
 """""""""""""""""
 " Line Numbers  "
 """""""""""""""""
@@ -125,3 +131,11 @@ noremap <kPageDown> <Nop>
 " Aliases   "
 """""""""""""
 command NT NERDTreeToggle
+
+"""""""""""""
+" NV        "
+"""""""""""""
+if $USER == 'niklas'
+    let g:nv_search_paths=['~/notes']
+    let g:nv_ignore_pattern= ['*.html','*.pdf']
+endif
