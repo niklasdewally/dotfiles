@@ -18,7 +18,13 @@ function symlinks () {
 
 function enviromentVariables(){
     export NETHOME=/cs/home/nd60
+}
+
+function loadDotfiles(){
     alias yadm="yadm -Y /cs/home/nd60/.yadm"
+    # Load dotfiles from yadm repo 
+    yadm bootstrap
+    yadm restore . 
 }
 
 if [ "$DESKTOP_SESSION" == "gnome" ]
