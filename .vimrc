@@ -57,7 +57,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter' " show git diff info in airline
 " Language Extras
 Plug 'gregsexton/matchtag' " match HTML tags
-
+" Navigation
+Plug 'preservim/nerdtree'
 call plug#end()
 """""""""""""""""
 " Line Numbers  "
