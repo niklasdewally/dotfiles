@@ -120,3 +120,8 @@ noremap <Down> <Nop>
 
 noremap <kPageUp> <Nop>
 noremap <kPageDown> <Nop>
+
+"""""""""""""
+" Aliases   "
+"""""""""""""
+command NT NERDTreeToggle
