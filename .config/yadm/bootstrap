@@ -1,5 +1,6 @@
 #!/bin/bash
+yadm submodule update --init --recursive
 if [ $USER == "nd60" ]
 then
-    ~/.yadm-bootstrap/cs-bootstrap.sh
+    ~/.yadm/cs-bootstrap.sh
 fi
