@@ -1,0 +1,3 @@
+[submodule ".yadm/ohmytmux"]
+	path = .yadm/ohmytmux
+	url = https://github.com/gpakosz/.tmux.git
