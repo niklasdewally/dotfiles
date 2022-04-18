@@ -7,3 +7,5 @@
 	pretty = oneline
 [include]
     path=.gitconfig.local
+[pull]
+	rebase = true
