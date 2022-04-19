@@ -45,8 +45,6 @@ Plug 'morhetz/gruvbox' " my preferred colorscheme :)
 
 " Markdown Plugins
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim'
 " Latex
 Plug 'lervag/vimtex'
 " Discord Rich Presence
@@ -128,19 +126,13 @@ noremap <Down> <Nop>
 noremap <kPageUp> <Nop>
 noremap <kPageDown> <Nop>
 
-"""""""""""""
-" NERDTree  "
-"""""""""""""
-nnoremap <leader>ff :NERDTreeFocus<CR>
-nnoremap <leader>ft :NERDTreeToggle<CR>
-autocmd FileType nerdtree noremap <leader>ff <C-w>p<CR>
-autocmd FileType nerdtree map <leader>ft q<CR>
-
-"""""""""""""
-" FZF       "
-"""""""""""""
+""""""""""""""""""""""""
+" File Mode (Leader-F) "
+""""""""""""""""""""""""
+nnoremap <leader>ff :NERDTreeFocus<CR>  "Focus Files
+nnoremap <leader>ft :NERDTreeToggle<CR> "Toggle Files 
 " https://sourcediving.com/better-fuzzy-finding-in-vim-2f1e8597b3b9
-nnoremap <leader>fs :FZF<CR>
+nnoremap <leader>fs :FZF<CR> "Search Files
 
 """""""""""""
 " NV        "
