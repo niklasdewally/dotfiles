@@ -1,20 +1,57 @@
 #!/bin/bash
+shopt -s expand_aliases
+shopt -s nullglob
+
+# Set enviroment appropriately
+if [ $USER == "nd60" ]; then
+    requireRoot=false
+    binPath=/cs/home/nd60/usr/bin
+    system="CS"
+else
+    requireRoot=true
+    binPath=/usr/local/bin
+    system="personal"
+fi
+
+# Set alias
+if [ $system == "CS" ]; then
+    alias yadm="yadm -Y /cs/home/nd60/.yadm --yadm-data /cs/home/nd60/.yadm/data --yadm-bootstrap $HOME/.config/yadm/bootstrap"
+fi
+
 yadm submodule update --init --recursive
 yadm restore .
+
+echo "Installing binaries to $binPath"
+
+# Download dependencies
 cd ~/.yadm
 mkdir dl
 cd dl
-echo "Downloading FZF"
-curl -LJ0 https://github.com/junegunn/fzf/releases/download/0.30.0/fzf-0.30.0-linux_amd64.tar.gz | tar xvz
-if [ $USER == "nd60" ]
-then
-    echo "CS Computer Detected: copying apps to /cs/home/nd60/usr/bin"
-    cp fzf /cs/home/nd60/usr/bin
-    echo "Running CS Bootstrapper"
-    ~/.yadm/cs-bootstrap.sh
-else
-    echo "Personal Computer Detected: copying apps to /usr/local/bin"
-    sudo cp fzf /usr/local/bin
+if [ ! -f "$binPath/fzf" ]; then
+    echo "fzf not found: downloading"
+    curl -LJ0 https://github.com/junegunn/fzf/releases/download/0.30.0/fzf-0.30.0-linux_amd64.tar.gz | tar xvz
 fi
+
+# Install depenendencies
+echo "Installing"
+if $requireRoot; then
+    sudo cp * $binPath 2> /dev/null
+else
+    cp * $binPath 2> /dev/null
+fi
+
+# Post install cleanup
 cd ..
 rm -rf dl
+
+# System specific config
+if [ $system == "CS" ]; then
+    # Apply profile
+    cp ~/.yadm/cs-profile.sh /cs/home/nd60/.profile.d/profile.sh
+    cp /cs/home/nd60/.ssh/id_rsa ~/.ssh/id_rsa
+    cp /cs/home/nd60/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub
+    # The school overwrites these with symlinks
+    cp ~/.vimrc /cs/home/nd60/.vimrc
+    cp ~/.gitconfig /cs/home/nd60/.gitconfig
+    yadm restore .
+fi

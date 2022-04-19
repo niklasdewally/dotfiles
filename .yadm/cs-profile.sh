@@ -13,7 +13,7 @@ function desktopSettings (){
 function symlinks () {
     ln -sfn /cs/home/nd60/Documents/src $HOME/src
     ln -sfn /cs/home/nd60/Documents/random $HOME/random
-    ln -sfn /cs/home/nd60/Documents/util $HOME/util
+    ln -sfn /cs/home/nd60/Documents/utils $HOME/utils
 }
 
 function enviromentVariables(){
@@ -23,8 +23,9 @@ function enviromentVariables(){
 function loadDotfiles(){
     alias yadm="yadm -Y /cs/home/nd60/.yadm --yadm-data /cs/home/nd60/.yadm/data --yadm-bootstrap $HOME/.config/yadm/bootstrap"
     # Load dotfiles from yadm repo 
+    yadm restore .
+    yadm pull
     yadm bootstrap
-    yadm restore . 
 }
 
 if [ "$DESKTOP_SESSION" == "gnome" ]
