@@ -24,8 +24,6 @@ function loadDotfiles(){
     alias yadm="yadm -Y /cs/home/nd60/.yadm --yadm-data /cs/home/nd60/.yadm/data --yadm-bootstrap $HOME/.config/yadm/bootstrap"
     # Load dotfiles from yadm repo 
     yadm restore .
-    yadm pull
-    yadm bootstrap
 }
 
 if [ "$DESKTOP_SESSION" == "gnome" ]
