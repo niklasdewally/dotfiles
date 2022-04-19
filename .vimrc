@@ -60,9 +60,9 @@ Plug 'airblade/vim-gitgutter' " show git diff info in airline
 Plug 'gregsexton/matchtag' " match HTML tags
 " Navigation
 Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf'
 " Personal computers only
 if $USER == 'niklas'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'alok/notational-fzf-vim'
 endif 
 call plug#end()
@@ -129,13 +129,18 @@ noremap <kPageUp> <Nop>
 noremap <kPageDown> <Nop>
 
 """""""""""""
-" Keybinds  "
+" NERDTree  "
 """""""""""""
-" See also: .common.vim 
 nnoremap <leader>ff :NERDTreeFocus<CR>
 nnoremap <leader>ft :NERDTreeToggle<CR>
 autocmd FileType nerdtree noremap <leader>ff <C-w>p<CR>
 autocmd FileType nerdtree map <leader>ft q<CR>
+
+"""""""""""""
+" FZF       "
+"""""""""""""
+" https://sourcediving.com/better-fuzzy-finding-in-vim-2f1e8597b3b9
+nnoremap <leader>fs :FZF<CR>
 
 """""""""""""
 " NV        "

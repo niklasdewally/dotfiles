@@ -1,6 +1,20 @@
 #!/bin/bash
 yadm submodule update --init --recursive
+yadm restore .
+cd ~/.yadm
+mkdir dl
+cd dl
+echo "Downloading FZF"
+curl -LJ0 https://github.com/junegunn/fzf/releases/download/0.30.0/fzf-0.30.0-linux_amd64.tar.gz | tar xvz
 if [ $USER == "nd60" ]
 then
+    echo "CS Computer Detected: copying apps to /cs/home/nd60/usr/bin"
+    cp fzf /cs/home/nd60/usr/bin
+    echo "Running CS Bootstrapper"
     ~/.yadm/cs-bootstrap.sh
+else
+    echo "Personal Computer Detected: copying apps to /usr/local/bin"
+    sudo cp fzf /usr/local/bin
 fi
+cd ..
+rm -rf dl
