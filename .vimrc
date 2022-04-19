@@ -11,10 +11,11 @@
 " /cs/home/<username>/.vim before doing this.)
 "
 " Written 19/11/21 by nd60
-" (updated 11/12/21)
+" (updated 19/04/22)
 
 set nocompatible " be vIM not vi!
 
+source ~/.common.vim
 """"""""""""""""""""""""""""""""""""
 " Autoinstall vim-plug and plugins "
 """"""""""""""""""""""""""""""""""""
@@ -128,9 +129,13 @@ noremap <kPageUp> <Nop>
 noremap <kPageDown> <Nop>
 
 """""""""""""
-" Aliases   "
+" Keybinds  "
 """""""""""""
-command NT NERDTreeToggle
+" See also: .common.vim 
+nnoremap <leader>ff :NERDTreeFocus<CR>
+nnoremap <leader>ft :NERDTreeToggle<CR>
+autocmd FileType nerdtree noremap <leader>ff <C-w>p<CR>
+autocmd FileType nerdtree map <leader>ft q<CR>
 
 """""""""""""
 " NV        "
