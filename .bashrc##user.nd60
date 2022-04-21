@@ -1,4 +1,6 @@
 #! Set aliases for bash shells when they are not the login shell
+shopt -s expand_aliases
 alias yadm="yadm -Y /cs/home/nd60/.yadm --yadm-data /cs/home/nd60/.yadm/data --yadm-bootstrap $HOME/.config/yadm/bootstrap"
+alias labstatus="labstatus -f /cs/home/nd60/Documents/utils/preferedlabs.txt"
 export TERM=xterm-256color
 yadm restore . 

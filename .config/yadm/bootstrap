@@ -3,6 +3,7 @@ shopt -s expand_aliases
 shopt -s nullglob
 
 # Set enviroment appropriately
+utilsPath=${HOME}/utils
 if [ $USER == "nd60" ]; then
     requireRoot=false
     binPath=/cs/home/nd60/usr/bin
@@ -13,6 +14,14 @@ else
     system="personal"
 fi
 
+function copyToBin () {
+    if $requireRoot; then
+        sudo cp "$*" $binPath 2> /dev/null
+    else
+        cp "$*" $binPath 2> /dev/null
+    fi
+}
+
 # Set alias
 if [ $system == "CS" ]; then
     alias yadm="yadm -Y /cs/home/nd60/.yadm --yadm-data /cs/home/nd60/.yadm/data --yadm-bootstrap $HOME/.config/yadm/bootstrap"
@@ -21,23 +30,23 @@ fi
 yadm submodule update --init --recursive
 yadm restore .
 
-echo "Installing binaries to $binPath"
+echo "Install location set to $binPath"
 
 # Download dependencies
 cd ~/.yadm
 mkdir dl
 cd dl
 if [ ! -f "$binPath/fzf" ]; then
-    echo "fzf not found: downloading"
+    echo "fzf not found: installing"
     curl -LJ0 https://github.com/junegunn/fzf/releases/download/0.30.0/fzf-0.30.0-linux_amd64.tar.gz | tar xvz
+    copyToBin fzf
+    chmod +x $binPath/fzf
 fi
 
-# Install depenendencies
-echo "Installing"
-if $requireRoot; then
-    sudo cp * $binPath 2> /dev/null
-else
-    cp * $binPath 2> /dev/null
+if [ ! -f "$binPath/labstatus" ]; then
+    echo "labstatus not found: installing"
+    copyToBin $HOME/.yadm/labstatus
+    chmod +x $binPath/labstatus
 fi
 
 # Post install cleanup
@@ -55,3 +64,4 @@ if [ $system == "CS" ]; then
     cp ~/.gitconfig /cs/home/nd60/.gitconfig
     yadm restore .
 fi
+

@@ -1,0 +1,50 @@
+#!/bin/bash
+shopt -s expand_aliases
+function getStatus() {
+    local host=$1
+    # Check connectivity
+    ssh -qn $host -o ConnectTimeout=2 'exit' 2> /dev/null
+    if [[ $? -ne 0 ]]; then
+        echo "unreachable"
+        return 0
+    fi
+
+    # Iterate over current sessions and check idle-ness
+    for sessionID in $(loginctl list-sessions -H $host 2> /dev/null | awk 'NR > 1 {print $1}')
+    do
+        local sessionInfo=$(loginctl show-session -H $host $sessionID 2> /dev/null)
+        local isIdle=$(echo $sessionInfo | awk -F= '$1 == "IdleHint" {print $2}')
+
+        if [[ $isIdle = "no"  ]]; then
+            local isRemote =$(echo $sessionInfo | awk -F= '$1 == "Remote" {print $2}')
+
+            if [[ $isRemote = "yes" ]]; then
+                local str="(remote)"
+            else
+                local str="(desktop)"
+            fi
+
+            echo "busy $str"
+            return 0;
+        fi
+    done
+    
+    echo "free"
+    return 0;
+}
+
+filterFree=false
+
+while getopts "Ff:" opt; do
+    case $opt in
+        F) filterFree=true ;;
+        f) file=$OPTARG;;
+    esac
+done
+
+while read host; do
+    status=$(getStatus $host)
+    if ! $filterFree; then echo "$host $status"
+    elif [[ $status =~ free ]]; then echo "$host"; fi
+
+done < "${file}"
