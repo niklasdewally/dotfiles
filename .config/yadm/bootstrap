@@ -42,17 +42,16 @@ cd ~/.yadm
 mkdir dl
 cd dl
 if [ ! -f "$binPath/fzf" ]; then
-    echo "fzf not found: installing"
-    curl -LJ0 https://github.com/junegunn/fzf/releases/download/0.30.0/fzf-0.30.0-linux_amd64.tar.gz | tar xvz
+    echo "fzf not found: installing."
+    curl -LJO https://github.com/junegunn/fzf/releases/download/0.30.0/fzf-0.30.0-linux_amd64.tar.gz | tar xvz
     copyToBin fzf
-    mkExec $binPath/fzf
+    makeExec $binPath/fzf
 fi
 
-if [ ! -f "$binPath/labstatus" ]; then
-    echo "labstatus not found: installing"
-    copyToBin $HOME/.yadm/labstatus
-    makeExec $binPath/labstatus
-fi
+echo "labstatus : installing latest from Github."
+curl -LJO https://raw.githubusercontent.com/niklasdewally/labstatus/main/labstatus
+copyToBin labstatus
+makeExec $binPath/labstatus
 
 # Post install cleanup
 cd ..
