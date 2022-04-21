@@ -3,7 +3,7 @@ shopt -s expand_aliases
 function getStatus() {
     local host=$1
     # Check connectivity
-    ssh -qn $host -o ConnectTimeout=2 'exit' 2> /dev/null
+    ssh -qnt $host -o ConnectTimeout=5 'exit 0' 2> /dev/null
     if [[ $? -ne 0 ]]; then
         echo "unreachable"
         return 0
@@ -43,7 +43,7 @@ while getopts "Ff:" opt; do
 done
 
 while read host; do
-    status=$(getStatus $host)
+    status=$(getStatus ${host})
     if ! $filterFree; then echo "$host $status"
     elif [[ $status =~ free ]]; then echo "$host"; fi
 

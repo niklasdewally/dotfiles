@@ -3,7 +3,6 @@ shopt -s expand_aliases
 shopt -s nullglob
 
 # Set enviroment appropriately
-utilsPath=${HOME}/utils
 if [ $USER == "nd60" ]; then
     requireRoot=false
     binPath=/cs/home/nd60/usr/bin
@@ -14,11 +13,17 @@ else
     system="personal"
 fi
 
-function copyToBin () {
-    if $requireRoot; then
+function copyToBin () { if $requireRoot; then
         sudo cp "$*" $binPath 2> /dev/null
     else
         cp "$*" $binPath 2> /dev/null
+    fi
+}
+
+function makeExec () { if $requireRoot; then
+        sudo chmod +x $1 2> /dev/null
+    else
+        chmod +x $1 2> /dev/null
     fi
 }
 
@@ -40,13 +45,13 @@ if [ ! -f "$binPath/fzf" ]; then
     echo "fzf not found: installing"
     curl -LJ0 https://github.com/junegunn/fzf/releases/download/0.30.0/fzf-0.30.0-linux_amd64.tar.gz | tar xvz
     copyToBin fzf
-    chmod +x $binPath/fzf
+    mkExec $binPath/fzf
 fi
 
 if [ ! -f "$binPath/labstatus" ]; then
     echo "labstatus not found: installing"
     copyToBin $HOME/.yadm/labstatus
-    chmod +x $binPath/labstatus
+    makeExec $binPath/labstatus
 fi
 
 # Post install cleanup
@@ -60,8 +65,7 @@ if [ $system == "CS" ]; then
     cp /cs/home/nd60/.ssh/id_rsa ~/.ssh/id_rsa
     cp /cs/home/nd60/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub
     # The school overwrites these with symlinks
-    cp ~/.vimrc /cs/home/nd60/.vimrc
-    cp ~/.gitconfig /cs/home/nd60/.gitconfig
     yadm restore .
+    ~/.yadm/cs-profile.sh
 fi
 
