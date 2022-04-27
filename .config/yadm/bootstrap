@@ -59,6 +59,11 @@ unzip bw.zip
 copyToBin bw 
 makeExec $binPath/bw
 
+echo "bitwarden GUI: installing latest from bitwarden.com."
+curl -LJ0 'https://vault.bitwarden.com/download/?app=desktop&platform=linux' -o bwgui
+copyToBin bwgui
+makeExec $binPath/bwgui
+
 # Post install cleanup
 cd ..
 rm -rf dl
