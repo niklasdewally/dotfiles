@@ -18,6 +18,8 @@ function symlinks () {
     ln -sfn /cs/home/nd60/Documents/src $HOME/src
     ln -sfn /cs/home/nd60/Documents/random $HOME/random
     ln -sfn /cs/home/nd60/Documents/utils $HOME/utils
+    ln -sfn /cs/home/nd60/.config/'Bitwarden CLI' $HOME/.config/'Bitwarden CLI'
+    ln -sfn /cs/home/nd60/.config/Bitwarden $HOME/.config/Bitwarden
 }
 
 function enviromentVariables(){
