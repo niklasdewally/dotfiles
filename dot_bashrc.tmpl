@@ -1,2 +1,5 @@
 # vim: ft=bash:
 export EDITOR=vim
+{{- if eq .islab true}}
+chezmoi init
+{{- end}}
