@@ -1,7 +1,12 @@
 # -*-mode:conf-toml-*- vim:ft=toml
-{{- $email := promptStringOnce . "email" "Email address" }}
-
+{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $islab := promptBoolOnce . "islab" "Is this a School machine"}}
 [data]
     name = "Niklas Dewally"
     email = {{ $email | quote }}
+    islab = {{ $islab }}
+
+{{if eq $islab true}}
+ sourceDir = "/cs/home/nd60/.chezmoi"
+{{end}}
 
