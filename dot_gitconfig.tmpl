@@ -1,12 +1,7 @@
 # vim: filetype=gitconfig:
 [user]
-    name= Niklas Dewally
-    {{- if eq .chezmoi.username "nd60" }}
-    email = n60@st-andrews.ac.uk
-    {{- end }}
-    {{- if ne .chezmoi.username "nd60" }}
-    email= niklas@dewally.com 
-    {{- end }}
+    name= "{{ .name }}"
+    email= "{{ .email }}"
 
 [core]
     editor = vim 

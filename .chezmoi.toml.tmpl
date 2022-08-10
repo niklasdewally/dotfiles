@@ -1,0 +1,7 @@
+# -*-mode:conf-toml-*- vim:ft=toml
+{{- $email := promptStringOnce . "email" "Email address" }}
+
+[data]
+    name = "Niklas Dewally"
+    email = {{ $email | quote }}
+
