@@ -1,0 +1,28 @@
+# vim: filetype=gitconfig:
+[user]
+    name= Niklas Dewally
+    {{- if eq .chezmoi.username "nd60" }}
+    email = n60@st-andrews.ac.uk
+    {{- end }}
+    {{- if ne .chezmoi.username "nd60" }}
+    email= niklas@dewally.com 
+    {{- end }}
+
+[core]
+    editor = vim 
+    autocrlf = input
+    excludesFile=~/.gitignore.global
+
+[alias]
+    graph = log --all --decorate --oneline --graph
+
+[format]
+    pretty = oneline 
+
+[pull]
+    rebase = true
+
+{{- if eq .chezmoi.username "niklas"}}
+[init]
+    defaultBranch=main
+{{- end}}
