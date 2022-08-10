@@ -1,5 +1,5 @@
 # vim: filetype=conf:
-CannonicalDomains dewally.com cs.st-andrews.ac.uk
+CanonicalDomains dewally.com cs.st-andrews.ac.uk
 CanonicalizeHostname yes
 
 AddKeysToAgent ask
@@ -30,7 +30,7 @@ Host lab4
 
 ## PROXY FOR PERSONAL DEVICES
 
-{{- if eq .chezmoi.username "niklas" }}
+{{if eq .chezmoi.username "niklas" }}
 # From systems wiki
 Host proxy_host
     ProxyCommand none
@@ -40,5 +40,5 @@ Host proxy_host
 Match Host !*.host.cs.st-andrews.ac.uk,*.st-andrews.ac.uk,138.251.*
     User nd60
     ProxyCommand ssh -xaq -W %h:%p proxy_host
-{{- end }}
+{{end }}
 
