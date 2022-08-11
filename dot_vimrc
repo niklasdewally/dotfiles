@@ -11,7 +11,7 @@
 " /cs/home/<username>/.vim before doing this.)
 "
 " Written 19/11/21 by nd60
-" (updated 19/04/22)
+" (updated 10/06/22)
 
 set nocompatible " be vIM not vi!
 
