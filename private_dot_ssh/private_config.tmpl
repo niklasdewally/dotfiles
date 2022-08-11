@@ -1,0 +1,44 @@
+# vim: filetype=conf:
+CanonicalDomains dewally.com cs.st-andrews.ac.uk
+CanonicalizeHostname yes
+
+AddKeysToAgent ask
+
+Host *.dewally.com
+    User niklas
+
+Host *.cs.st-andrews.ac.uk
+    User nd60
+
+## ALIASES
+
+Host hostcs
+    HostName nd60.host.cs.st-andrews.ac.uk
+    User nd60
+
+Host lab1
+    HostName pc8-055-l
+
+Host lab2
+    HostName pc8-068-l
+
+Host lab3
+    HostName pc8-077-l
+
+Host lab4
+    HostName pc8-003-l
+
+## PROXY FOR PERSONAL DEVICES
+
+{{if eq .chezmoi.username "niklas" }}
+# From systems wiki
+Host proxy_host
+    ProxyCommand none
+    User nd60
+    Hostname nd60.host.cs.st-andrews.ac.uk
+
+Match Host !*.host.cs.st-andrews.ac.uk,*.st-andrews.ac.uk,138.251.*
+    User nd60
+    ProxyCommand ssh -xaq -W %h:%p proxy_host
+{{end }}
+
