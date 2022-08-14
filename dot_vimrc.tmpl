@@ -55,6 +55,7 @@ Plug 'godlygeek/tabular'
 " Latex
 Plug 'lervag/vimtex'
 
+{{ if eq .islab false}}
 " Racket / Scheme
 " See: https://stackoverflow.com/q/5352997
 " See: https://docs.racket-lang.org/guide/Vim.html
@@ -64,6 +65,7 @@ Plug 'kien/rainbow_parentheses.vim'
 " some other vim keybindings!) - it also supports REPL stuff, but not for
 " racket!
 Plug 'kovisoft/slimv'
+{{end}}
 
 " HTML / CSS
 Plug 'gregsexton/matchtag' " match HTML tags
