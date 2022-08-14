@@ -10,7 +10,7 @@
 " /cs/home/<username>/.vim before doing this.)
 "
 " Written 19/11/21 by nd60
-" (updated 13/06/22)
+" (updated 14/06/22)
 
 set nocompatible " be vIM not vi!
 
@@ -90,12 +90,25 @@ set nu rnu
 """""""""""""""""
 " Better Splits "
 """""""""""""""""
+" Keybindings (note <leader>=<Space>)
+" create new splits
 nnoremap <leader>v :vne
+nnoremap <leader>s :split
+" move between splits
 nnoremap <leader>j <C-w>j
+" gitgutter causes a conflict - disable keybindings
+let g:gitgutter_map_keys = 0
 nnoremap <leader>h <C-w>h
 nnoremap <leader>k <C-w>k
 nnoremap <leader>l <C-w>l
-
+" move around splits (to specified side of screen)
+nnoremap <leader>J <C-w>J
+nnoremap <leader>H <C-w>H
+nnoremap <leader>K <C-w>K
+nnoremap <leader>L <C-w>L
+" resize vsplits
+nnoremap <leader>< <c-w><
+nnoremap <leader>> <c-w>>
 """""""""""""""""""""""""""""""""""""""
 " Indentation and Syntax Highlighting "
 """""""""""""""""""""""""""""""""""""""
@@ -163,4 +176,11 @@ nnoremap <leader>fs :FZF<CR> "Search Files
 " Configuration for tmux (see README):
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+
+""""""""""""""""""""
+" Man Page Support "
+""""""""""""""""""""
+" View manpages in vim by typing :Man
+" See: https://vim.fandom.com/wiki/View_man_pages_in_Vim
+runtime ftplugin/man.vim
 
