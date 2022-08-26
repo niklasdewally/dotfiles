@@ -1,7 +1,7 @@
 # vim: filetype=conf:
 CanonicalDomains dewally.com cs.st-andrews.ac.uk cader.net.dewally.com
 CanonicalizeHostname yes
-
+CanonicalizeMaxDots 5
 AddKeysToAgent ask
 
 Host *.dewally.com
@@ -30,15 +30,14 @@ Host lab4
 
 # Home network proxy
 Host tayberry
-    ProxyCommand none
-    ForwardAgent yes
     User niklas
     Hostname cader.net.dewally.com
+    ProxyJump none
+    ProxyCommand none
 
-Match Host !tayberry.cader.net.dewally.com,*.cader.net.dewally.com
+Host gojiberry
     User niklas
-    ForwardAgent yes
-    ProxyCommand ssh -xaq -W $h:%p tayberry
+    ProxyJump tayberry
 
 ## PROXY FOR PERSONAL DEVICES
 
