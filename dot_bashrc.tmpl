@@ -53,7 +53,6 @@ colour_my_prompt () {
     # see https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 
     export GIT_PS1_SHOWDIRTYSTATE=1
-    export GIT_PS1_SHOWUPSTREAM="auto"
     local __git="$B_LRED"'$(__git_ps1 " (%s)")'"$CLEARALL"
     export PS1="$__user_and_host $__current_dir$__git \$ "
 }
