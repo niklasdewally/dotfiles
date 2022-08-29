@@ -47,14 +47,18 @@ B_LMAGENTA='\[\e[01;95m\]'
 B_LCYAN='\[\e[01;96m\]'
 B_WHITE='\[\e[01;97m\]'
 
+COL=$B_LBLUE
+{{- if eq .chezmoi.username "niklas"}}
+COL=$B_LYELLOW
+{{- end}}
 colour_my_prompt () {
     local __user_and_host="$BOLD\u@\h$CLEARALL"
-    local __current_dir="$B_LYELLOW\w$CLEARALL"
+    local __current_dir="$COL\w$CLEARALL"
     # see https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 
     export GIT_PS1_SHOWDIRTYSTATE=1
     local __git="$B_LRED"'$(__git_ps1 " (%s)")'"$CLEARALL"
-    export PS1="$__user_and_host $__current_dir$__git \$ "
+    export PS1="$__user_and_host $__current_dir$__git $COL\$$CLEARALL "
 }
 colour_my_prompt
 #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
