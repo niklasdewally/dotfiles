@@ -10,7 +10,7 @@
 " /cs/home/<username>/.vim before doing this.)
 "
 " Written 19/11/21 by nd60
-" (updated 14/06/22)
+" (updated 01/12/22)
 
 set nocompatible " be vIM not vi!
 
@@ -40,7 +40,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 """""""""""
 " See: https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
-
 Plug 'morhetz/gruvbox' " my preferred colorscheme :)
 Plug 'vimsence/vimsence' " Discord Rich Presence
 Plug 'preservim/nerdtree' " File browsing
@@ -50,7 +49,9 @@ Plug 'jpalardy/vim-slime' "REPL integration (see later section in this file)
 " Language Plugins:
 "
 " Markdown 
-Plug 'godlygeek/tabular'
+" Plugin 'gabrielelana/vim-markdown'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Latex
 Plug 'lervag/vimtex'
@@ -139,6 +140,7 @@ set expandtab " Pressing tab makes 4 spaces.
 
 " Bring mac inline with linux defaults with backspaces
 set bs=indent,eol,start
+
 """""""""""""""""
 " Colour-scheme "
 """""""""""""""""
@@ -187,4 +189,13 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 " View manpages in vim by typing :Man
 " See: https://vim.fandom.com/wiki/View_man_pages_in_Vim
 runtime ftplugin/man.vim
+
+set exrc " load local macros from current project directory's vimrc (make this using :mkv)
+set secure
+
+""""""""""""""""""
+"Pandoc Markdown "
+""""""""""""""""""
+
+let g:pandoc#syntax#codeblocks#embed#langs = ["html","c","css","java","bash=sh"]
 
