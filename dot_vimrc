@@ -66,9 +66,9 @@
 " }}}
 " Editor: Mouse {{{
 "
-	if has('mouse')
-	  set mouse=a
-	endif
+" 	if has('mouse')
+" 	  set mouse=a
+" 	endif
 
     "}}}
 " Editor: Colour Scheme {{{ 
