@@ -22,7 +22,9 @@
     Plug 'morhetz/gruvbox' " my preferred colorscheme :)
     Plug 'vimsence/vimsence' " Discord Rich Presence
     Plug 'preservim/nerdtree' " File browsing
-    Plug 'junegunn/fzf' " Use fzf within vim (REQUIRES fzf installed on the system)
+    Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+    Plug 'monkoose/fzf-hoogle.vim'
+
     Plug 'jpalardy/vim-slime' "REPL integration (see later section in this file)
 
     Plug 'vim-pandoc/vim-pandoc'
@@ -48,6 +50,7 @@
     Plug 'airblade/vim-gitgutter' " show git diff info in airline
 
     Plug 'neovimhaskell/haskell-vim'
+
     call plug#end()
 " }}}
 " Editor {{{
@@ -80,18 +83,13 @@
 " }}}
 " Editor: Indentation and Syntax Highlighting {{{ 
 
-    filetype plugin indent on
-    syntax on
     set autoindent " When indented, stay indented
     set shiftwidth=4 " Number of characters to indent by
     set tabstop=4 " Number of characters for tab key
+	set expandtab
 
-    " Hardwrap plaintext
-    " From :h usr_05
-	augroup vimrcEx
-	  au!
-	  autocmd FileType text setlocal textwidth=78
-	augroup END
+    filetype plugin indent on
+    syntax on
 
 " }}}
 " {{{ Keybindings 
@@ -129,8 +127,10 @@
 
 " }}}
 " Keybindings: File Mode (Leader-F) {{{
-"
+    
 	" File Find
+    nnoremap <leader>f  :echo "(f)ile \|\|  (f)ind - open the file tree   (s)earch - open fzf"<CR>
+    nnoremap <leader>f? :echo "(f)ile \|\|  (f)ind - open the file tree   (s)earch - open fzf"<CR>
     nnoremap <leader>ff :NERDTree<CR>
 	let NERDTreeQuitOnOpen='3' " autoclose nerdtree after opening a file
 
@@ -139,12 +139,27 @@
     nnoremap <leader>fs :FZF<CR>
 
 " }}}
+" Keybindings: Haskell Mode (Leader-H) {{{
+
+    nnoremap <leader>h  :echo "(h)askell \|\|  (h)oogle"<CR>
+    nnoremap <leader>h? :echo "(h)askell \|\|  (h)oogle"<CR>
+    nnoremap <leader>hh :Hoogle<CR>
+
+" }}}
 " Languages: Markdown / Pandoc {{{ 
     let g:pandoc#syntax#codeblocks#embed#langs = ["html","c","css","java","bash=sh"]
-	let g:pandoc#formatting#mode = 'hA' "  hardwrap
+	let g:pandoc#formatting#mode = 'ha' "  hardwrap
 	let g:pandoc#smart_autoformat_on_cursormoved = 1
 	" This plugin can suggest citations using CTRL-X CTRL-O !
 	
+" }}}
+" Languages: Haskell {{{
+   let g:haskell_indent_disable = 0
+
+   " Folds
+   au FileType haskell {
+       setl foldmethod=marker
+   }
 " }}}
 " Languages: REPL Support {{{ 
     " See: https://github.com/jpalardy/vim-slime
