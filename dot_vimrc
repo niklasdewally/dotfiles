@@ -1,7 +1,7 @@
 " vim: fdm=marker ft=vim
 
 " Written 19/11/21 by nd60
-" (updated 07/12/22)
+" (updated 26/12/22)
 
 " Vim-plug setup {{{ 
     " Install vim-plug if not found
@@ -20,7 +20,7 @@
     " See: https://github.com/junegunn/vim-plug
     call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox' " my preferred colorscheme :)
-    Plug 'vimsence/vimsence' " Discord Rich Presence
+    " Plug 'vimsence/vimsence' " Discord Rich Presence
     Plug 'preservim/nerdtree' " File browsing
     Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
     Plug 'monkoose/fzf-hoogle.vim'
@@ -30,7 +30,7 @@
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
 
-    Plug 'lervag/vimtex'
+    " Plug 'lervag/vimtex'
 
     " Racket / Scheme
     " See: https://docs.racket-lang.org/guide/Vim.html
@@ -44,7 +44,7 @@
     " HTML / CSS
     Plug 'gregsexton/matchtag' " match HTML tags
 
-    Plug 'nathanaelkane/vim-indent-guides'
+    " Plug 'nathanaelkane/vim-indent-guides'
     Plug 'vim-airline/vim-airline' " nice bottom bar
     Plug 'vim-airline/vim-airline-themes'
     Plug 'airblade/vim-gitgutter' " show git diff info in airline
@@ -67,13 +67,6 @@
         set undofile
     endif
 " }}}
-" Editor: Mouse {{{
-"
-" 	if has('mouse')
-" 	  set mouse=a
-" 	endif
-
-    "}}}
 " Editor: Colour Scheme {{{ 
 
     set bg=dark
