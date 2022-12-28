@@ -20,7 +20,7 @@
     " See: https://github.com/junegunn/vim-plug
     call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox' " my preferred colorscheme :)
-    " Plug 'vimsence/vimsence' " Discord Rich Presence
+    Plug 'vimsence/vimsence' " Discord Rich Presence
     Plug 'preservim/nerdtree' " File browsing
     Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
     Plug 'monkoose/fzf-hoogle.vim'
@@ -29,6 +29,7 @@
 
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'dhruvasagar/vim-table-mode'
 
     " Plug 'lervag/vimtex'
 
@@ -86,7 +87,8 @@
 
 " }}}
 " {{{ Keybindings 
-    let mapleader=" "
+    let mapleader=","
+    let maplocalleader=" "
 " }}}
 " Keybindings: Splits {{{ 
     " create new splits
@@ -119,7 +121,7 @@
     noremap <kPageDown> <Nop>
 
 " }}}
-" Keybindings: File Mode (Leader-F) {{{
+" Keybindings: File Commands (Leader-F) {{{
     
 	" File Find
     nnoremap <leader>f  :echo "(f)ile \|\|  (f)ind - open the file tree   (s)earch - open fzf"<CR>
@@ -132,14 +134,31 @@
     nnoremap <leader>fs :FZF<CR>
 
 " }}}
-" Keybindings: Haskell Mode (Leader-H) {{{
+" Keybindings: Haskell Mode {{{
 
-    nnoremap <leader>h  :echo "(h)askell \|\|  (h)oogle"<CR>
-    nnoremap <leader>h? :echo "(h)askell \|\|  (h)oogle"<CR>
-    nnoremap <leader>hh :Hoogle<CR>
+    autocmd FileType haskell call s:SetHaskellKeyBindings()
+    function SetHaskellKeyBindings() 
+        " clear all existing filetype keybindings
+        mapclear <buffer>
+        mapclear! <buffer>
+        nnoremap <buffer> <LocalLeader>  :echo "(h)oogle"<CR>
+        nnoremap <LocalLeader>? :echo "(h)oogle"<CR>
+        nnoremap <LocalLeader>h :Hoogle<CR>
+    endfunction
+
+" }}}
+" Keybindings:: Markdown mode {{{
+
+    autocmd FileType pandoc call SetPandocKeyBindings()
+    function SetPandocKeyBindings() 
+        " clear all existing filetype keybindings
+        mapclear <buffer>
+        mapclear! <buffer>
+    endfunction
 
 " }}}
 " Languages: Markdown / Pandoc {{{ 
+"
     let g:pandoc#syntax#codeblocks#embed#langs = ["html","c","css","java","bash=sh"]
 	let g:pandoc#formatting#mode = 'ha' "  hardwrap
 	let g:pandoc#smart_autoformat_on_cursormoved = 1
