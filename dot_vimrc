@@ -1,7 +1,7 @@
 " vim: fdm=marker ft=vim
 
 " Written 19/11/21 by nd60
-" (updated 26/12/22)
+" (updated 02/01/23)
 
 " Vim-plug setup {{{ 
     " Install vim-plug if not found
@@ -19,19 +19,26 @@
 
     " See: https://github.com/junegunn/vim-plug
     call plug#begin('~/.vim/plugged')
-    Plug 'morhetz/gruvbox' " my preferred colorscheme :)
+
     Plug 'vimsence/vimsence' " Discord Rich Presence
+
+    " Aesthetics
+    Plug 'morhetz/gruvbox' " my preferred colorscheme :)
+    Plug 'vim-airline/vim-airline' " nice bottom bar
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'airblade/vim-gitgutter' " show git diff info in airline
+
+    " Navigation
     Plug 'preservim/nerdtree' " File browsing
     Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-    Plug 'monkoose/fzf-hoogle.vim'
 
+    " REPL Integration
     Plug 'jpalardy/vim-slime' "REPL integration (see later section in this file)
 
+    " Markdown Writing
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'dhruvasagar/vim-table-mode'
-
-    " Plug 'lervag/vimtex'
 
     " Racket / Scheme
     " See: https://docs.racket-lang.org/guide/Vim.html
@@ -45,16 +52,14 @@
     " HTML / CSS
     Plug 'gregsexton/matchtag' " match HTML tags
 
-    " Plug 'nathanaelkane/vim-indent-guides'
-    Plug 'vim-airline/vim-airline' " nice bottom bar
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'airblade/vim-gitgutter' " show git diff info in airline
-
+    " Haskell
     Plug 'neovimhaskell/haskell-vim'
+    Plug 'monkoose/fzf-hoogle.vim'
 
     call plug#end()
 " }}}
 " Editor {{{
+
     set nocompatible " be vim not vi
     set incsearch
 	set backspace=indent,eol,start
@@ -144,16 +149,6 @@
         nnoremap <buffer> <LocalLeader>  :echo "(h)oogle"<CR>
         nnoremap <LocalLeader>? :echo "(h)oogle"<CR>
         nnoremap <LocalLeader>h :Hoogle<CR>
-    endfunction
-
-" }}}
-" Keybindings:: Markdown mode {{{
-
-    autocmd FileType pandoc call SetPandocKeyBindings()
-    function SetPandocKeyBindings() 
-        " clear all existing filetype keybindings
-        mapclear <buffer>
-        mapclear! <buffer>
     endfunction
 
 " }}}
