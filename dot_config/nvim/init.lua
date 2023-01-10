@@ -67,32 +67,40 @@ require('packer').startup(function(use)
 
 end)
 -- }}}
+-- EDITOR {{{
+
+vim.opt.rnu = true
+vim.opt.nu = true
+
+-- }}}
 -- EDITOR: COLOUR SCHEME {{{
 vim.opt.background = "dark"
 vim.cmd([[ colorscheme gruvbox ]])
 -- }}}
--- LSP {{{
-
-
-require("mason").setup()
-require("mason-lspconfig").setup()
-
--- Do not display diagnostic information by default
+-- DIAGNOSTIC INFO {{{
+-- Hide this by default, apart from in gutter
 vim.diagnostic.config({
 	virtual_text = false,
 	underline = false
 })
-
+-- Keep gutter open to stop text wiggling around
 vim.opt.signcolumn = "yes" -- keep gutter on screen to stop things wiggling around
 
--- :ShowErrors to see inline diagnostics, :HideErrors to hide again.
-vim.api.nvim_create_user_command("HideErrors",'lua vim.diagnostic.show(nil,nil,nil,{virtual_text=false,underline=false})',{})
+-- Use commands :ShowErrors and :HideErrors to view/hide diagnostic info
+vim.api.nvim_create_user_command("HideErrors",
+	'lua vim.diagnostic.show(nil,nil,nil,{virtual_text=false,underline=false})', {})
 
-vim.api.nvim_create_user_command("ShowErrors",'lua vim.diagnostic.show(nil,nil,nil,{virtual_text=true,})',{})
+vim.api.nvim_create_user_command("ShowErrors",
+	'lua vim.diagnostic.show(nil,nil,nil,{virtual_text=true,underline=true})', {})
+-- }}}
+-- LSP {{{
+require("mason").setup()
+require("mason-lspconfig").setup()
 
--- list lsp servers to be installed
+
+-- list of lsp servers to be installed
 require("lspconfig").hls.setup {}
-require("lspconfig").jdtls.setup {}
+require("lspconfig").jdtls.setup {} -- java
 require("lspconfig").tsserver.setup {}
 require("lspconfig").idris2_lsp.setup {}
 require("lspconfig").clangd.setup {}
