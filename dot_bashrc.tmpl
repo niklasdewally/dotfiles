@@ -1,8 +1,18 @@
 # vim: ft=bash:
 . /etc/bashrc
 export EDITOR=vim
+{{- if eq .chezmoi.username "niklas"}}
+COL=$B_LYELLOW
 export PATH="$PATH:/Users/niklas/.cabal/bin"
 export PATH="$PATH:/Users/niklas/.ghcup/bin"
+{{- end}}
+
+{{- if eq .chezmoi.username "nd60"}}
+setup-env () {
+chezmoi apply
+}
+{{- end}}
+
 #export PATH="$PATH:/home/niklas/uni/bin"
 . ~/.bash/git-completion.bash
 . ~/.bash/git-prompt.sh
