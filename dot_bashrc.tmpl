@@ -1,6 +1,7 @@
 # vim: ft=bash:
 . /etc/bashrc
-export EDITOR=vim
+export EDITOR=nvim
+alias vim=nvim
 {{- if eq .chezmoi.username "niklas"}}
 COL=$B_LYELLOW
 export PATH="$PATH:/Users/niklas/.cabal/bin"
