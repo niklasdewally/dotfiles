@@ -74,17 +74,20 @@ vim.opt.nu = true
 
 -- }}}
 -- EDITOR: COLOUR SCHEME {{{
+
 vim.opt.background = "dark"
 vim.cmd([[ colorscheme gruvbox ]])
+
 -- }}}
 -- DIAGNOSTIC INFO {{{
--- Hide this by default, apart from in gutter
+
+-- Hide diagnostics by default, apart from in gutter
 vim.diagnostic.config({
 	virtual_text = false,
 	underline = false
 })
 -- Keep gutter open to stop text wiggling around
-vim.opt.signcolumn = "yes" -- keep gutter on screen to stop things wiggling around
+vim.opt.signcolumn = "yes"
 
 -- Use commands :ShowErrors and :HideErrors to view/hide diagnostic info
 vim.api.nvim_create_user_command("HideErrors",
@@ -92,16 +95,25 @@ vim.api.nvim_create_user_command("HideErrors",
 
 vim.api.nvim_create_user_command("ShowErrors",
 	'lua vim.diagnostic.show(nil,nil,nil,{virtual_text=true,underline=true})', {})
+
 -- }}}
 -- LSP {{{
+
 require("mason").setup()
 require("mason-lspconfig").setup()
 
 
 -- list of lsp servers to be installed
-require("lspconfig").hls.setup {}
-require("lspconfig").jdtls.setup {} -- java
-require("lspconfig").tsserver.setup {}
-require("lspconfig").idris2_lsp.setup {}
-require("lspconfig").clangd.setup {}
-require("lspconfig").sumneko_lua.setup {}
+
+require("lspconfig").ansiblels.setup {}     -- Ansible
+require("lspconfig").asm_lsp.setup {}       -- Assembly
+require("lspconfig").clangd.setup {}        -- C / C++
+require("lspconfig").cssls.setup {}         -- CSS
+require("lspconfig").dotls.setup{} 	    -- DOT (Graphviz)
+require("lspconfig").hls.setup {}           -- Haskell
+require("lspconfig").idris2_lsp.setup {}    -- Idris
+require("lspconfig").jdtls.setup {}         -- Java
+require("lspconfig").jsonls.setup{}         -- JSON
+require("lspconfig").sumneko_lua.setup {}   -- Lua
+require("lspconfig").pyright.setup{} 	    -- Python (static analysis only)
+require("lspconfig").tsserver.setup {}      -- Typescript; Javascript
