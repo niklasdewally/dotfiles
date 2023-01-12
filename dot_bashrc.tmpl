@@ -8,9 +8,7 @@ export PATH="$PATH:/Users/niklas/.ghcup/bin"
 {{- end}}
 
 {{- if eq .chezmoi.username "nd60"}}
-setup-env () {
-chezmoi apply
-}
+chezmoi apply -f 
 {{- end}}
 
 #export PATH="$PATH:/home/niklas/uni/bin"
