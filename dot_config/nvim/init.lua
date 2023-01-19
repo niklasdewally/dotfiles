@@ -71,15 +71,13 @@ end)
 
 vim.opt.rnu = true
 vim.opt.nu = true
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
 
 vim.opt.autoindent = true
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
 vim.opt.expandtab = true
+vim.opt.smartindent = true
+
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 
 -- }}}
 -- EDITOR: COLOUR SCHEME {{{
@@ -111,11 +109,22 @@ vim.api.nvim_create_user_command("ShowErrors",
 require("mason").setup()
 require("mason-lspconfig").setup()
 
+vim.api.nvim_create_user_command("CodeAction",function() vim.lsp.buf.code_action({apply=true}) end,{})
+vim.api.nvim_create_user_command("Ca",function() vim.lsp.buf.code_action({apply=true}) end,{})
 
--- list of lsp servers to be installed
+-- from https://github.com/neovim/nvim-lspconfig
+local opts = { noremap=true, silent=true }
+
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+
+-- list of lsp servers available to use
 
 require("lspconfig").ansiblels.setup {}     -- Ansible
 require("lspconfig").asm_lsp.setup {}       -- Assembly
+require("lspconfig").bashls.setup {}       -- Bash
 require("lspconfig").clangd.setup {}        -- C / C++
 require("lspconfig").cssls.setup {}         -- CSS
 require("lspconfig").dotls.setup{} 	    -- DOT (Graphviz)
