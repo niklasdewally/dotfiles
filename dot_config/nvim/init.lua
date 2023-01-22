@@ -135,3 +135,13 @@ require("lspconfig").jsonls.setup{}         -- JSON
 require("lspconfig").sumneko_lua.setup {}   -- Lua
 require("lspconfig").pyright.setup{} 	    -- Python (static analysis only)
 require("lspconfig").tsserver.setup {}      -- Typescript; Javascript
+-- }}}
+
+-- SLIME REPL {{{
+vim.g.slime_bracketed_paste = 1
+vim.g.slime_target = "tmux"
+
+-- guess tmux pane
+vim.g.slime_default_config = {socket_name = "default", target_pane = "{last}"}
+
+-- }}}
