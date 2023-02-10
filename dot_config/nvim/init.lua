@@ -60,6 +60,8 @@ require('packer').startup(function(use)
 	use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 	use 'ii14/lsp-command' -- provide command interface to lsp functions
 
+  use 'tpope/vim-fugitive' -- git wrapper (run :Git )
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	if packer_bootstrap then
 		require('packer').sync()
