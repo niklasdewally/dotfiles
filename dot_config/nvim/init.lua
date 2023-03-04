@@ -136,7 +136,8 @@ require("lspconfig").jdtls.setup {}         -- Java
 require("lspconfig").jsonls.setup{}         -- JSON
 require("lspconfig").sumneko_lua.setup {}   -- Lua
 require("lspconfig").pyright.setup{} 	    -- Python (static analysis only)
-require("lspconfig").tsserver.setup {}      -- Typescript; Javascript
+require("lspconfig").tsserver.setup{}      -- Typescript; Javascript
+require("lspconfig").rust_analyzer.setup{}      -- Rust
 -- }}}
 
 -- SLIME REPL {{{
