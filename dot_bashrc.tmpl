@@ -1,21 +1,11 @@
-# vim: ft=bash:
+# vim: foldmethod=marker foldmarker=#START,#END ft=bash
+
+
+# Run global settings first!!
 . /etc/bashrc
-export EDITOR=nvim
-alias vim=nvim
-{{- if eq .chezmoi.username "niklas"}}
-COL=$B_LYELLOW
-export PATH="$PATH:/Users/niklas/.cabal/bin"
-export PATH="$PATH:/Users/niklas/.ghcup/bin"
-{{- end}}
 
-{{- if eq .chezmoi.username "nd60"}}
-chezmoi apply --force
-{{- end}}
+#START Colours
 
-#export PATH="$PATH:/home/niklas/uni/bin"
-. ~/.bash/git-completion.bash
-. ~/.bash/git-prompt.sh
-eval "$(pandoc --bash-completion)"
 #https://scriptim.github.io/bash-prompt-generator/
 #https://stackoverflow.com/questions/4133904/ps1-line-with-git-current-branch-and-colors
 
@@ -59,11 +49,61 @@ B_LBLUE='\[\e[01;94m\]'
 B_LMAGENTA='\[\e[01;95m\]'
 B_LCYAN='\[\e[01;96m\]'
 B_WHITE='\[\e[01;97m\]'
+#END
+#START Shell Settings
+export EDITOR=nvim
+bind "set completion-ignore-case on"
+alias vim=nvim
+#END
+#START Path
 
+# Directories to add to path (if they exist)
+USR_PATH=(
+  "$HOME/uni/bin"
+  "$HOME/.cabal/bin"
+  "$HOME/.ghcup/bin"
+  "$HOME/.config/emacs/bin"
+  "/usr/local/anaconda3/bin"
+  )
+
+for path in ${USR_PATH[@]}; do
+  [ -d  $path ] && export PATH="$path:$PATH"
+done
+#END
+#START Device specific options
+#
+{{- if eq .chezmoi.username "niklas"}}
+  COL=$B_LYELLOW
+{{- end}}
+
+{{- if eq .chezmoi.username "nd60"}}
+  # initialise dotfiles
+  chezmoi apply --force
+{{- end}}
+
+#END
+#START Completion
+## Load extra settings from .bash
+for i in ~/.bash/*-completion.bash; do
+  source "$i"
+done
+
+## Load pandoc completion
+[ -x $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
+#END
+#START Prompt / PS1
+
+# first load git functions 
+. ~/.bash/git-prompt.sh
+
+# default colour
 COL=$B_LBLUE
+
+# colour for personal devices
 {{- if eq .chezmoi.username "niklas"}}
 COL=$B_LYELLOW
 {{- end}}
+
 colour_my_prompt () {
     local __user_and_host="$BOLD\u@\h$CLEARALL"
     local __current_dir="$COL\w$CLEARALL"
@@ -73,12 +113,19 @@ colour_my_prompt () {
     local __git="$B_LRED"'$(__git_ps1 " (%s)")'"$CLEARALL"
     export PS1="$__user_and_host $__current_dir$__git $COL\$$CLEARALL "
 }
-colour_my_prompt
-#PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
-bind "set completion-ignore-case on"
+colour_my_prompt
+#END
+
+# setup haskell environment
 if [ -f "~/.ghcup/env" ]
   then
     source "~/.ghcup/env"
 fi
-export PATH="${HOME}/.ghcup/bin":${PATH}
+
+
+
+
+
+
+
