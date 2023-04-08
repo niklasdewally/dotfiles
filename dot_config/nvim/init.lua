@@ -130,7 +130,15 @@ require("lspconfig").bashls.setup {}       -- Bash
 require("lspconfig").clangd.setup {}        -- C / C++
 require("lspconfig").cssls.setup {}         -- CSS
 require("lspconfig").dotls.setup{} 	    -- DOT (Graphviz)
-require("lspconfig").hls.setup {}           -- Haskell
+require("lspconfig").hls.setup {
+  settings = {
+    haskell = {
+      cabalFormattingProvider = "cabalfmt",
+      formattingProvider = "ormolu",
+      plugin = {rename = {config = {crossModule = true}}}
+    }
+}           -- Haskell
+}
 require("lspconfig").idris2_lsp.setup {}    -- Idris
 require("lspconfig").jdtls.setup {}         -- Java
 require("lspconfig").jsonls.setup{}         -- JSON
@@ -139,7 +147,6 @@ require("lspconfig").pyright.setup{} 	    -- Python (static analysis only)
 require("lspconfig").tsserver.setup{}      -- Typescript; Javascript
 require("lspconfig").rust_analyzer.setup{}      -- Rust
 -- }}}
-
 -- SLIME REPL {{{
 vim.g.slime_bracketed_paste = 1
 vim.g.slime_target = "tmux"
