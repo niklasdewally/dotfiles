@@ -2,7 +2,7 @@
 
 
 # Run global settings first!!
-. /etc/bashrc
+[ -e /etc/bashrc ] && source /etc/bashrc
 
 #START Colours
 
@@ -59,6 +59,8 @@ alias vim=nvim
 
 # Directories to add to path (if they exist)
 USR_PATH=(
+  "/opt/homebrew/lib/ruby/gems/3.1.0/bin/"
+  "/opt/homebrew/opt/ruby@3.1/bin"
   "$HOME/uni/bin"
   "$HOME/.cabal/bin"
   "$HOME/.ghcup/bin"
@@ -78,7 +80,7 @@ done
 
 {{- if eq .chezmoi.username "nd60"}}
   # initialise dotfiles
-  chezmoi apply --force
+  [ -x $(command -v chezmoi ) ] && chezmoi apply --force
 {{- end}}
 
 #END
@@ -94,7 +96,7 @@ done
 #START Prompt / PS1
 
 # first load git functions 
-. ~/.bash/git-prompt.sh
+[ -e ~/.bash/git-prompt.sh ] && source ~/.bash/git-prompt.sh
 
 # default colour
 COL=$B_LBLUE
