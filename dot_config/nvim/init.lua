@@ -23,6 +23,8 @@ require('packer').startup(function(use)
 	-- Aesthetics
 	use "ellisonleao/gruvbox.nvim"
 	use "airblade/vim-gitgutter" -- show git diff info in airline
+  use "lukas-reineke/indent-blankline.nvim"
+
 
 	-- Navigation
 	use "preservim/nerdtree" -- file browsing
@@ -80,6 +82,14 @@ vim.opt.smartindent = true
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
+
+-- show indent guides
+require("indent_blankline").setup {
+    -- for example, context is off by default, use this to turn it on
+    show_current_context = true,
+    show_current_context_start = true,
+}
+
 
 -- }}}
 -- EDITOR: COLOUR SCHEME {{{
