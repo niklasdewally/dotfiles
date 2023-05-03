@@ -19,8 +19,10 @@ ensure_packer()
 require('packer').startup(function(use)
 
 	use 'wbthomason/packer.nvim'
-  use 'tpope/vim-surround'
 
+
+
+  -- Which key
   use {
   "folke/which-key.nvim",
   config = function()
@@ -67,8 +69,8 @@ require('packer').startup(function(use)
 
 	-- LSP
 	use "williamboman/mason.nvim" -- local package manager for lsp stuff
-
-	use "williamboman/mason-lspconfig.nvim"
+  use "jay-babu/mason-null-ls.nvim" -- auto install null-ls formatters
+	use "williamboman/mason-lspconfig.nvim" -- auto install lsp clients
 
   use {                     
   "folke/trouble.nvim",
@@ -82,10 +84,12 @@ require('packer').startup(function(use)
   end
 }
 
-
 	use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+  use 'jose-elias-alvarez/null-ls.nvim'
 	use 'ii14/lsp-command' -- provide command interface to lsp functions
 
+  -- Tim pope utilities
+  use 'tpope/vim-surround'
   use 'tpope/vim-fugitive' -- git wrapper (run :Git )
 
 	-- Automatically set up your configuration after cloning packer.nvim
@@ -145,6 +149,7 @@ vim.api.nvim_create_user_command("ShowErrors",
 require("mason").setup()
 require("mason-lspconfig").setup()
 
+
 vim.api.nvim_create_user_command("CodeAction",function() vim.lsp.buf.code_action({apply=true}) end,{})
 vim.api.nvim_create_user_command("Ca",function() vim.lsp.buf.code_action({apply=true}) end,{})
 
@@ -175,6 +180,24 @@ require("lspconfig").jsonls.setup{}                -- JSON
 require("lspconfig").lua_ls.setup {}               -- Lua
 require("lspconfig").tsserver.setup{}              -- Typescript; Javascript
 require("lspconfig").rust_analyzer.setup{}         -- Rust
+require('lspconfig').ruff_lsp.setup{}                    -- Python
+
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.black, -- python formatting
+        null_ls.builtins.formatting.shfmt  -- shell formatting
+    },
+})
+
+require("mason-null-ls").setup({
+    automatic_setup = true
+})
+
+-- Install python dependencies
+-- Use black as pyrt
 
 -- }}}
 -- SLIME REPL {{{
