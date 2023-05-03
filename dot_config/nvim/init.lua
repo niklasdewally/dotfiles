@@ -181,6 +181,7 @@ require("lspconfig").lua_ls.setup {}               -- Lua
 require("lspconfig").tsserver.setup{}              -- Typescript; Javascript
 require("lspconfig").rust_analyzer.setup{}         -- Rust
 require('lspconfig').ruff_lsp.setup{}                    -- Python
+require('lspconfig').jedi_language_server.setup{}                    -- Python
 
 
 local null_ls = require("null-ls")
