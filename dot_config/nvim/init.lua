@@ -1,4 +1,6 @@
 -- vim:foldmethod=marker
+local opt = vim.opt
+
 -- AUTOINSTALL PACKER {{{
 -- Adapted from https://github.com/wbthomason/packer.nvim
 local ensure_packer = function()
@@ -11,28 +13,40 @@ local ensure_packer = function()
 	end
 	return false
 end
-
 ensure_packer()
 -- }}}
 -- PLUGINS {{{
 require('packer').startup(function(use)
-	-- LARGELY COPIED FROM .VIMRC
 
 	use 'wbthomason/packer.nvim'
+  use 'tpope/vim-surround'
+
+  use {
+  "folke/which-key.nvim",
+  config = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 100
+    require("which-key").setup {
+    }
+  end
+  }
+
 
 	-- Aesthetics
-	use "ellisonleao/gruvbox.nvim"
-	use "airblade/vim-gitgutter" -- show git diff info in airline
-  use "lukas-reineke/indent-blankline.nvim"
-
-
-	-- Navigation
-	use "preservim/nerdtree" -- file browsing
+	use "ellisonleao/gruvbox.nvim"            -- colour scheme
+	use "airblade/vim-gitgutter"              -- show git diff info in status-bar
+  use "lukas-reineke/indent-blankline.nvim" -- show indentation guides
 
 	-- TODO: telescope or fzf?
+   use {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.1',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
 
 	-- REPL Integration
-	use 'jpalardy/vim-slime' -- REPL Integration
+	use 'jpalardy/vim-slime'                  -- Send code to a tmux tab (running an interpreter) by C-c C-c
 
 	-- Markdown Writing
 	use 'vim-pandoc/vim-pandoc'
@@ -40,26 +54,34 @@ require('packer').startup(function(use)
 	use 'dhruvasagar/vim-table-mode'
 
 	--  Racket / Scheme
+  
 	-- See: https://docs.racket-lang.org/guide/Vim.html
-	use 'benknoble/vim-racket' -- basic language plugin
+ 
+	use 'benknoble/vim-racket'             -- basic language plugin
 	use 'kien/rainbow_parentheses.vim'
 
-	-- use this one for emacs-paredit like functionality (auto close brackets, plus
-	-- some other vim keybindings!) - it also supports REPL stuff, but not for
-	-- racket!
-	use 'kovisoft/slimv'
+	use 'kovisoft/slimv'                   -- emacs-paredit like functionality (auto close brackets)
 
 	-- HTML / CSS
-	use 'gregsexton/matchtag' -- match HTML tags
-
-	-- Haskell
-	-- use 'neovimhaskell/haskell-vim'
-	use 'monkoose/fzf-hoogle.vim'
+	use 'gregsexton/matchtag'              -- match HTML tags
 
 	-- LSP
 	use "williamboman/mason.nvim" -- local package manager for lsp stuff
 
 	use "williamboman/mason-lspconfig.nvim"
+
+  use {                     
+  "folke/trouble.nvim",
+  requires = "nvim-tree/nvim-web-devicons",
+  config = function()
+    require("trouble").setup {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  end
+}
+
 
 	use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 	use 'ii14/lsp-command' -- provide command interface to lsp functions
@@ -67,7 +89,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive' -- git wrapper (run :Git )
 
 	-- Automatically set up your configuration after cloning packer.nvim
-	if packer_bootstrap then
+  if packer_bootstrap then
 		require('packer').sync()
 	end
 
@@ -75,15 +97,15 @@ end)
 -- }}}
 -- EDITOR {{{
 
-vim.opt.rnu = true
-vim.opt.nu = true
+opt.rnu = true
+opt.nu = true
 
-vim.opt.autoindent = true
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+opt.autoindent = true
+opt.expandtab = true
+opt.smartindent = true
 
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+opt.tabstop = 2
+opt.shiftwidth = 2
 
 -- show indent guides
 require("indent_blankline").setup {
@@ -129,35 +151,31 @@ vim.api.nvim_create_user_command("Ca",function() vim.lsp.buf.code_action({apply=
 -- from https://github.com/neovim/nvim-lspconfig
 local opts = { noremap=true, silent=true }
 
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 
 -- list of lsp servers available to use
 
 require("lspconfig").ansiblels.setup {}     -- Ansible
 require("lspconfig").asm_lsp.setup {}       -- Assembly
-require("lspconfig").bashls.setup {}       -- Bash
+require("lspconfig").bashls.setup {}        -- Bash
 require("lspconfig").clangd.setup {}        -- C / C++
 require("lspconfig").cssls.setup {}         -- CSS
-require("lspconfig").dotls.setup{} 	    -- DOT (Graphviz)
-require("lspconfig").hls.setup {
+require("lspconfig").dotls.setup{} 	        -- DOT (Graphviz)
+require("lspconfig").hls.setup {            -- Haskell
   settings = {
     haskell = {
       cabalFormattingProvider = "cabalfmt",
       formattingProvider = "ormolu",
-      plugin = {rename = {config = {crossModule = true}}}
-    }
-  }
-}
-require("lspconfig").idris2_lsp.setup {}    -- Idris
-require("lspconfig").jdtls.setup {}         -- Java
-require("lspconfig").jsonls.setup{}         -- JSON
-require("lspconfig").sumneko_lua.setup {}   -- Lua
-require("lspconfig").pyright.setup{} 	    -- Python (static analysis only)
-require("lspconfig").tsserver.setup{}      -- Typescript; Javascript
-require("lspconfig").rust_analyzer.setup{}      -- Rust
+      plugin = {rename = {config = {crossModule = true}}
+  }}
+  }}
+
+require("lspconfig").idris2_lsp.setup {}           -- Idris
+require("lspconfig").jdtls.setup {}                -- Java
+require("lspconfig").jsonls.setup{}                -- JSON
+require("lspconfig").lua_ls.setup {}               -- Lua
+require("lspconfig").tsserver.setup{}              -- Typescript; Javascript
+require("lspconfig").rust_analyzer.setup{}         -- Rust
+
 -- }}}
 -- SLIME REPL {{{
 vim.g.slime_bracketed_paste = 1
@@ -166,4 +184,50 @@ vim.g.slime_target = "tmux"
 -- guess tmux pane
 vim.g.slime_default_config = {socket_name = "default", target_pane = "{last}"}
 
+-- }}}https://indicators.ohchr.org/
+-- KEYBINDINGS {{{
+
+vim.g.mapleader = " "
+
+-- which key provides a nice menu to help remember hotkeys!
+local wk = require("which-key")
+
+-- plugin aliases
+local telescope = require('telescope.builtin')
+local lbuf = vim.lsp.buf
+
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '<Space>hp', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '<Space>hs', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '<Space>hu', '<Nop>', { noremap = true, silent = true })
+
+
+wk.register({
+  ["<leader>"] = {
+    f= {
+      name="+find",
+      e = {"<cmd>Explore<cr>",":open filetree in current buffer"},
+      E = {"<cmd>Sexplore<cr>","open file-tree in new split buffer"},
+      f = {telescope.find_files,"find file"},
+      s = {telescope.live_grep ,"find string"}},
+    l = {
+      name="+lsp",
+      a = {"<cmd>CodeAction<cr>","code action"},
+      e = {"<cmd>ShowErrors<cr>","show inline errors"},
+      E = {"<cmd>HideErrors<cr>","hide inline errors"},
+      d = {lbuf.definition,"goto definition (equivalent to C-[)"},
+      f = {lbuf.format,"format buffer. (equivalent to Ggqg)"},
+      i = {lbuf.implementation,"list implementations"},
+      r = {lbuf.rename,"rename"},
+      R = {lbuf.references,"list references"},
+      s = {lbuf.signature_help,"view signature"},
+      S = {lbuf.workspace_symbol,"view symbols in current workspace"},
+      t = {lbuf.type_definition,"goto type definition"},
+    },
+    h = {lbuf.hover,"open lsp hover window",noremap=true},
+  },
+})
+
+    
 -- }}}
+
