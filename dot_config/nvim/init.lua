@@ -58,7 +58,9 @@ require('packer').startup(function(use)
 
 	-- LSP
 	use "williamboman/mason.nvim" -- local package manager for lsp stuff
+
 	use "williamboman/mason-lspconfig.nvim"
+
 	use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 	use 'ii14/lsp-command' -- provide command interface to lsp functions
 
@@ -147,7 +149,7 @@ require("lspconfig").hls.setup {
       formattingProvider = "ormolu",
       plugin = {rename = {config = {crossModule = true}}}
     }
-}           -- Haskell
+  }
 }
 require("lspconfig").idris2_lsp.setup {}    -- Idris
 require("lspconfig").jdtls.setup {}         -- Java
