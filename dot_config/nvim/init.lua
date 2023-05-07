@@ -103,6 +103,8 @@ end)
 
 opt.rnu = true
 opt.nu = true
+opt.timeout = true
+opt.timeoutlen = 300
 
 opt.autoindent = true
 opt.expandtab = true
