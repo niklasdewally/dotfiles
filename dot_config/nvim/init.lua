@@ -27,7 +27,7 @@ require('packer').startup(function(use)
   "folke/which-key.nvim",
   config = function()
     vim.o.timeout = true
-    vim.o.timeoutlen = 300
+    vim.o.timeoutlen = 400
     require("which-key").setup {
     }
   end
@@ -104,7 +104,7 @@ end)
 opt.rnu = true
 opt.nu = true
 opt.timeout = true
-opt.timeoutlen = 300
+opt.timeoutlen = 400
 
 opt.autoindent = true
 opt.expandtab = true
