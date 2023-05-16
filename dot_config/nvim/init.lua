@@ -167,6 +167,7 @@ require("lspconfig").bashls.setup {}        -- Bash
 require("lspconfig").clangd.setup {}        -- C / C++
 require("lspconfig").cssls.setup {}         -- CSS
 require("lspconfig").dotls.setup{} 	        -- DOT (Graphviz)
+require'lspconfig'.nil_ls.setup{}           -- Nix
 require("lspconfig").hls.setup {            -- Haskell
   settings = {
     haskell = {
