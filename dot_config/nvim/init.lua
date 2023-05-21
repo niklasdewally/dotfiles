@@ -29,6 +29,7 @@ require('packer').startup(function(use)
     vim.o.timeout = true
     vim.o.timeoutlen = 500
     require("which-key").setup {
+      triggers = {"<leader>"}
     }
   end
   }
@@ -103,6 +104,9 @@ end)
 
 opt.rnu = true
 opt.nu = true
+
+vim.o.timeout = true
+vim.o.timeoutlen=500
 
 opt.autoindent = true
 opt.expandtab = true
