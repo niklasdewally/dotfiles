@@ -27,7 +27,7 @@ require('packer').startup(function(use)
   "folke/which-key.nvim",
   config = function()
     vim.o.timeout = true
-    vim.o.timeoutlen = 400
+    vim.o.timeoutlen = 500
     require("which-key").setup {
     }
   end
@@ -103,8 +103,6 @@ end)
 
 opt.rnu = true
 opt.nu = true
-opt.timeout = true
-opt.timeoutlen = 400
 
 opt.autoindent = true
 opt.expandtab = true
@@ -167,7 +165,6 @@ require("lspconfig").bashls.setup {}        -- Bash
 require("lspconfig").clangd.setup {}        -- C / C++
 require("lspconfig").cssls.setup {}         -- CSS
 require("lspconfig").dotls.setup{} 	        -- DOT (Graphviz)
-require'lspconfig'.nil_ls.setup{}           -- Nix
 require("lspconfig").hls.setup {            -- Haskell
   settings = {
     haskell = {
