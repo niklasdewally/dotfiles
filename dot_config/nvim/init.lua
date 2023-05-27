@@ -22,7 +22,7 @@ require('packer').startup(function(use)
 
 
 
-  -- Which key
+  -- Which key (keybindings)
   use {
   "folke/which-key.nvim",
   config = function()
@@ -34,19 +34,17 @@ require('packer').startup(function(use)
   end
   }
 
-
 	-- Aesthetics
-	use "ellisonleao/gruvbox.nvim"            -- colour scheme
+  use "sainnhe/gruvbox-material"
 	use "airblade/vim-gitgutter"              -- show git diff info in status-bar
   use "lukas-reineke/indent-blankline.nvim" -- show indentation guides
 
-	-- TODO: telescope or fzf?
+  -- Search
    use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-
 
 	-- REPL Integration
 	use 'jpalardy/vim-slime'                  -- Send code to a tmux tab (running an interpreter) by C-c C-c
@@ -55,6 +53,32 @@ require('packer').startup(function(use)
 	use 'vim-pandoc/vim-pandoc'
 	use 'vim-pandoc/vim-pandoc-syntax'
 	use 'dhruvasagar/vim-table-mode'
+
+  use {'quarto-dev/quarto-nvim',
+    dependencies = { 'vim-pandoc/vim-pandoc-syntax' },
+    config = function()
+	 -- conceal can be tricky because both
+	 -- the treesitter highlighting and the
+	 -- regex vim syntax files can define conceals
+	 --
+	 -- -- see `:h conceallevel`
+   vim.opt.conceallevel = 1
+    --
+    -- -- disable conceal in markdown/quarto
+   vim.g['pandoc#syntax#conceal#use'] = false
+    --
+    -- -- embeds are already handled by treesitter injectons
+   vim.g['pandoc#syntax#codeblocks#embeds#use'] = false
+   vim.g['pandoc#syntax#conceal#blacklist'] = { 'codeblock_delim', 'codeblock_start' }
+    --
+    -- -- but allow some types of conceal in math regions:
+    -- see `:h g:tex_conceal`
+   vim.g['tex_conceal'] = 'gm'
+   end
+  }
+
+use 'hrsh7th/nvim-cmp' -- required by quarto
+use 'jmbuhr/otter.nvim' -- required by quarto
 
 	--  Racket / Scheme
   
@@ -93,6 +117,28 @@ require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use 'tpope/vim-fugitive' -- git wrapper (run :Git )
 
+  -- Treesitter
+
+use {'nvim-treesitter/nvim-treesitter',
+  tag = nil,
+  branch = 'master',
+  run = ':TSUpdate',
+  config = function()
+    require 'nvim-treesitter.configs'.setup {
+      ensure_installed = {
+        'r', 'python', 'markdown', 'markdown_inline',
+        'julia', 'bash', 'yaml', 'lua', 'vim',
+        'query', 'vimdoc', 'latex', 'html', 'css'
+      },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { 'markdown' },
+      },
+    }
+  end
+    }
+
+
 	-- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then
 		require('packer').sync()
@@ -125,10 +171,12 @@ require("indent_blankline").setup {
 
 -- }}}
 -- EDITOR: COLOUR SCHEME {{{
-
+  --
 vim.opt.background = "dark"
-vim.cmd([[ colorscheme gruvbox ]])
+vim.g.gruvbox_material_background = "soft"
+vim.g.gruvbox_material_better_performance = 1
 
+vim.cmd[[colorscheme gruvbox-material]]
 -- }}}
 -- DIAGNOSTIC INFO {{{
 
@@ -169,6 +217,7 @@ require("lspconfig").bashls.setup {}        -- Bash
 require("lspconfig").clangd.setup {}        -- C / C++
 require("lspconfig").cssls.setup {}         -- CSS
 require("lspconfig").dotls.setup{} 	        -- DOT (Graphviz)
+require('lspconfig').r_language_server.setup{}
 require("lspconfig").hls.setup {            -- Haskell
   settings = {
     haskell = {
@@ -230,6 +279,8 @@ vim.api.nvim_set_keymap('', '<Space>hs', '<Nop>', { noremap = true, silent = tru
 vim.api.nvim_set_keymap('', '<Space>hu', '<Nop>', { noremap = true, silent = true })
 
 
+local quarto = require('quarto')
+
 wk.register({
   ["<leader>"] = {
     f= {
@@ -253,9 +304,21 @@ wk.register({
       t = {lbuf.type_definition,"goto type definition"},
     },
     h = {lbuf.hover,"open lsp hover window",noremap=true},
+    q= {
+      name="+quarto",
+      p={quarto.quartoPreivew,"preview"}
+    }
   },
 })
 
     
 -- }}}
-
+-- QUARTO {{{
+require('quarto').setup({
+  lspFeatures = {
+    enabled = true,
+    languages = { 'r', 'python', 'julia', 'bash' },
+    chunks = 'curly', -- 'curly' or 'all'
+    }
+})
+-- }}}
