@@ -34,9 +34,9 @@ require('packer').startup(function(use)
   end
   }
 
-	-- Aesthetics
+  -- Aesthetics
   use "sainnhe/gruvbox-material"
-	use "airblade/vim-gitgutter"              -- show git diff info in status-bar
+  use "airblade/vim-gitgutter"              -- show git diff info in status-bar
   use "lukas-reineke/indent-blankline.nvim" -- show indentation guides
 
   -- Search
@@ -46,13 +46,13 @@ require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-	-- REPL Integration
-	use 'jpalardy/vim-slime'                  -- Send code to a tmux tab (running an interpreter) by C-c C-c
+-- REPL Integration
+use 'jpalardy/vim-slime'                  -- Send code to a tmux tab (running an interpreter) by C-c C-c
 
-	-- Markdown Writing
-	use 'vim-pandoc/vim-pandoc'
-	use 'vim-pandoc/vim-pandoc-syntax'
-	use 'dhruvasagar/vim-table-mode'
+-- Markdown Writing
+use 'vim-pandoc/vim-pandoc'
+use 'vim-pandoc/vim-pandoc-syntax'
+use 'dhruvasagar/vim-table-mode'
 
   use {'quarto-dev/quarto-nvim',
     dependencies = { 'vim-pandoc/vim-pandoc-syntax' },
@@ -138,6 +138,8 @@ use {'nvim-treesitter/nvim-treesitter',
   end
     }
 
+    -- use {'ShinKage/idris2-nvim', requires = {'neovim/nvim-lspconfig', 'MunifTanjim/nui.nvim'}}
+
 
 	-- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then
@@ -172,6 +174,9 @@ require("indent_blankline").setup {
 -- }}}
 -- EDITOR: COLOUR SCHEME {{{
   --
+
+vim.opt.termguicolors = true
+
 vim.opt.background = "dark"
 vim.g.gruvbox_material_background = "soft"
 vim.g.gruvbox_material_better_performance = 1
@@ -227,7 +232,6 @@ require("lspconfig").hls.setup {            -- Haskell
   }}
   }}
 
-require("lspconfig").idris2_lsp.setup {}           -- Idris
 require("lspconfig").jdtls.setup {}                -- Java
 require("lspconfig").jsonls.setup{}                -- JSON
 require("lspconfig").lua_ls.setup {}               -- Lua
@@ -235,6 +239,8 @@ require("lspconfig").tsserver.setup{}              -- Typescript; Javascript
 require("lspconfig").rust_analyzer.setup{}         -- Rust
 require('lspconfig').ruff_lsp.setup{}                    -- Python
 require('lspconfig').jedi_language_server.setup{}                    -- Python
+
+require'lspconfig'.pyre.setup{} -- Pyre for python type checking
 
 
 local null_ls = require("null-ls")
@@ -253,6 +259,19 @@ require("mason-null-ls").setup({
 -- Install python dependencies
 -- Use black as pyrt
 
+-- }}}
+-- LANGUAGE: IDRIS2 {{{
+-- require('idris2').setup({})
+
+-- }}}
+-- LANGUAGE: QUARTO {{{
+require('quarto').setup({
+  lspFeatures = {
+    enabled = true,
+    languages = { 'r', 'python', 'julia', 'bash' },
+    chunks = 'curly', -- 'curly' or 'all'
+    }
+})
 -- }}}
 -- SLIME REPL {{{
 vim.g.slime_bracketed_paste = 1
@@ -312,13 +331,4 @@ wk.register({
 })
 
     
--- }}}
--- QUARTO {{{
-require('quarto').setup({
-  lspFeatures = {
-    enabled = true,
-    languages = { 'r', 'python', 'julia', 'bash' },
-    chunks = 'curly', -- 'curly' or 'all'
-    }
-})
 -- }}}

@@ -36,7 +36,9 @@ in
     pkgs.poetry
     pkgs.python310Packages.ipython
     pkgs.python310Packages.qtconsole
-    pkgs.quarto
+    pkgs.python310Packages.pygments
+    pkgs.racket
+    pkgs.gmp
     (mach-nix.mkPython {
       python = "python310";
       requirements = ''

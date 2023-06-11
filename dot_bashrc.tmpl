@@ -62,6 +62,8 @@ USR_PATH=(
   "/opt/homebrew/lib/ruby/gems/3.1.0/bin/"
   "/opt/homebrew/opt/ruby@3.1/bin"
   "$HOME/uni/bin"
+  "$HOME/.idris2/bin"
+  "$HOME/.pack/bin"
   "$HOME/miniconda3/bin"
   "$HOME/.cabal/bin"
   "$HOME/.ghcup/bin"
@@ -107,17 +109,27 @@ COL=$B_LBLUE
 COL=$B_LYELLOW
 {{- end}}
 
+# show previous 3 directories, then use ...
+export PROMPT_DIRTRIM=3
+
 colour_my_prompt () {
-    local __user_and_host="$BOLD\u@\h$CLEARALL"
+    #local __user_and_host="$BOLD\u@\h$CLEARALL"
+    local __host="$BOLD\h$CLEARALL"
     local __current_dir="$COL\w$CLEARALL"
     # see https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 
     export GIT_PS1_SHOWDIRTYSTATE=1
     local __git="$B_LRED"'$(__git_ps1 " (%s)")'"$CLEARALL"
-    export PS1="$__user_and_host $__current_dir$__git $COL\$$CLEARALL "
+    export PS1="$__host $__current_dir$__git $COL\$$CLEARALL "
 }
 
 colour_my_prompt
+
+
+
+# when using poetry, shorten the venv name a bit
+#export POETRY_VIRTUALENVS_PROMPT='{project_name}'
+
 #END
 
 # setup haskell environment
@@ -125,8 +137,6 @@ if [ -f "~/.ghcup/env" ]
   then
     source "~/.ghcup/env"
 fi
-
-
 
 
 
