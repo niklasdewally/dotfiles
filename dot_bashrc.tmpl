@@ -65,6 +65,7 @@ USR_PATH=(
   "$HOME/.idris2/bin"
   "$HOME/.pack/bin"
   "$HOME/miniconda3/bin"
+  "$HOME/bin"
   "$HOME/.cabal/bin"
   "$HOME/.ghcup/bin"
   "$HOME/.config/emacs/bin"
@@ -132,7 +133,23 @@ colour_my_prompt
 
 #END
 
+
+
+_direnv_hook() {
+  local previous_exit_status=$?;
+  trap -- '' SIGINT;
+  eval "$("/Users/niklas/.nix-profile/bin/direnv" export bash)";
+  trap - SIGINT;
+  return $previous_exit_status;
+};
+if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
+  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+fi
+
+_direnv_hook()
+
 # setup haskell environment
+#
 if [ -f "~/.ghcup/env" ]
   then
     source "~/.ghcup/env"

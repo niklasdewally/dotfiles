@@ -239,7 +239,6 @@ require("lspconfig").tsserver.setup{}              -- Typescript; Javascript
 require("lspconfig").rust_analyzer.setup{}         -- Rust
 require('lspconfig').ruff_lsp.setup{}                    -- Python
 require('lspconfig').jedi_language_server.setup{}                    -- Python
-
 require'lspconfig'.pyre.setup{} -- Pyre for python type checking
 
 
@@ -255,9 +254,6 @@ null_ls.setup({
 require("mason-null-ls").setup({
     automatic_setup = true
 })
-
--- Install python dependencies
--- Use black as pyrt
 
 -- }}}
 -- LANGUAGE: IDRIS2 {{{
