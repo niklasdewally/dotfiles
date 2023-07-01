@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
-
-let
-  mach-nix = import (builtins.fetchGit {
+let mach-nix = import (builtins.fetchGit {
                       url = "https://github.com/DavHau/mach-nix";
                       ref = "refs/tags/3.5.0";
                      }) {};
@@ -27,6 +25,7 @@ in
   # environment.
   home.packages = [
     pkgs.neovim
+    pkgs.jq
     pkgs.pandoc
     pkgs.chezmoi
     pkgs.tmux
@@ -34,17 +33,15 @@ in
     pkgs.cargo
     pkgs.rustc
     pkgs.poetry
-    pkgs.python310Packages.ipython
-    pkgs.python310Packages.qtconsole
-    pkgs.python310Packages.pygments
+    pkgs.python311Packages.ipython
+    pkgs.python311Packages.qtconsole
+    pkgs.python311Packages.pygments
+    pkgs.python311Packages.cookiecutter
+    pkgs.direnv
     pkgs.racket
+    pkgs.tree
     pkgs.gmp
-    (mach-nix.mkPython {
-      python = "python310";
-      requirements = ''
-        mandown
-      ''; 
-    })
+    pkgs.watchman
 
 
     # # Adds the 'hello' command to your environment. It prints a friendly
