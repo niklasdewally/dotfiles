@@ -19,6 +19,7 @@ ensure_packer()
 require('packer').startup(function(use)
 
   use 'wbthomason/packer.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim'
 
   -- Which key (keybindings)
   use {
@@ -243,13 +244,11 @@ end)
 lsp.nvim_workspace()
 
 lsp.ensure_installed({
-  'asm_lsp',
   'clangd',
   'jdtls',
   'jedi_language_server',
   'lua_ls',
   'pyre',
-  'r_language_server',
   'ruff_lsp',
   'tsserver',
 })
