@@ -244,18 +244,13 @@ lsp.nvim_workspace()
 
 lsp.ensure_installed({
   'asm_lsp',
-  'bashls',
   'clangd',
-  'cssls',
-  'dotls',
   'jdtls',
   'jedi_language_server',
-  'jsonls',
   'lua_ls',
   'pyre',
   'r_language_server',
   'ruff_lsp',
-  'rust_analyser',
   'tsserver',
 })
 
@@ -297,13 +292,14 @@ cmp.setup({
 -- Show virtual text for warnings and errors only
 vim.diagnostic.config({
   virtual_text = {
-    serverity= {min = vim.diagnostic.severity.WARN },
+    severity= {min = vim.diagnostic.severity.WARN },
     source="if_many",
   },
-  underline  = {
-    severity = { min = vim.diagnostic.severity.WARN }
-  }
+  underline  = true,
+  signs = true
 })
+
+vim.keymap.set('n','g?',function() vim.diagnostic.open_float({}) end, { silent = true})
 
 -- Keep gutter open to stop text wiggling around
 vim.opt.signcolumn = "yes"
@@ -320,6 +316,8 @@ vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
 -- KEYBINDINGS {{{
 
 vim.g.mapleader = " "
+vim.api.nvim_create_user_command("CodeAction",function() vim.lsp.buf.code_action({apply=true}) end,{})
+
 
 -- which key provides a nice menu to help remember hotkeys!
 local wk = require("which-key")
@@ -347,9 +345,7 @@ wk.register({
     },
     l = {
       name = "+lsp",
-      a = { "<cmd>CodeAction<cr>", "code action" },
-      e = { "<cmd>ShowErrors<cr>", "show inline errors" },
-      E = { "<cmd>HideErrors<cr>", "hide inline errors" },
+      a = { function() lbuf.code_action({apply=true}) end, "code action" },
       d = { lbuf.definition, "goto definition (equivalent to C-[)" },
       f = { lbuf.format, "format buffer. (equivalent to Ggqg)" },
       i = { lbuf.implementation, "list implementations" },
