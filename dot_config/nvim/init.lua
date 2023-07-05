@@ -1,5 +1,6 @@
 -- vim:foldmethod=marker
 local opt = vim.opt
+local g = vim.g
 
 -- AUTOINSTALL PACKER {{{
 -- Adapted from https://github.com/wbthomason/packer.nvim
@@ -15,127 +16,61 @@ local ensure_packer = function()
 end
 ensure_packer()
 -- }}}
--- PLUGINS {{{
+-- PACKER PLUGINS {{{
 require('packer').startup(function(use)
-
-  use 'wbthomason/packer.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
-
-  -- Which key (keybindings)
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 500
-      require("which-key").setup {
-        triggers = { "<leader>" }
-      }
-    end
-  }
-
-  -- Aesthetics
-  use "sainnhe/gruvbox-material"
-  use "airblade/vim-gitgutter" -- show git diff info in status-bar
+  use 'wbthomason/packer.nvim'              -- Packer manages itself
+  use "folke/which-key.nvim"                -- Keybind menu
+  use "sainnhe/gruvbox-material"            -- pretty colours
+  use "airblade/vim-gitgutter"              -- show git diff info in status-bar
   use "lukas-reineke/indent-blankline.nvim" -- show indentation guides
-
-  -- Search
   use {
-    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope.nvim',        -- fuzzy find
     tag = '0.1.1',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
-  -- REPL Integration
-  use 'jpalardy/vim-slime' -- Send code to a tmux tab (running an interpreter) by C-c C-c
-
-  -- Markdown Writing
   use 'vim-pandoc/vim-pandoc'
   use 'vim-pandoc/vim-pandoc-syntax'
-  use 'dhruvasagar/vim-table-mode'
-
-  use { 'quarto-dev/quarto-nvim',
-    dependencies = { 'vim-pandoc/vim-pandoc-syntax' },
-    config = function()
-      -- conceal can be tricky because both
-      -- the treesitter highlighting and the
-      -- regex vim syntax files can define conceals
-      --
-      -- -- see `:h conceallevel`
-      vim.opt.conceallevel = 1
-      --
-      -- -- disable conceal in markdown/quarto
-      vim.g['pandoc#syntax#conceal#use'] = false
-      --
-      -- -- embeds are already handled by treesitter injectons
-      vim.g['pandoc#syntax#codeblocks#embeds#use'] = false
-      vim.g['pandoc#syntax#conceal#blacklist'] = { 'codeblock_delim', 'codeblock_start' }
-      --
-      -- -- but allow some types of conceal in math regions:
-      -- see `:h g:tex_conceal`
-      vim.g['tex_conceal'] = 'gm'
-    end
+  use 'dhruvasagar/vim-table-mode'          -- nice markdown tables
+  use { 'quarto-dev/quarto-nvim',       
+    requires = { 'vim-pandoc/vim-pandoc-syntax','hrsh7th/nvim-cmp','jmbuhr/otter.nvim' },
   }
 
-  use 'hrsh7th/nvim-cmp' -- required by quarto
-  use 'jmbuhr/otter.nvim' -- required by quarto
-
-
-
-  --  Racket / Scheme
-
-  -- See: https://docs.racket-lang.org/guide/Vim.html
-
-  use 'benknoble/vim-racket' -- basic language plugin
+  use 'jpalardy/vim-slime'                  -- Send code to a tmux tab (running an interpreter) by C-c C-c
+  use 'kovisoft/slimv'                      -- emacs-paredit like functionality (auto close brackets)
   use 'kien/rainbow_parentheses.vim'
 
-  use 'kovisoft/slimv' -- emacs-paredit like functionality (auto close brackets)
+  use 'gregsexton/matchtag'                 -- match HTML tags
 
-  -- HTML / CSS
-  use 'gregsexton/matchtag' -- match HTML tags
-
-  -- LSP
+  -- LSP and diagnostic
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     requires = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' }, -- Required
-      { -- Optional
-        'williamboman/mason.nvim',
+      {'neovim/nvim-lspconfig'},
+      { 'williamboman/mason.nvim',
         run = function()
           pcall(vim.cmd, 'MasonUpdate')
         end,
       },
-      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' }, -- Required
-      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-      { 'L3MON4D3/LuaSnip' }, -- Required
+      {'williamboman/mason-lspconfig.nvim'},
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'L3MON4D3/LuaSnip' },
     }
   }
-  use {
-    "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
 
-  -- Tim pope utilities
-  use 'tpope/vim-surround'
-  use 'tpope/vim-fugitive' -- git wrapper (run :Git )
+  use 'jose-elias-alvarez/null-ls.nvim'
 
-  -- Treesitter
+  use {"folke/trouble.nvim", 
+    requires = "nvim-tree/nvim-web-devicons"}
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
+  -- Tim Pope Utilities
+  use 'tpope/vim-surround'   -- ys<motion><b class=bolder> or VS<b class=bolder>
+  use 'tpope/vim-fugitive'   -- git wrapper (run :Git )
+  use 'tpope/vim-commentary' -- gcc to uncomment line , Vgc , ...
+
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
 
   -- Automatically set up your configuration after cloning packer.nvim
@@ -146,13 +81,13 @@ require('packer').startup(function(use)
 end)
 
 -- }}}
--- EDITOR {{{
-
+-- EDITOR OPTIONS {{{
+ 
 opt.rnu = true
 opt.nu = true
 
-vim.o.timeout = true
-vim.o.timeoutlen = 500
+opt.timeout = true
+opt.timeoutlen = 500
 
 opt.autoindent = true
 opt.expandtab = true
@@ -161,25 +96,21 @@ opt.smartindent = true
 opt.tabstop = 2
 opt.shiftwidth = 2
 
--- show indent guides
+-- Indentation guides
 require("indent_blankline").setup {
-  -- for example, context is off by default, use this to turn it on
   show_current_context = true,
   show_current_context_start = true,
 }
 
-
 -- }}}
--- EDITOR: COLOUR SCHEME {{{
---
+-- EDITOR: COLOURS {{{
 
-vim.opt.termguicolors = true
+opt.termguicolors = true
+opt.background = "dark"
 
-vim.opt.background = "dark"
-vim.g.gruvbox_material_background = "soft"
-vim.g.gruvbox_material_better_performance = 1
-
-vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
+g.gruvbox_material_background = "soft"
+g.gruvbox_material_better_performance = 1
+g.gruvbox_material_diagnostic_virtual_text = "colored"
 
 vim.cmd [[colorscheme gruvbox-material]]
 -- }}}
@@ -210,7 +141,8 @@ require 'nvim-treesitter.configs'.setup {
     'toml',
     'typescript',
     'vim',
-    'vimdoc'
+    'vimdoc',
+    'go'
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -231,7 +163,6 @@ require 'nvim-treesitter.configs'.setup {
 -- }}}
 -- LSP {{{
 
-local foo = "bar"
 local lsp = require('lsp-zero')
 
 lsp.preset("recommended")
@@ -251,6 +182,8 @@ lsp.ensure_installed({
   'pyre',
   'ruff_lsp',
   'tsserver',
+  'gopls',
+  'rust_analyzer'
 })
 
 require("lspconfig").hls.setup { -- Haskell
@@ -311,27 +244,23 @@ vim.g.slime_target = "tmux"
 -- guess tmux pane
 vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
 
--- }}}https://indicators.ohchr.org/
+-- }}}
 -- KEYBINDINGS {{{
-
 vim.g.mapleader = " "
-vim.api.nvim_create_user_command("CodeAction",function() vim.lsp.buf.code_action({apply=true}) end,{})
-
 
 -- which key provides a nice menu to help remember hotkeys!
 local wk = require("which-key")
+wk.setup {triggers = { "<leader>" }}
 
 -- plugin aliases
 local telescope = require('telescope.builtin')
+local quarto = require('quarto')
 local lbuf = vim.lsp.buf
 
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', '<Space>hp', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', '<Space>hs', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', '<Space>hu', '<Nop>', { noremap = true, silent = true })
-
-
-local quarto = require('quarto')
 
 wk.register({
   ["<leader>"] = {
@@ -361,6 +290,5 @@ wk.register({
     }
   },
 })
-
 
 -- }}}

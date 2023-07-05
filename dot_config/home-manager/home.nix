@@ -30,8 +30,6 @@ in
     pkgs.chezmoi
     pkgs.tmux
     pkgs.git
-    pkgs.cargo
-    pkgs.rustc
     pkgs.poetry
     pkgs.python311Packages.ipython
     pkgs.python311Packages.qtconsole
@@ -42,6 +40,8 @@ in
     pkgs.tree
     pkgs.gmp
     pkgs.watchman
+    pkgs.nodejs_20
+    pkgs.rustup
 
 
     # # Adds the 'hello' command to your environment. It prints a friendly
