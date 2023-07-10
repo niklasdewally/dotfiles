@@ -176,7 +176,9 @@ types = require("luasnip.util.types")
 ls.config.set_config({
 
   history=true,
-
+  region_check_events="CursorMoved,CursorHold,InsertEnter",
+  -- fix https://github.com/L3MON4D3/LuaSnip/issues/116
+  delete_check_events='TextChanged,InsertLeave',
   updateevents="TextChanged,TextChangedI",
   enable_autosnippets= true,
 })
