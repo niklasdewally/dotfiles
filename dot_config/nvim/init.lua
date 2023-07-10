@@ -25,7 +25,7 @@ require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip'                    -- snippet engine
   use 'honza/vim-snippets'                  -- snipmate snippet pack
   use { 'saadparwaiz1/cmp_luasnip' }        -- add snippets to completion engine
-  use {'numToStr/Comment.nvim'}             -- required for box snippets
+  use { 'numToStr/Comment.nvim' }           -- required for box snippets
   use {
     'nvim-telescope/telescope.nvim',        -- fuzzy find
     tag = '0.1.1',
@@ -34,29 +34,30 @@ require('packer').startup(function(use)
 
   use 'vim-pandoc/vim-pandoc'
   use 'vim-pandoc/vim-pandoc-syntax'
-  use 'dhruvasagar/vim-table-mode'          -- nice markdown tables
-  use { 'quarto-dev/quarto-nvim',       
-    requires = { 'vim-pandoc/vim-pandoc-syntax','hrsh7th/nvim-cmp','jmbuhr/otter.nvim' },
+  use 'dhruvasagar/vim-table-mode' -- nice markdown tables
+  use { 'quarto-dev/quarto-nvim',
+    requires = { 'vim-pandoc/vim-pandoc-syntax', 'hrsh7th/nvim-cmp', 'jmbuhr/otter.nvim' },
   }
 
-  use 'jpalardy/vim-slime'                  -- Send code to a tmux tab (running an interpreter) by C-c C-c
-  use 'kovisoft/slimv'                      -- emacs-paredit like functionality (auto close brackets)
+  use 'jpalardy/vim-slime' -- Send code to a tmux tab (running an interpreter) by C-c C-c
+  use 'kovisoft/slimv'     -- emacs-paredit like functionality (auto close brackets)
   use 'kien/rainbow_parentheses.vim'
 
-  use 'gregsexton/matchtag'                 -- match HTML tags
+  use 'gregsexton/matchtag' -- match HTML tags
 
   -- LSP and diagnostic
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     requires = {
-      {'neovim/nvim-lspconfig'},
-      { 'williamboman/mason.nvim',
+      { 'neovim/nvim-lspconfig' },
+      {
+        'williamboman/mason.nvim',
         run = function()
           pcall(vim.cmd, 'MasonUpdate')
         end,
       },
-      {'williamboman/mason-lspconfig.nvim'},
+      { 'williamboman/mason-lspconfig.nvim' },
       { 'hrsh7th/nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'L3MON4D3/LuaSnip' },
@@ -65,26 +66,25 @@ require('packer').startup(function(use)
 
   use 'jose-elias-alvarez/null-ls.nvim'
 
-  use {"folke/trouble.nvim", 
-    requires = "nvim-tree/nvim-web-devicons"}
+  use { "folke/trouble.nvim",
+    requires = "nvim-tree/nvim-web-devicons" }
 
   -- Tim Pope Utilities
   use 'tpope/vim-surround'   -- ys<motion><b class=bolder> or VS<b class=bolder>
   use 'tpope/vim-fugitive'   -- git wrapper (run :Git )
   use 'tpope/vim-commentary' -- gcc to uncomment line , Vgc , ...
 
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then
     require('packer').sync()
   end
-
 end)
 
 -- }}}
 -- EDITOR OPTIONS {{{
- 
+
 opt.rnu = true
 opt.nu = true
 
@@ -175,12 +175,12 @@ types = require("luasnip.util.types")
 -- I use TAB and S-B to navigate snippets - see lsp-zero config
 ls.config.set_config({
 
-  history=true,
-  region_check_events="CursorMoved,CursorHold,InsertEnter",
+  history = true,
+  region_check_events = "CursorMoved,CursorHold,InsertEnter",
   -- fix https://github.com/L3MON4D3/LuaSnip/issues/116
-  delete_check_events='TextChanged,InsertLeave',
-  updateevents="TextChanged,TextChangedI",
-  enable_autosnippets= true,
+  delete_check_events = 'TextChanged,InsertLeave',
+  updateevents = "TextChanged,TextChangedI",
+  enable_autosnippets = true,
 })
 
 
@@ -197,6 +197,8 @@ require("luasnip.loaders.from_snipmate").lazy_load()
 -- stored in luasnippets folder
 require("luasnip.loaders.from_lua").lazy_load()
 
+-- username for use in todo snippet
+g.snip_username = "niklasdewally"
 
 -- }}}
 -- LSP {{{
@@ -243,7 +245,7 @@ local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.black, -- python formatting
-    null_ls.builtins.formatting.shfmt -- shell formatting
+    null_ls.builtins.formatting.shfmt  -- shell formatting
   },
 })
 
@@ -252,16 +254,16 @@ local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 
 cmp.setup({
-    sources = {
-    {name = 'nvim_lsp'},
-    {name = 'luasnip'},
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
   },
   completion = {
     autocomplete = false
   },
   mapping = {
     ["<C-Space>"] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<Tab>'] = cmp_action.luasnip_supertab(),
     ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
 
@@ -271,14 +273,14 @@ cmp.setup({
 -- Show virtual text for warnings and errors only
 vim.diagnostic.config({
   virtual_text = {
-    severity= {min = vim.diagnostic.severity.WARN },
-    source="if_many",
+    severity = { min = vim.diagnostic.severity.WARN },
+    source = "if_many",
   },
-  underline  = true,
-  signs = true
+  underline    = true,
+  signs        = true
 })
 
-vim.keymap.set('n','g?',function() vim.diagnostic.open_float({}) end, { silent = true})
+vim.keymap.set('n', 'g?', function() vim.diagnostic.open_float({}) end, { silent = true })
 
 -- Keep gutter open to stop text wiggling around
 vim.opt.signcolumn = "yes"
@@ -297,7 +299,7 @@ vim.g.mapleader = " "
 
 -- which key provides a nice menu to help remember hotkeys!
 local wk = require("which-key")
-wk.setup {triggers = { "<leader>" }}
+wk.setup { triggers = { "<leader>" } }
 
 -- plugin aliases
 local telescope = require('telescope.builtin')
@@ -308,6 +310,21 @@ vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true 
 vim.api.nvim_set_keymap('', '<Space>hp', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', '<Space>hs', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', '<Space>hu', '<Nop>', { noremap = true, silent = true })
+
+local edit_snips = function() require("luasnip.loaders").edit_snippet_files({
+  edit = function(file) vim.cmd("vsplit" .. file) end,
+  extend = function(ft, paths)
+    if #paths == 0 then
+      return {
+        { "$CONFIG/" .. ft .. ".snippets",
+          string.format("%s/%s.snippets","~/.config/nvim/snippets/", ft) }
+      }
+    end
+
+    return {}
+  end
+
+}) end
 
 wk.register({
   ["<leader>"] = {
@@ -320,7 +337,7 @@ wk.register({
     },
     l = {
       name = "+lsp",
-      a = { function() lbuf.code_action({apply=true}) end, "code action" },
+      a = { function() lbuf.code_action({ apply = true }) end, "code action" },
       d = { lbuf.definition, "goto definition (equivalent to C-[)" },
       f = { lbuf.format, "format buffer. (equivalent to Ggqg)" },
       i = { lbuf.implementation, "list implementations" },
@@ -329,6 +346,10 @@ wk.register({
       s = { lbuf.signature_help, "view signature" },
       S = { lbuf.workspace_symbol, "view symbols in current workspace" },
       t = { lbuf.type_definition, "goto type definition" },
+    },
+    s = {
+      name = "+snippets",
+      e = {edit_snips, "edit snippets"}
     },
     h = { lbuf.hover, "open lsp hover window", noremap = true },
     q = {
