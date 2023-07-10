@@ -1,7 +1,6 @@
 -- vim:foldmethod=marker
 local opt = vim.opt
 local g = vim.g
-
 -- AUTOINSTALL PACKER {{{
 -- Adapted from https://github.com/wbthomason/packer.nvim
 local ensure_packer = function()
@@ -23,6 +22,10 @@ require('packer').startup(function(use)
   use "sainnhe/gruvbox-material"            -- pretty colours
   use "airblade/vim-gitgutter"              -- show git diff info in status-bar
   use "lukas-reineke/indent-blankline.nvim" -- show indentation guides
+  use 'L3MON4D3/LuaSnip'                    -- snippet engine
+  use 'honza/vim-snippets'                  -- snipmate snippet pack
+  use { 'saadparwaiz1/cmp_luasnip' }        -- add snippets to completion engine
+  use {'numToStr/Comment.nvim'}             -- required for box snippets
   use {
     'nvim-telescope/telescope.nvim',        -- fuzzy find
     tag = '0.1.1',
@@ -72,7 +75,6 @@ require('packer').startup(function(use)
 
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
-
   -- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then
     require('packer').sync()
@@ -95,6 +97,11 @@ opt.smartindent = true
 
 opt.tabstop = 2
 opt.shiftwidth = 2
+
+
+-- disable auto comment on new line
+vim.cmd("set formatoptions-=cro")
+vim.cmd("autocmd BufNewFile,BufRead * setlocal formatoptions-=cro")
 
 -- Indentation guides
 require("indent_blankline").setup {
@@ -161,6 +168,35 @@ require 'nvim-treesitter.configs'.setup {
 }
 
 -- }}}
+-- LUASNIP {{{
+ls = require("luasnip")
+types = require("luasnip.util.types")
+
+-- I use TAB and S-B to navigate snippets - see lsp-zero config
+ls.config.set_config({
+
+  history=true,
+
+  updateevents="TextChanged,TextChangedI",
+  enable_autosnippets= true,
+})
+
+
+-- Make honza/vim-snippets work
+ls.filetype_extend("all", { "_" })
+
+-- use snipmate format snippets
+-- store custom shipmate snippets in snippets/<filetype>.snippets
+-- this is easier than lua snippet syntax.
+-- By default, this installs any snippets/ folder found in runtime path
+require("luasnip.loaders.from_snipmate").lazy_load()
+
+-- load lua snippets
+-- stored in luasnippets folder
+require("luasnip.loaders.from_lua").lazy_load()
+
+
+-- }}}
 -- LSP {{{
 
 local lsp = require('lsp-zero')
@@ -211,13 +247,22 @@ null_ls.setup({
 
 
 local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+
 cmp.setup({
+    sources = {
+    {name = 'nvim_lsp'},
+    {name = 'luasnip'},
+  },
   completion = {
     autocomplete = false
   },
   mapping = {
     ["<C-Space>"] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm({select = false}),
+    ['<Tab>'] = cmp_action.luasnip_supertab(),
+    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+
   }
 })
 
@@ -290,5 +335,4 @@ wk.register({
     }
   },
 })
-
 -- }}}

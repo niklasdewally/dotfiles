@@ -2,9 +2,10 @@
 
 
 # Run global settings first!!
+# Required for school systems not to break
 [ -e /etc/bashrc ] && source /etc/bashrc
 
-#START Colours
+#START Colour aliases
 
 #https://scriptim.github.io/bash-prompt-generator/
 #https://stackoverflow.com/questions/4133904/ps1-line-with-git-current-branch-and-colors
@@ -50,14 +51,9 @@ B_LMAGENTA='\[\e[01;95m\]'
 B_LCYAN='\[\e[01;96m\]'
 B_WHITE='\[\e[01;97m\]'
 #END
-#START Shell Settings
-export EDITOR=nvim
-bind "set completion-ignore-case on"
-alias vim=nvim
-shopt -s globstar 
-#END
-#START Path
 
+# PATH
+#############
 # Directories to add to path (if they exist)
 USR_PATH=(
   "$HOME/bin"
@@ -77,18 +73,6 @@ USR_PATH=(
 for path in ${USR_PATH[@]}; do
   [ -d  $path ] && export PATH="$path:$PATH"
 done
-#END
-#START Device specific options
-#
-{{- if eq .chezmoi.username "niklas"}}
-  COL=$B_LYELLOW
-{{- end}}
-
-{{- if eq .chezmoi.username "nd60"}}
-  # initialise dotfiles
-  [ -x $(command -v chezmoi ) ] && chezmoi apply --force
-{{- end}}
-
 #END
 #START Completion
 ## Load extra settings from .bash
@@ -134,6 +118,23 @@ colour_my_prompt
 #export POETRY_VIRTUALENVS_PROMPT='{project_name}'
 
 #END
+
+export EDITOR=nvim
+bind "set completion-ignore-case on"
+alias vim=nvim
+
+# allow (eg) grep foo **/*.py
+shopt -s globstar 
+
+# This bit changes depending on device
+{{- if eq .chezmoi.username "niklas"}}
+  COL=$B_LYELLOW
+{{- end}}
+
+{{- if eq .chezmoi.username "nd60"}}
+  # initialise dotfiles
+  [ -x $(command -v chezmoi ) ] && chezmoi apply --force
+{{- end}}
 
 
 
