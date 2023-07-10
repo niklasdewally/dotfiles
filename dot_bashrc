@@ -1,11 +1,9 @@
 # vim: foldmethod=marker foldmarker=#START,#END ft=bash
 
-
-# Run global settings first!!
-# Required for school systems not to break
-[ -e /etc/bashrc ] && source /etc/bashrc
-
 #START Colour aliases
+########################################################
+#                    COLOUR ALIASES                    #
+########################################################
 
 #https://scriptim.github.io/bash-prompt-generator/
 #https://stackoverflow.com/questions/4133904/ps1-line-with-git-current-branch-and-colors
@@ -52,10 +50,18 @@ B_LCYAN='\[\e[01;96m\]'
 B_WHITE='\[\e[01;97m\]'
 #END
 
-# PATH
-#############
-# Directories to add to path (if they exist)
-USR_PATH=(
+###########################################
+#        RUN GLOBAL SETTINGS FIRST        #
+###########################################
+# Required for school systems not to break
+[ -e /etc/bashrc ] && source /etc/bashrc
+
+######################
+#        PATH        #
+######################
+
+# Directories to add to path if they exist
+DIRS_TO_ADD=(
   "$HOME/bin"
   "$HOME/.cargo/bin"
   "/opt/homebrew/lib/ruby/gems/3.1.0/bin/"
@@ -70,95 +76,93 @@ USR_PATH=(
   "/usr/local/anaconda3/bin"
   )
 
-for path in ${USR_PATH[@]}; do
+for path in ${DIRS_TO_ADD[@]}; do
   [ -d  $path ] && export PATH="$path:$PATH"
 done
-#END
-#START Completion
-## Load extra settings from .bash
+
+##############################
+#        TAB COMPLETE        #
+##############################
+
+bind "set completion-ignore-case on" # ignore case
+
+# Load completion scripts from .bash
 for i in ~/.bash/*-completion.bash; do
   source "$i"
 done
 
-## Load pandoc completion
+# load pandoc completion if pandoc is on the system
 [ -x $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
-#END
-#START Prompt / PS1
 
-# first load git functions 
+##############################
+#        PS1 / PROMPT        #
+##############################
+
+
+# colour mac differently than ssh / school devices
+if [ $(uname) = "Darwin" ] && [ $(whoami) = "niklas" ]; then
+  COL=$B_LYELLOW
+else
+  COL=$B_LBLUE
+fi
+
 [ -e ~/.bash/git-prompt.sh ] && source ~/.bash/git-prompt.sh
-
-# default colour
-COL=$B_LBLUE
-
-# colour for personal devices
-{{- if eq .chezmoi.username "niklas"}}
-COL=$B_LYELLOW
-{{- end}}
 
 # show previous 3 directories, then use ...
 export PROMPT_DIRTRIM=3
 
 colour_my_prompt () {
-    #local __user_and_host="$BOLD\u@\h$CLEARALL"
     local __host="$BOLD\h$CLEARALL"
     local __current_dir="$COL\w$CLEARALL"
-    # see https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 
+    # see https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
     export GIT_PS1_SHOWDIRTYSTATE=1
+
     local __git="$B_LRED"'$(__git_ps1 " (%s)")'"$CLEARALL"
     export PS1="$__host $__current_dir$__git $COL\$$CLEARALL "
 }
 
 colour_my_prompt
 
-
-
-# when using poetry, shorten the venv name a bit
-#export POETRY_VIRTUALENVS_PROMPT='{project_name}'
-
-#END
-
-export EDITOR=nvim
-bind "set completion-ignore-case on"
-alias vim=nvim
-
-# allow (eg) grep foo **/*.py
-shopt -s globstar 
-
-# This bit changes depending on device
-{{- if eq .chezmoi.username "niklas"}}
-  COL=$B_LYELLOW
-{{- end}}
-
-{{- if eq .chezmoi.username "nd60"}}
-  # initialise dotfiles
-  [ -x $(command -v chezmoi ) ] && chezmoi apply --force
-{{- end}}
-
-
+###################################################################
+#        USE DIRENV TO SOURCE .env FILES IN EACH DIRECTORY        #
+###################################################################
 
 _direnv_hook() {
-  local previous_exit_status=$?;
-  trap -- '' SIGINT;
-  eval "$("/Users/niklas/.nix-profile/bin/direnv" export bash)";
-  trap - SIGINT;
-  return $previous_exit_status;
-};
+  local previous_exit_status=$?
+  trap -- '' SIGINT
+  eval "$('/Users/niklas/.nix-profile/bin/direnv' export bash)"
+  trap - SIGINT
+  return $previous_exit_status
+}
+
 if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
-  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
-fi
+  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+\;$PROMPT_COMMAND}"
+fi;
 
 _direnv_hook()
 
-# setup haskell environment
-#
+#####################################
+#        HASKELL ENVIRONMENT        #
+#####################################
+
 if [ -f "~/.ghcup/env" ]
   then
     source "~/.ghcup/env"
 fi
 
+#############################################
+#        EXPORTS, SHELL OPTIONS, ETC        #
+#############################################
 
+export EDITOR=nvim
+alias vim=nvim
 
+#when using poetry, shorten the venv name a bit
+export POETRY_VIRTUALENVS_PROMPT='{project_name}'
 
+# allow (eg) grep foo **/*.py
+shopt -s globstar 
 
+# initialise dotfiles
+[ -x $(command -v chezmoi ) ] && chezmoi apply --force
