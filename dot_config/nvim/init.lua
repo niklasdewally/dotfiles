@@ -75,6 +75,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-commentary' -- gcc to uncomment line , Vgc , ...
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'niklasdewally/conjure.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   if packer_bootstrap then
@@ -222,6 +223,7 @@ lsp.ensure_installed({
   'pyre',
   'ruff_lsp',
   'tsserver',
+  'csharp_ls',
   'gopls',
   'rust_analyzer'
 })
@@ -284,6 +286,8 @@ vim.keymap.set('n', 'g?', function() vim.diagnostic.open_float({}) end, { silent
 
 -- Keep gutter open to stop text wiggling around
 vim.opt.signcolumn = "yes"
+
+vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 
 -- }}}
 -- SLIME REPL {{{

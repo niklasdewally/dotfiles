@@ -62,7 +62,7 @@ B_WHITE='\[\e[01;97m\]'
 
 # Directories to add to path if they exist
 DIRS_TO_ADD=(
-  "$HOME/bin"
+  "$HOME/.local/bin"
   "$HOME/.cargo/bin"
   "/opt/homebrew/lib/ruby/gems/3.1.0/bin/"
   "/opt/homebrew/opt/ruby@3.1/bin"
@@ -131,7 +131,7 @@ colour_my_prompt
 _direnv_hook() {
   local previous_exit_status=$?
   trap -- '' SIGINT
-  eval "$('/Users/niklas/.nix-profile/bin/direnv' export bash)"
+  eval "$('/opt/homebrew/bin/direnv' export bash)"
   trap - SIGINT
   return $previous_exit_status
 }

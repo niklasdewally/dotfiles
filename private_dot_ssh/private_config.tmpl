@@ -2,7 +2,13 @@
 CanonicalDomains dewally.com cs.st-andrews.ac.uk cader.net.dewally.com
 CanonicalizeHostname yes
 CanonicalizeMaxDots 5
-AddKeysToAgent ask
+
+Host *
+  AddKeysToAgent yes
+
+{{if eq .chezmoi.username "niklas" }}
+    UseKeychain yes
+{{end }}
 
 Host *.dewally.com
     User niklas
