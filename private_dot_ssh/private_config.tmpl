@@ -37,22 +37,13 @@ Host lab3
 Host lab4
     HostName pc8-003-l
 
-# Home network proxy
-Host tayberry
-    User niklas
-    Hostname cader.net.dewally.com
-    ProxyJump none
-    ProxyCommand none
-
-Host gojiberry
-    User niklas
-    ProxyJump tayberry
+Host *.cs.st-andrews.ac.uk, 138.251.*
+  User nd60
 
 ## PROXY FOR PERSONAL DEVICES
-
 {{if eq .chezmoi.username "niklas" }}
-Host !*.host.cs.st-andrews.ac.uk *.st-andrews.ac.uk 138.251.*
+Host !*.jump.cs.st-andrews.ac.uk, *.st-andrews.ac.uk, 138.251.*
     User nd60
-    ProxyJump hostcs
+    ProxyJump jump.cs.st-andrews.ac.uk
 {{end }}
 

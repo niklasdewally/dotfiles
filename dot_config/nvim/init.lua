@@ -287,8 +287,10 @@ vim.keymap.set('n', 'g?', function() vim.diagnostic.open_float({}) end, { silent
 -- Keep gutter open to stop text wiggling around
 vim.opt.signcolumn = "yes"
 
+--- }}}
+-- RUN ON SAVE {{{
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
-
+vim.cmd [[autocmd BufWritePost,FileWritePost *.tex !latexmk -pdf]]
 -- }}}
 -- SLIME REPL {{{
 vim.g.slime_bracketed_paste = 1
@@ -315,20 +317,22 @@ vim.api.nvim_set_keymap('', '<Space>hp', '<Nop>', { noremap = true, silent = tru
 vim.api.nvim_set_keymap('', '<Space>hs', '<Nop>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', '<Space>hu', '<Nop>', { noremap = true, silent = true })
 
-local edit_snips = function() require("luasnip.loaders").edit_snippet_files({
-  edit = function(file) vim.cmd("vsplit" .. file) end,
-  extend = function(ft, paths)
-    if #paths == 0 then
-      return {
-        { "$CONFIG/" .. ft .. ".snippets",
-          string.format("%s/%s.snippets","~/.config/nvim/snippets/", ft) }
-      }
+local edit_snips = function()
+  require("luasnip.loaders").edit_snippet_files({
+    edit = function(file) vim.cmd("vsplit" .. file) end,
+    extend = function(ft, paths)
+      if #paths == 0 then
+        return {
+          { "$CONFIG/" .. ft .. ".snippets",
+            string.format("%s/%s.snippets", "~/.config/nvim/snippets/", ft) }
+        }
+      end
+
+      return {}
     end
 
-    return {}
-  end
-
-}) end
+  })
+end
 
 wk.register({
   ["<leader>"] = {
@@ -353,7 +357,7 @@ wk.register({
     },
     s = {
       name = "+snippets",
-      e = {edit_snips, "edit snippets"}
+      e = { edit_snips, "edit snippets" }
     },
     h = { lbuf.hover, "open lsp hover window", noremap = true },
     q = {
