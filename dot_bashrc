@@ -83,6 +83,7 @@ for path in ${DIRS_TO_ADD[@]}; do
 done
 
 export PATH=${LOCAL_PATH:+${LOCAL_PATH}:}$PATH
+
 ##############################
 #        TAB COMPLETE        #
 ##############################
@@ -101,9 +102,9 @@ done
 #        PS1 / PROMPT        #
 ##############################
 
-
 # colour mac differently than ssh / school devices
-if [ $(uname) = "Darwin" ] && [ $(whoami) = "niklas" ]; then
+if i_am_mac
+then 
   COL=$B_LYELLOW
 else
   COL=$B_LBLUE
@@ -147,7 +148,8 @@ fi;
 _direnv_hook
 }
 
-if [ $(uname) = "Darwin" ] && [ $(whoami) = "niklas" ]; then
+if i_am_mac
+then
   _hook_me
 fi
 #####################################
@@ -173,5 +175,16 @@ export POETRY_VIRTUALENVS_PROMPT='{project_name}'
 shopt -s globstar 
 
 # initialise dotfiles
-#[ -x $(command -v chezmoi ) ] && chezmoi apply --force
+[ -x $(command -v chezmoi ) ] && chezmoi apply --force
 
+############################################
+#        DEVICE DETECTION FUNCTIONS        #
+############################################
+
+function i_am_mac() {
+  [ $(uname) = "Darwin" ] && [ $(whoami) = "niklas" ]
+}
+
+function i_am_labs() {
+  [ $(uname) = "Linux" ] && [ $(whoami) = "nd60" ]
+}
