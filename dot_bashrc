@@ -61,7 +61,9 @@ B_WHITE='\[\e[01;97m\]'
 ######################
 
 # Directories to add to path if they exist
+# Top is first
 DIRS_TO_ADD=(
+  "/usr/local/python/bin" # school installs custom python bins here!!
   "$HOME/.local/bin"
   "$HOME/.cargo/bin"
   "/opt/homebrew/lib/ruby/gems/3.1.0/bin/"
@@ -74,12 +76,13 @@ DIRS_TO_ADD=(
   "$HOME/.ghcup/bin"
   "$HOME/.config/emacs/bin"
   "/usr/local/anaconda3/bin"
-  )
+)
 
 for path in ${DIRS_TO_ADD[@]}; do
-  [ -d  $path ] && export PATH="$path:$PATH"
+  [ -d  $path ] && LOCAL_PATH="${LOCAL_PATH:+${LOCAL_PATH}:}$path"
 done
 
+export PATH=${LOCAL_PATH:+${LOCAL_PATH}:}$PATH
 ##############################
 #        TAB COMPLETE        #
 ##############################
@@ -170,4 +173,5 @@ export POETRY_VIRTUALENVS_PROMPT='{project_name}'
 shopt -s globstar 
 
 # initialise dotfiles
-[ -x $(command -v chezmoi ) ] && chezmoi apply --force
+#[ -x $(command -v chezmoi ) ] && chezmoi apply --force
+
