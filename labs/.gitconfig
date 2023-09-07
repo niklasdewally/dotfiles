@@ -1,0 +1,17 @@
+# vim: filetype=gitconfig:
+[user]
+    name= "Niklas Dewally"
+    email= "nd60@st-andrews.ac.uk"
+
+[core]
+    editor = nvim 
+    autocrlf = input
+    excludesFile=~/.gitignore.global
+
+[alias]
+    graph = log --all --decorate --oneline --graph
+
+
+[pull]
+    rebase = true
+

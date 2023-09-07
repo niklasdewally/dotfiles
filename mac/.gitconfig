@@ -1,7 +1,7 @@
 # vim: filetype=gitconfig:
 [user]
-    name= "{{ .name }}"
-    email= "{{ .email }}"
+    name= "Niklas Dewally"
+    email= "nd60@st-andrews.ac.uk"
 
 [core]
     editor = nvim 
@@ -11,11 +11,8 @@
 [alias]
     graph = log --all --decorate --oneline --graph
 
-
 [pull]
     rebase = true
 
-{{- if eq .chezmoi.username "niklas"}}
 [init]
     defaultBranch=main
-{{- end}}
