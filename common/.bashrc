@@ -50,6 +50,17 @@ B_LCYAN='\[\e[01;96m\]'
 B_WHITE='\[\e[01;97m\]'
 #END
 
+############################################
+#        DEVICE DETECTION FUNCTIONS        #
+############################################
+
+function i_am_mac() {
+  [ $(uname) = "Darwin" ] && [ $(whoami) = "niklas" ]
+}
+
+function i_am_labs() {
+  [ $(uname) = "Linux" ] && [ $(whoami) = "nd60" ]
+}
 ###########################################
 #        RUN GLOBAL SETTINGS FIRST        #
 ###########################################
@@ -174,17 +185,3 @@ export POETRY_VIRTUALENVS_PROMPT='{project_name}'
 # allow (eg) grep foo **/*.py
 shopt -s globstar 
 
-# initialise dotfiles
-[ -x $(command -v chezmoi ) ] && chezmoi apply --force
-
-############################################
-#        DEVICE DETECTION FUNCTIONS        #
-############################################
-
-function i_am_mac() {
-  [ $(uname) = "Darwin" ] && [ $(whoami) = "niklas" ]
-}
-
-function i_am_labs() {
-  [ $(uname) = "Linux" ] && [ $(whoami) = "nd60" ]
-}

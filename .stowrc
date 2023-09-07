@@ -1,2 +1,2 @@
---dir="$HOME/.dotfiles"
---target="$HOME"
+--dir=~/.dotfiles
+--target=~
