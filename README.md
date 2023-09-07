@@ -5,8 +5,6 @@ My dotfiles.
 
 ## Folders
 
-The contents of each folder are symlinked to `$HOME`.
-
 ```
 common    -> dotfiles for use on all devices.
 mac       -> dotfiles for use on my personal mac.
@@ -15,6 +13,7 @@ labs      -> dotfiles for use on st andrews lab machines.
 
 ## Installation
 
+The contents of each folder are symlinked to `$HOME` using GNU Stow.
 
 **Install dotfiles on Mac:**
 ```
