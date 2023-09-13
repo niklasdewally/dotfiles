@@ -32,6 +32,8 @@ require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
+  use 'sourcegraph/sg.nvim' -- source graph code search
+
   use 'vim-pandoc/vim-pandoc'
   use 'vim-pandoc/vim-pandoc-syntax'
   use 'dhruvasagar/vim-table-mode' -- nice markdown tables
