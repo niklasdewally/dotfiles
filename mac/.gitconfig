@@ -12,7 +12,10 @@
     graph = log --all --decorate --oneline --graph
 
 [pull]
-    rebase = true
+    rebase = merges
+
+[rebase]
+  rebaseMerges = true
 
 [init]
     defaultBranch=main
