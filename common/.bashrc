@@ -185,3 +185,5 @@ export POETRY_VIRTUALENVS_PROMPT='{project_name}'
 # allow (eg) grep foo **/*.py
 shopt -s globstar 
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

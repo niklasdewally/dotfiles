@@ -291,7 +291,7 @@ vim.opt.signcolumn = "yes"
 
 --- }}}
 -- RUN ON SAVE {{{
-vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+--vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 vim.cmd [[autocmd BufWritePost,FileWritePost *.tex !latexmk -pdf]]
 -- }}}
 -- SLIME REPL {{{
