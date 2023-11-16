@@ -241,6 +241,16 @@ require("lspconfig").hls.setup { -- Haskell
   }
 }
 
+require("lspconfig").rust_analyzer.setup { -- Haskell
+  settings = {
+    ["rust-analyzer"] = {
+     check = {
+        command = "clippy";
+      }
+    }
+  }
+}
+
 lsp.setup()
 
 
