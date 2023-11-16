@@ -1,7 +1,7 @@
 # vim: filetype=gitconfig:
 [user]
-    name= "Niklas Dewally"
-    email= "nd60@st-andrews.ac.uk"
+  name= "Niklas Dewally"
+  email= "nd60@st-andrews.ac.uk"
 
 [core]
     editor = nvim 
@@ -9,9 +9,22 @@
     excludesFile=~/.gitignore.global
 
 [alias]
-    graph = log --all --decorate --oneline --graph
-
+  graph = log --all --decorate --oneline --graph
 
 [pull]
-    rebase = true
+  rebase = true
+
+[rebase]
+  autosquash = true
+  autostash = true
+
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+#
+[merge]
+  tool = nvim
+
+[mergetool]
+  prompt = false
+
 

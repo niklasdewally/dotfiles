@@ -187,3 +187,4 @@ shopt -s globstar
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"
