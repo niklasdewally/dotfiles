@@ -9,7 +9,11 @@
     excludesFile=~/.gitignore.global
 
 [alias]
-    graph = log --all --decorate --oneline --graph
+    # https://www.durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+    # log graph
+    lg = log --all --abrev-commit --decorate --oneline --graph
+    # log changes from main
+    lc = log --abbrev-commit --decorate --oneline --numstat --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" main..HEAD
 
 [pull]
     rebase = merges
@@ -19,3 +23,4 @@
 
 [init]
     defaultBranch=main
+
