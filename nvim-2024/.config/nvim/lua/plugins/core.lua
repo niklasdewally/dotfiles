@@ -1,14 +1,20 @@
 -- vim: cc=80
--- "Core" editor plugins to be always loaded.
+-- Core editor plugins to be always loaded.
 --
--- Plugins that require more configuration or that are lazily loaded can be
--- found elsewhere or in their own files.
+-- Places to look next:
+--
+--  * treesitter.lua for syntax highlighting, indentation, and custom text
+--  objects.
+--  * lsp.lua for completion, lsp client stuff, snippets, mason, ...
+--  * find.lua for finding stuff in the code, telescope, ...
+--  * keybindings.lua for keybindings / which-key. 
+--    This is where I give the keybind groups given when space is pressed names.
 
 local opt = vim.opt
 local g = vim.g
 
 return {
-  -- Setup colour scheme
+  -- colour scheme
   { 'sainnhe/gruvbox-material', 
     dependencies = {'nvim-treesitter/nvim-treesitter'},
     config = function(_,_)

@@ -1,0 +1,4 @@
+
+return {
+  'niklasdewally/conjure.nvim'
+}
