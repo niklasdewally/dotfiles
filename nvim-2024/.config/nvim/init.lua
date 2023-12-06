@@ -58,3 +58,20 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 
 require("lazy").setup("plugins")
+
+-- Show virtual text for warnings and errors only
+vim.diagnostic.config({
+  virtual_text = {
+    severity = { min = vim.diagnostic.severity.WARN },
+    source = "if_many",
+  },
+  underline    = true,
+  signs        = true
+})
+
+vim.keymap.set('n', 'g?', function() vim.diagnostic.open_float({}) end, { silent = true })
+
+-- Keep gutter open to stop text wiggling around
+vim.opt.signcolumn = "yes"
+
+
