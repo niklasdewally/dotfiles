@@ -174,9 +174,9 @@ return {
           end,
 
           -- override rust to use rusttools
-          ["rust_analyzer"] = function ()
-              require("rust-tools").setup {}
-          end
+          -- ["rust_analyzer"] = function ()
+          --     require("rust-tools").setup {}
+          -- end
       }
     end
   }
