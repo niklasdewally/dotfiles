@@ -44,4 +44,17 @@ vim.opt.rtp:prepend(lazypath)
 --
 --1: https://github.com/folke/lazy.nvim#-plugin-spec
 
+opt.rnu = true
+opt.nu = true
+
+opt.timeout = true
+opt.timeoutlen = 500
+
+opt.autoindent = true
+opt.expandtab = true
+opt.smartindent = true
+
+opt.tabstop = 2
+opt.shiftwidth = 2
+
 require("lazy").setup("plugins")

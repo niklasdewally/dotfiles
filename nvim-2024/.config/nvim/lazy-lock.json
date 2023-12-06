@@ -1,0 +1,13 @@
+{
+  "gruvbox-material": { "branch": "master", "commit": "7f56d9f9c4860df528031539d321a61f6e081dee" },
+  "indent-blankline.nvim": { "branch": "master", "commit": "9807dab165b2d8ca74ae756fa0494fb26adbee41" },
+  "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
+  "nvim-treesitter": { "branch": "master", "commit": "c203884c80ef31b6a3993398734fbe008addcb27" },
+  "nvim-treesitter-textsubjects": { "branch": "master", "commit": "011c09784f1a95cf469a48c1993b664190440391" },
+  "vim-commentary": { "branch": "master", "commit": "e87cd90dc09c2a203e13af9704bd0ef79303d755" },
+  "vim-fugitive": { "branch": "master", "commit": "46eaf8918b347906789df296143117774e827616" },
+  "vim-gitgutter": { "branch": "main", "commit": "fe0e8a2630eef548e4122096e4e2241f42208fe3" },
+  "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
+  "vim-slime": { "branch": "main", "commit": "a532203bcd7af7f5e571c07b60bba7287076dc19" },
+  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" }
+}
