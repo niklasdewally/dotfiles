@@ -32,6 +32,7 @@ return {
   'tpope/vim-fugitive',     -- git wrapper (run :Git )
   'tpope/vim-rhubarb',      -- github for fugitive
   'tpope/vim-commentary',   -- gcc to uncomment line , Vgc , ...
+  'isobit/vim-caddyfile',
   {'lukas-reineke/indent-blankline.nvim', -- indentation guides
     dependencies = {'nvim-treesitter/nvim-treesitter','sainnhe/gruvbox-material'},
     main="ibl",

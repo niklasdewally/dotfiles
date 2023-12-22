@@ -1,14 +1,14 @@
 -- vim: cc=79
 -- LSP, Completion, Snippets, ...
 
-local servers  =  {
+-- override settings here!
+local servers = {
   clangd = {}
 }
 
-
+-- copied from kickstart:
 -- Code ran when lsp servers attached
--- copied from kickstart
-local function on_attach(_, bufnr)
+local function lsp_on_attach(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -17,8 +17,8 @@ local function on_attach(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>r', vim.lsp.buf.rename, '[R]ename')
+  nmap('<leader>c', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -46,10 +46,11 @@ local function on_attach(_, bufnr)
 end
 
 return {
-  {"simrat39/rust-tools.nvim",lazy=true,opts={}},
+  { "simrat39/rust-tools.nvim", lazy = true, opts = {} },
 
   -- Set up completion and the snippet engine
-  {'hrsh7th/nvim-cmp',
+  {
+    'hrsh7th/nvim-cmp',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
@@ -59,7 +60,7 @@ return {
       'honza/vim-snippets',
       'numToStr/Comment.nvim' -- i use this in my snippets
     },
-    config = function(_,_)
+    config = function(_, _)
       local cmp = require('cmp')
       local luasnip = require('luasnip')
 
@@ -147,15 +148,15 @@ return {
   },
 
   -- load all lsp, mason, mason-lspconfig, etc stuff in nvim-lspconfig's config function
-  {"neovim/nvim-lspconfig",
-    dependencies= {
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      { 'j-hui/fidget.nvim', opts = {} }, -- useful status stuf for lsp
-      "hrsh7th/nvim-cmp" -- completion engine
-
-      },
-    config = function(_,_)
+      "hrsh7th/nvim-cmp",                  -- completion engine
+     { 'j-hui/fidget.nvim', opts = {} }, -- useful status stuf for lsp
+    },
+    config = function(_, _)
       require("mason").setup()
       require("mason-lspconfig").setup()
 
@@ -165,20 +166,19 @@ return {
       -- auto install servers
       -- see :h mason-lspconfig-automatic-server-setup
       require("mason-lspconfig").setup_handlers {
-          function (server_name) -- default handler
-              require("lspconfig")[server_name].setup {
-                capabilities=capabilities,
-                on_attach=on_attach,
-                settings=servers[server_name]
-              }
-          end,
+        function(server_name)    -- default handler
+          require("lspconfig")[server_name].setup {
+            capabilities = capabilities,
+            on_attach = lsp_on_attach,
+            settings = servers[server_name]
+          }
+        end,
 
-          -- override rust to use rusttools
-          -- ["rust_analyzer"] = function ()
-          --     require("rust-tools").setup {}
-          -- end
+        -- override rust to use rusttools
+        -- ["rust_analyzer"] = function ()
+        --     require("rust-tools").setup {}
+        -- end
       }
     end
   }
 }
-

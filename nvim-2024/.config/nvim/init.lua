@@ -43,12 +43,10 @@ vim.opt.rtp:prepend(lazypath)
 -- `return { {'plugin1',...}, {'plugin2',...} }`
 --
 --1: https://github.com/folke/lazy.nvim#-plugin-spec
+require("lazy").setup("plugins")
 
 opt.rnu = true
 opt.nu = true
-
-opt.timeout = true
-opt.timeoutlen = 500
 
 opt.autoindent = true
 opt.expandtab = true
@@ -57,9 +55,8 @@ opt.smartindent = true
 opt.tabstop = 2
 opt.shiftwidth = 2
 
-require("lazy").setup("plugins")
 
--- Show virtual text for warnings and errors only
+-- Configure verbosity of diganostic stuff
 vim.diagnostic.config({
   virtual_text = {
     severity = { min = vim.diagnostic.severity.WARN },
