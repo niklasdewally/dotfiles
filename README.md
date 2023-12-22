@@ -2,7 +2,6 @@
 
 My dotfiles.
 
-
 ## Folders
 
 ```
@@ -25,3 +24,14 @@ stow --dir=. --target="$HOME" common mac
 stow --dir=. --target="$HOME" -D common mac
 ```
 
+## Upgrading Nvim
+
+When upgrading `nvim` dotfiles, remember to delete all nvim data directores.
+This is especially important for 2023->2024, as I change package managers, and
+not doing this will leave all the old package managers stuff behind, which
+breaks things.
+
+```sh
+rm -r ~/.local/state/nvim
+rm -r ~/.local/share/nvim
+```
