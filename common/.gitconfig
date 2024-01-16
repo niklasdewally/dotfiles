@@ -26,13 +26,14 @@
 
 [mergetool "nvim"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
-#
+
 [merge]
   tool = nvim
 
 [mergetool]
   prompt = false
 
-
 [fetch]
   prune = true
+[init]
+	defaultBranch = main
