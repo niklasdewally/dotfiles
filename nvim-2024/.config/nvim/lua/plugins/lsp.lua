@@ -8,12 +8,12 @@ local servers = {
 
 -- copied from kickstart:
 -- Code ran when lsp servers attached
+--
 local function lsp_on_attach(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
     end
-
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
@@ -48,18 +48,19 @@ end
 return {
   { "simrat39/rust-tools.nvim", lazy = true, opts = {} },
 
-  -- Set up completion and the snippet engine
-  {
-    'hrsh7th/nvim-cmp',
+  -- Completion and the snippet engine.
+  {"hrsh7th/nvim-cmp",
     dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
-      'honza/vim-snippets',
-      'numToStr/Comment.nvim' -- i use this in my snippets
+      'hrsh7th/cmp-path',           -- complete paths.
+      'hrsh7th/cmp-cmdline',        -- complete vim : commands.
+      'hrsh7th/cmp-nvim-lsp',       -- complete from LSP.
+
+      'L3MON4D3/LuaSnip',           -- snippet engine.
+      'saadparwaiz1/cmp_luasnip',   -- complete from snippets.
+      'numToStr/Comment.nvim',      -- I use this in my snippets
+      'honza/vim-snippets',         -- snippet pack
     },
+
     config = function(_, _)
       local cmp = require('cmp')
       local luasnip = require('luasnip')
@@ -78,6 +79,7 @@ return {
       luasnip.config.set_config({
         history = true,
         region_check_events = "CursorMoved,CursorHold,InsertEnter",
+
         -- fix https://github.com/L3MON4D3/LuaSnip/issues/116
         delete_check_events = 'TextChanged,InsertLeave',
         updateevents = "TextChanged,TextChangedI",
@@ -98,28 +100,30 @@ return {
       -- stored in luasnippets folder
       require("luasnip.loaders.from_lua").lazy_load()
 
-      -- then setup completion
+      -- setup completion
       cmp.setup({
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
         },
+
         completion = {
           completeopt = 'menu,menuone,noinsert',
           autocomplete = false
         },
+
         mapping = cmp.mapping.preset.insert {
           ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete {},
-          ['<C-s>'] = cmp.mapping.complete {},
-          ['<CR>'] = cmp.mapping.confirm {
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-s>'] = cmp.mapping.complete(),
+          ['<CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
-          },
+          }),
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -140,8 +144,10 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
-          { name = 'nvim_lsp' },
           { name = 'luasnip' },
+          { name = 'nvim_lsp' },
+          { name = 'buffer' },
+          { name = 'cmdline' },
         },
       })
     end
