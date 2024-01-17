@@ -54,7 +54,7 @@ return {
       'hrsh7th/cmp-path',           -- complete paths.
       'hrsh7th/cmp-cmdline',        -- complete vim : commands.
       'hrsh7th/cmp-nvim-lsp',       -- complete from LSP.
-
+      'jmbuhr/cmp-pandoc-references', 
       'L3MON4D3/LuaSnip',           -- snippet engine.
       'saadparwaiz1/cmp_luasnip',   -- complete from snippets.
       'numToStr/Comment.nvim',      -- I use this in my snippets
@@ -148,6 +148,7 @@ return {
           { name = 'nvim_lsp' },
           { name = 'buffer' },
           { name = 'cmdline' },
+          { name = 'pandoc_references' }
         },
       })
     end
