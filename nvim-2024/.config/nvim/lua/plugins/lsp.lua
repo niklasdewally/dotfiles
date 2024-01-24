@@ -3,7 +3,27 @@
 
 -- override settings here!
 local servers = {
-  clangd = {}
+  rust_analyzer = {
+      ["rust-analyzer"] = {
+        imports = {
+          granularity = {group = "module"},
+          prefix = "self",
+        },
+
+        cargo = {
+          buildScripts = {enable = true}
+        },
+
+        procMacro = {
+          enable = true
+        },
+
+        checkOnSave = {
+          allFeatures= true,
+          command = "clippy",
+        },
+      }
+  }
 }
 
 -- copied from kickstart:
@@ -46,7 +66,7 @@ local function lsp_on_attach(_, bufnr)
 end
 
 return {
-  { "simrat39/rust-tools.nvim", lazy = true, opts = {} },
+  -- { "simrat39/rust-tools.nvim", lazy = true, opts = {} },
 
   -- Completion and the snippet engine.
   {"hrsh7th/nvim-cmp",
@@ -165,7 +185,7 @@ return {
     },
     config = function(_, _)
       require("mason").setup()
-      require("mason-lspconfig").setup()
+      require("mason-lspconfig").setup({ensure_installed = vim.tbl_keys(servers)})
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
