@@ -21,6 +21,9 @@ local g = vim.g
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- neovide gui 
+vim.g.neovide_cursor_animation_length = 0
+
 -- Install lazy.nvim plugin manager {{{
 -- from kickstart.nvim
 --

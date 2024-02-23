@@ -12,6 +12,8 @@
 
 local opt = vim.opt
 local g = vim.g
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 return {
   -- colour scheme

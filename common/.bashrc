@@ -77,6 +77,7 @@ DIRS_TO_ADD=(
   "/usr/local/python/bin" # school installs custom python bins here!!
   "$HOME/.local/bin"
   "$HOME/.cargo/bin"
+  "$HOME/.go/bin"
   "/opt/homebrew/lib/ruby/gems/3.1.0/bin/"
   "/opt/homebrew/opt/ruby@3.1/bin"
   "$HOME/uni/bin"
@@ -99,7 +100,7 @@ export PATH=${LOCAL_PATH:+${LOCAL_PATH}:}$PATH
 #        TAB COMPLETE        #
 ##############################
 
-bind "set completion-ignore-case on" # ignore case
+#bind "set completion-ignore-case on" 2>&1 > /dev/null # ignore case 
 
 # Load completion scripts from .bash
 for i in ~/.bash/*-completion.bash; do

@@ -11,7 +11,8 @@ local servers = {
         },
 
         cargo = {
-          buildScripts = {enable = true}
+          buildScripts = {enable = true},
+          features = {"unstable-solver-interface"}
         },
 
         procMacro = {
@@ -72,7 +73,7 @@ return {
   {"hrsh7th/nvim-cmp",
     dependencies = {
       'hrsh7th/cmp-path',           -- complete paths.
-      'hrsh7th/cmp-cmdline',        -- complete vim : commands.
+      --'hrsh7th/cmp-cmdline',        -- complete vim : commands.
       'hrsh7th/cmp-nvim-lsp',       -- complete from LSP.
       'jmbuhr/cmp-pandoc-references', 
       'L3MON4D3/LuaSnip',           -- snippet engine.
