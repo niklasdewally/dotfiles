@@ -2,3 +2,4 @@
 *.un~
 packer_compiled.lua
 lazy-lock.json
+common/.ipython
