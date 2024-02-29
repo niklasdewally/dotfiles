@@ -13,14 +13,13 @@ return {
       wk.setup(opts)
       -- Define keybind groups
       wk.register({
-        ["<leader>"] = {
           s = { name = "+[s]earch"},
           h = { name = "+Git [h]unk"},
-          l = { name = "+[l]sp"},
+          l = { name = "+[l]ist"},
           S = {name = "+[S]nippets"},
-          q = {name="+[q]uarto"}
-        }
-      })
+          q = {name="+[q]uarto"},
+          w = {name="+[w]orkspace"},
+      },{prefix="<leader>"})
     end
   
 }

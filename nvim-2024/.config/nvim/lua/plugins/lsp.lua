@@ -4,26 +4,26 @@
 -- override settings here!
 local servers = {
   rust_analyzer = {
-      ["rust-analyzer"] = {
-        imports = {
-          granularity = {group = "module"},
-          prefix = "self",
-        },
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = {group = "module"},
+        prefix = "self",
+      },
 
-        cargo = {
-          buildScripts = {enable = true},
-          features = {"unstable-solver-interface"}
-        },
+      cargo = {
+        buildScripts = {enable = true},
+        features = {"unstable-solver-interface"}
+      },
 
-        procMacro = {
-          enable = true
-        },
+      procMacro = {
+        enable = true
+      },
 
-        checkOnSave = {
-          allFeatures= true,
-          command = "clippy",
-        },
-      }
+      checkOnSave = {
+        allFeatures= true,
+        command = "clippy",
+      },
+    }
   }
 }
 
@@ -41,7 +41,7 @@ local function lsp_on_attach(_, bufnr)
   nmap('<leader>r', vim.lsp.buf.rename, '[R]ename')
   nmap('<leader>c', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+  nmap('gd', require('telescope.builtin').lsp_definitions, 'G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
@@ -67,7 +67,6 @@ local function lsp_on_attach(_, bufnr)
 end
 
 return {
-  -- { "simrat39/rust-tools.nvim", lazy = true, opts = {} },
 
   -- Completion and the snippet engine.
   {"hrsh7th/nvim-cmp",
@@ -182,7 +181,7 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/nvim-cmp",                  -- completion engine
-     { 'j-hui/fidget.nvim', opts = {} }, -- useful status stuf for lsp
+      { 'j-hui/fidget.nvim', opts = {} }, -- useful status stuf for lsp
     },
     config = function(_, _)
       require("mason").setup()
@@ -202,6 +201,31 @@ return {
           }
         end,
 
+        ["lua_ls"] = function ()
+          require'lspconfig'.lua_ls.setup {
+            on_attach = lsp_on_attach,
+            on_init = function(client)
+              local path = client.workspace_folders[1].name
+              if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
+                client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+                  Lua = {
+                    runtime = {
+                      -- Tell the language server which version of Lua you're using
+                      -- (most likely LuaJIT in the case of Neovim)
+                      version = 'LuaJIT'
+                    },
+                    -- Make the server aware of Neovim runtime files
+                    workspace = {
+                      checkThirdParty = false,
+                      library = vim.api.nvim_get_runtime_file("", true)
+                    }
+                  }
+                })
+              end
+              return true
+            end
+          }
+        end
         -- override rust to use rusttools
         -- ["rust_analyzer"] = function ()
         --     require("rust-tools").setup {}

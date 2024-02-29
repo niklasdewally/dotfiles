@@ -32,6 +32,7 @@ return {
   'airblade/vim-gitgutter', -- show git diff info in status-bar
   'tpope/vim-surround',     -- ys<motion><b class=bolder> or VS<b class=bolder>
   'tpope/vim-fugitive',     -- git wrapper (run :Git )
+  'tpope/vim-unimpaired', 
   'tpope/vim-rhubarb',      -- github for fugitive
   'tpope/vim-commentary',   -- gcc to uncomment line , Vgc , ...
   'isobit/vim-caddyfile',
