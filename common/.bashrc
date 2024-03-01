@@ -110,6 +110,9 @@ done
 # load pandoc completion if pandoc is on the system
 [ -x $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
 
+# gh cli completion
+[ -x $(command -v gh) ] && eval "$(gh completion -s bash)"
+
 ##############################
 #        PS1 / PROMPT        #
 ##############################
