@@ -129,11 +129,13 @@ return {
         },
 
         completion = {
-          completeopt = 'menu,menuone,noinsert',
-          autocomplete = false
+          --completeopt = 'menu,menuone,noinsert',
+          --autocomplete = false
         },
 
         mapping = cmp.mapping.preset.insert {
+          -- NOTE: these are the standard vim keybindings for completion,
+          -- so will come up in many places :)
           ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
           ['<C-y>'] = cmp.mapping.confirm { select = true },
@@ -155,6 +157,7 @@ return {
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
           { name = 'buffer' },
+          { name = 'path' },
           { name = 'cmdline' },
           { name = 'pandoc_references' }
         },

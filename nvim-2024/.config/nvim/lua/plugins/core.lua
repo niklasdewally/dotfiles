@@ -7,8 +7,7 @@
 --  objects.
 --  * lsp.lua for completion, lsp client stuff, snippets, mason, ...
 --  * find.lua for finding stuff in the code, telescope, ...
---  * keybindings.lua for keybindings / which-key. 
---    This is where I give the keybind groups given when space is pressed names.
+--  * keybindings.lua for keybindings / which-key. This is where I give the keybind groups given when space is pressed names.
 
 local opt = vim.opt
 local g = vim.g
@@ -32,19 +31,23 @@ return {
   {'rebelot/kanagawa.nvim', -- more colours
     dependencies = {'nvim-treesitter/nvim-treesitter'},
     config = function(_,_)
-      vim.cmd("colorscheme kanagawa-dragon")
+      vim.cmd("colorscheme kanagawa")
     end
   },
-  'sainnhe/everforest', -- even more colours
-  'airblade/vim-gitgutter', -- show git diff info in status-bar
-  'tpope/vim-surround',     -- ys<motion><b class=bolder> or VS<b class=bolder>
-  'tpope/vim-fugitive',     -- git wrapper (run :Git )
-  'tpope/vim-unimpaired', 
-  'tpope/vim-rhubarb',      -- github for fugitive
-  'tpope/vim-commentary',   -- gcc to uncomment line , Vgc , ...
+  'sainnhe/everforest',      -- even more colours
+  'airblade/vim-gitgutter',  -- show git diff info in status-bar
+  'tpope/vim-sleuth',        -- detect tabstop and shiftwidth automatically
+  'tpope/vim-surround',      -- ys<motion><b class=bolder> or VS<b class=bolder>
+  'tpope/vim-fugitive',      -- git wrapper (run :Git )
+  'tpope/vim-unimpaired',    -- lots more [ commands (e.g. [q)
+  'tpope/vim-rhubarb',       -- github for fugitive
+  'tpope/vim-commentary',    -- gcc to uncomment line , Vgc , ...
+  'tpope/vim-repeat',        -- repeat lots more things
+  'tpope/vim-speeddating',   -- increment dates with Ctrl-A / 
+                             -- decrement with Ctrl-X
   'isobit/vim-caddyfile',
   {'lukas-reineke/indent-blankline.nvim', -- indentation guides
-    dependencies = {'nvim-treesitter/nvim-treesitter','sainnhe/gruvbox-material'},
+    dependencies = {'nvim-treesitter/nvim-treesitter','sainhe/gruvbox-material'},
     main="ibl",
     opts={
       indent= {
