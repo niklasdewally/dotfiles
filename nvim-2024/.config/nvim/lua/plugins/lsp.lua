@@ -130,7 +130,7 @@ return {
 
         completion = {
           --completeopt = 'menu,menuone,noinsert',
-          --autocomplete = false
+          autocomplete = false
         },
 
         mapping = cmp.mapping.preset.insert {
