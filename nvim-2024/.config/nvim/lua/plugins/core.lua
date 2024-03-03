@@ -20,15 +20,22 @@ return {
   { 'sainnhe/gruvbox-material', 
     dependencies = {'nvim-treesitter/nvim-treesitter'},
     config = function(_,_)
-      opt.termguicolors = true
-      opt.background = "dark"
       g.gruvbox_material_background = "soft"
       g.gruvbox_material_better_performance = 0
       g.gruvbox_material_diagnostic_virtual_text = "colored"
-      vim.cmd [[colorscheme gruvbox-material]]
+      -- goodbye gruvbox-material
+      -- vim.cmd [[colorscheme gruvbox-material]]
+      --opt.termguicolors = true
+      --opt.background = "dark"
     end
   },
-
+  {'rebelot/kanagawa.nvim', -- more colours
+    dependencies = {'nvim-treesitter/nvim-treesitter'},
+    config = function(_,_)
+      vim.cmd("colorscheme kanagawa-dragon")
+    end
+  },
+  'sainnhe/everforest', -- even more colours
   'airblade/vim-gitgutter', -- show git diff info in status-bar
   'tpope/vim-surround',     -- ys<motion><b class=bolder> or VS<b class=bolder>
   'tpope/vim-fugitive',     -- git wrapper (run :Git )
