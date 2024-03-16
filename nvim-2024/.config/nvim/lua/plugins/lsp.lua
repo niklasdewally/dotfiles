@@ -3,28 +3,6 @@
 
 -- override settings here!
 local servers = {
-  rust_analyzer = {
-    ["rust-analyzer"] = {
-      imports = {
-        granularity = {group = "module"},
-        prefix = "self",
-      },
-
-      cargo = {
-        buildScripts = {enable = true},
-        features = {"unstable-solver-interface"}
-      },
-
-      procMacro = {
-        enable = true
-      },
-
-      checkOnSave = {
-        allFeatures= true,
-        command = "clippy",
-      },
-    }
-  }
 }
 
 -- copied from kickstart:
@@ -64,6 +42,9 @@ local function lsp_on_attach(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+  require('otter').activate({'python','r','rust'}, true, true,nil)
+  vim.lsp.inlay_hint.enable(bufnr)
+
 end
 
 return {
@@ -74,7 +55,8 @@ return {
       'hrsh7th/cmp-path',           -- complete paths.
       --'hrsh7th/cmp-cmdline',        -- complete vim : commands.
       'hrsh7th/cmp-nvim-lsp',       -- complete from LSP.
-      'jmbuhr/cmp-pandoc-references', 
+      'jmbuhr/cmp-pandoc-references',
+      'jmbuhr/otter.nvim',
       'L3MON4D3/LuaSnip',           -- snippet engine.
       'saadparwaiz1/cmp_luasnip',   -- complete from snippets.
       'numToStr/Comment.nvim',      -- I use this in my snippets
@@ -154,8 +136,9 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
-          { name = 'luasnip' },
           { name = 'nvim_lsp' },
+          { name = 'otter' },
+          { name = 'luasnip' },
           { name = 'buffer' },
           { name = 'path' },
           { name = 'cmdline' },
@@ -171,6 +154,7 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "mrcjkb/rustaceanvim",
       "hrsh7th/nvim-cmp",                  -- completion engine
       { 'j-hui/fidget.nvim', opts = {} }, -- useful status stuf for lsp
     },
@@ -216,12 +200,25 @@ return {
               return true
             end
           }
+        end,
+        -- override rust to never use lsp
+        ["rust_analyzer"] = function ()
         end
-        -- override rust to use rusttools
-        -- ["rust_analyzer"] = function ()
-        --     require("rust-tools").setup {}
-        -- end
       }
     end
+  },
+
+  -- rust!!
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    ft = { 'rust' },
+    init = function()
+      vim.g.rustaceanvim = {
+        server = {
+          on_attach= lsp_on_attach
+        }}
+    end
   }
+
 }

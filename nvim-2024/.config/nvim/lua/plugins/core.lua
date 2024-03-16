@@ -13,21 +13,22 @@ local opt = vim.opt
 local g = vim.g
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.termguicolors=true
 
 return {
   -- colour scheme
-  { 'sainnhe/gruvbox-material', 
-    dependencies = {'nvim-treesitter/nvim-treesitter'},
-    config = function(_,_)
-      g.gruvbox_material_background = "soft"
-      g.gruvbox_material_better_performance = 0
-      g.gruvbox_material_diagnostic_virtual_text = "colored"
-      -- goodbye gruvbox-material
-      -- vim.cmd [[colorscheme gruvbox-material]]
-      --opt.termguicolors = true
-      --opt.background = "dark"
-    end
-  },
+  --{ 'sainnhe/gruvbox-material', 
+  --  dependencies = {'nvim-treesitter/nvim-treesitter'},
+  --  config = function(_,_)
+  --    g.gruvbox_material_background = "soft"
+  --    g.gruvbox_material_better_performance = 0
+  --    g.gruvbox_material_diagnostic_virtual_text = "colored"
+  --    -- goodbye gruvbox-material
+  --    -- vim.cmd [[colorscheme gruvbox-material]]
+  --    --opt.termguicolors = true
+  --    --opt.background = "dark"
+  --  end
+  --},
   {'rebelot/kanagawa.nvim', -- more colours
     dependencies = {'nvim-treesitter/nvim-treesitter'},
     config = function(_,_)
@@ -47,7 +48,7 @@ return {
                              -- decrement with Ctrl-X
   'isobit/vim-caddyfile',
   {'lukas-reineke/indent-blankline.nvim', -- indentation guides
-    dependencies = {'nvim-treesitter/nvim-treesitter','sainhe/gruvbox-material'},
+    dependencies = {'nvim-treesitter/nvim-treesitter'},
     main="ibl",
     opts={
       indent= {

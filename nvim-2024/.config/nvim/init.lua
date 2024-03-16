@@ -19,7 +19,7 @@ local g = vim.g
 
 -- must set leaders first so plugins are happy
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = '\\'
 
 -- neovide gui 
 vim.g.neovide_cursor_animation_length = 0
