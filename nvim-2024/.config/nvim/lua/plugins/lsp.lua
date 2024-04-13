@@ -47,6 +47,12 @@ local function lsp_on_attach(_, bufnr)
 
 end
 
+local function rust_on_attach(_,bufnr) 
+
+  vim.keymap.set('n','<LocalLeader>rm','<cmd>RustLsp expandMacro<CR>', { buffer = bufnr, desc =  'expand [m]acro'})
+  lsp_on_attach(_,bufnr)
+end
+
 return {
 
   -- Completion and the snippet engine.
@@ -101,6 +107,9 @@ return {
       -- load lua snippets
       -- stored in luasnippets folder
       require("luasnip.loaders.from_lua").lazy_load()
+
+      vim.keymap.set('n', "Se", function() require("luasnip.loaders").edit_snippet_files() end,
+        { desc = "edit snippet files" })
 
       -- setup completion
       cmp.setup({
@@ -216,7 +225,7 @@ return {
     init = function()
       vim.g.rustaceanvim = {
         server = {
-          on_attach= lsp_on_attach
+          on_attach= rust_on_attach 
         }}
     end
   }

@@ -25,7 +25,8 @@ return {
           ['<leader>S'] = {name = "[S]nippets",_="which_key_ignore"},
           ['<leader>w'] = {name="[w]orkspace",_="which_key_ignore"},
           ['<leader><leader>'] = {"<LocalLeader>","local"},
-          ['<LocalLeader>f'] = {name="test",_="which_key_ignore"},
+          ['<LocalLeader>l'] = {name="[l]atex",_="which_key_ignore"},
+          ['<LocalLeader>r'] = {name="[r]ust",_="which_key_ignore"},
           ['gc'] = {name="[c]ommentary",_="which_key_ignore"}
       })
     end
