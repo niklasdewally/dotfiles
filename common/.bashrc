@@ -64,47 +64,16 @@ function i_am_labs() {
 ###########################################
 #        RUN GLOBAL SETTINGS FIRST        #
 ###########################################
-# Required for school systems not to break
+
 [ -e /etc/bashrc ] && source /etc/bashrc
-
-######################
-#        PATH        #
-######################
-
-# Directories to add to path if they exist
-# Top is first
-DIRS_TO_ADD=(
-  "/usr/local/python/bin" # school installs custom python bins here!!
-  "$HOME/.local/bin"
-  "$HOME/.cargo/bin"
-  "$HOME/.go/bin"
-  "/opt/homebrew/lib/ruby/gems/3.1.0/bin/"
-  "/opt/homebrew/opt/ruby@3.1/bin"
-  "$HOME/uni/bin"
-  "$HOME/.idris2/bin"
-  "$HOME/.pack/bin"
-  "$HOME/miniconda3/bin"
-  "$HOME/.cabal/bin"
-  "$HOME/.ghcup/bin"
-  "$HOME/.config/emacs/bin"
-  "/usr/local/anaconda3/bin"
-)
-
-for path in ${DIRS_TO_ADD[@]}; do
-  [ -d  $path ] && LOCAL_PATH="${LOCAL_PATH:+${LOCAL_PATH}:}$path"
-done
-
-export PATH=${LOCAL_PATH:+${LOCAL_PATH}:}$PATH
 
 ##############################
 #        TAB COMPLETE        #
 ##############################
 
-#bind "set completion-ignore-case on" 2>&1 > /dev/null # ignore case 
-
-# Load completion scripts from .bash
-for i in ~/.bash/*-completion.bash; do
-  source "$i"
+# Load completion scripts from .bashrc.d
+for file in ~/.bashrc.d/*; do
+  . "$file"
 done
 
 # load pandoc completion if pandoc is on the system
@@ -124,8 +93,6 @@ then
 else
   COL=$B_LBLUE
 fi
-
-[ -e ~/.bash/git-prompt.sh ] && source ~/.bash/git-prompt.sh
 
 # show previous 3 directories, then use ...
 export PROMPT_DIRTRIM=3
@@ -167,28 +134,17 @@ if i_am_mac
 then
   _hook_me
 fi
-#####################################
-#        HASKELL ENVIRONMENT        #
-#####################################
-
-if [ -f "~/.ghcup/env" ]
-  then
-    source "~/.ghcup/env"
-fi
 
 #############################################
 #        EXPORTS, SHELL OPTIONS, ETC        #
 #############################################
 
-export EDITOR=nvim
 alias vim=nvim
 
-#when using poetry, shorten the venv name a bit
-export POETRY_VIRTUALENVS_PROMPT='{project_name}'
-
-# allow (eg) grep foo **/*.py
 shopt -s globstar 
 
+set -o vi 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-. "$HOME/.cargo/env"
+# Run local configuration last
+
+[ -e "~/.bashrc.local" ] && . "~/bashrc.local"

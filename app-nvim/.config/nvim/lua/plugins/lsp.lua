@@ -98,17 +98,22 @@ return {
       -- Make honza/vim-snippets work
       luasnip.filetype_extend("all", { "_" })
 
-      -- use snipmate format snippets
-      -- store custom shipmate snippets in snippets/<filetype>.snippets
-      -- this is easier than lua snippet syntax.
-      -- By default, this installs any snippets/ folder found in runtime path
-      require("luasnip.loaders.from_snipmate").lazy_load()
+      -- custom snippets
+      require("luasnip.loaders.from_snipmate").lazy_load({paths="~/.snippets"})
+      require("luasnip.loaders.from_lua").lazy_load({paths="~/.snippets"})
 
-      -- load lua snippets
-      -- stored in luasnippets folder
-      require("luasnip.loaders.from_lua").lazy_load()
+      vim.keymap.set('n', "Se", function() require("luasnip.loaders").edit_snippet_files({
+	  extend = function(ft, paths)
+	    if #paths == 0 then
+	      return {
+		{ ".snippets/" .. ft .. ".snippets",
+		  string.format("~/.snippets/snippets/%s.snippets",ft)}
+	      }
+	    end
 
-      vim.keymap.set('n', "Se", function() require("luasnip.loaders").edit_snippet_files() end,
+	    return {}
+	  end
+      }) end,
         { desc = "edit snippet files" })
 
       -- setup completion

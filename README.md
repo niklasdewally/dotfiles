@@ -6,8 +6,7 @@ My dotfiles.
 
 ```
 common    -> dotfiles for use on all devices.
-mac       -> dotfiles for use on my personal mac.
-labs      -> dotfiles for use on st andrews lab machines.
+device-xxx ->§
 ```
 
 ## Installation
@@ -35,3 +34,27 @@ breaks things.
 rm -r ~/.local/state/nvim
 rm -r ~/.local/share/nvim
 ```
+
+# Device specific bash config
+.bashrc.local and .bash_profile.local can be used to add extra bash settings on a per device basis.
+
+# Loading order of bash initialisation files
+
+The main advantage of using profile over bashrc is that it is read by the GUI session too.
+Put environment variables, etc here.
+
+Login shells:
+
+1. .bash_profile
+2. .profile
+3. .profile.local (if exists)
+4. .bashrc
+5. files in .bashrc.d
+6. .bashrc.local (if exists)
+
+
+Interactive shells:
+
+1. .bashrc
+2. files in .bashrc.d
+3. .bashrc.local (if exists)

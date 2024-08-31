@@ -1,0 +1,3 @@
+if [ -d "/usr/local/python/bin" ]; then
+	. "/usr/local/python/bin"
+fi
