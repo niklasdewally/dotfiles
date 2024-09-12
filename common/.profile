@@ -22,14 +22,14 @@ fi
 
 # Environments for programming languages
 
-if [ -e "~/.ghcup/env" ]
+if [ -e "$HOME/.ghcup/env" ]
   then
-    . "~/.ghcup/env"
+    . "$HOME/.ghcup/env"
 fi
 
-if [ -e "~/.cargo/env" ]
+if [ -e "$HOME/.cargo/env" ]
   then
-    . "~/.cargo/env"
+    . "$HOME/.cargo/env"
 fi
 
 if command -v nvim &> /dev/null; then 

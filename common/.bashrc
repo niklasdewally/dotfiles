@@ -147,4 +147,4 @@ set -o vi
 
 # Run local configuration last
 
-[ -e "~/.bashrc.local" ] && . "~/bashrc.local"
+[ -e "$HOME/.bashrc.local" ] && . "$HOME/bashrc.local"
