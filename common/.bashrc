@@ -1,9 +1,15 @@
 # vim: foldmethod=marker foldmarker=#START,#END ft=bash
 
+
+# run global settings first
+[ -e /etc/bashrc ] && source /etc/bashrc
+
+# run completion scripts from .bashrc.d
+for file in ~/.bashrc.d/*; do
+  . "$file"
+done
+
 #START Colour aliases
-########################################################
-#                    COLOUR ALIASES                    #
-########################################################
 
 #https://scriptim.github.io/bash-prompt-generator/
 #https://stackoverflow.com/questions/4133904/ps1-line-with-git-current-branch-and-colors
@@ -50,10 +56,6 @@ B_LCYAN='\[\e[01;96m\]'
 B_WHITE='\[\e[01;97m\]'
 #END
 
-############################################
-#        DEVICE DETECTION FUNCTIONS        #
-############################################
-
 function i_am_mac() {
   [ $(uname) = "Darwin" ] && [ $(whoami) = "niklas" ]
 }
@@ -61,20 +63,12 @@ function i_am_mac() {
 function i_am_labs() {
   [ $(uname) = "Linux" ] && [ $(whoami) = "nd60" ]
 }
-###########################################
-#        RUN GLOBAL SETTINGS FIRST        #
-###########################################
 
-[ -e /etc/bashrc ] && source /etc/bashrc
 
-##############################
-#        TAB COMPLETE        #
-##############################
 
-# Load completion scripts from .bashrc.d
-for file in ~/.bashrc.d/*; do
-  . "$file"
-done
+alias vim=nvim
+shopt -s globstar 
+set -o vi 
 
 # load pandoc completion if pandoc is on the system
 [ -x $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
@@ -82,9 +76,10 @@ done
 # gh cli completion
 [ -x $(command -v gh) ] && eval "$(gh completion -s bash)"
 
-##############################
-#        PS1 / PROMPT        #
-##############################
+# fzf bash completion for nice ctrl-r 
+if [ -e /usr/share/doc/fzf/examples/key-bindings.bash ]; then
+  source /usr/share/doc/fzf/examples/key-bindings.bash
+fi
 
 # colour mac differently than ssh / school devices
 if i_am_mac
@@ -110,10 +105,7 @@ colour_my_prompt () {
 
 colour_my_prompt
 
-###################################################################
-#        USE DIRENV TO SOURCE .env FILES IN EACH DIRECTORY        #
-###################################################################
-
+# use direnv if installed
 _direnv_hook() {
   local previous_exit_status=$?
   trap -- '' SIGINT
@@ -135,22 +127,6 @@ then
   _hook_me
 fi
 
-#############################################
-#        EXPORTS, SHELL OPTIONS, ETC        #
-#############################################
 
-alias vim=nvim
-
-shopt -s globstar 
-
-set -o vi 
-
-# install fzf bash completion for nice ctrl-r 
-
-if [ -e /usr/share/doc/fzf/examples/key-bindings.bash ]; then
-  source /usr/share/doc/fzf/examples/key-bindings.bash
-fi
-
-# Run local configuration last
-
+# run local configuration last
 [ -e "$HOME/.bashrc.local" ] && . "$HOME/bashrc.local"
