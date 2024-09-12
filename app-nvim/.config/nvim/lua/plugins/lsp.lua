@@ -43,7 +43,7 @@ local function lsp_on_attach(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
   require('otter').activate({'python','r','rust'}, true, true,nil)
-  vim.lsp.inlay_hint.enable(bufnr)
+  vim.lsp.inlay_hint.enable(true,{bufnr=bufnr})
 
 end
 
