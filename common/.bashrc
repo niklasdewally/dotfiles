@@ -145,6 +145,12 @@ shopt -s globstar
 
 set -o vi 
 
+# install fzf bash completion for nice ctrl-r 
+
+if [ -e /usr/share/doc/fzf/examples/key-bindings.bash ]; then
+  source /usr/share/doc/fzf/examples/key-bindings.bash
+fi
+
 # Run local configuration last
 
 [ -e "$HOME/.bashrc.local" ] && . "$HOME/bashrc.local"
