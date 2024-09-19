@@ -8,29 +8,16 @@
 
 # Path
 
-if [ -d "$HOME/local/bin" ]; then 
-    export "PATH=$HOME/local/bin:$PATH"
-fi
-
-if [ -d "$HOME/.bin" ]; then 
-    export "PATH=$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/root/resources/scripts" ]; then 
-    export "PATH=$HOME/root/resources/scripts:$PATH"
-fi
+[ -d "$HOME/local/bin" ] && export "PATH=$HOME/local/bin:$PATH"
+[ -d "$HOME/.bin" ] && export "PATH=$HOME/.bin:$PATH"
+[ -d "$HOME/root/resources/scripts" ] && export "PATH=$HOME/root/resources/scripts:$PATH"
+[ -d "/opt/conjure" ] &&  export "PATH=/opt/conjure:$PATH"
 
 # Environments for programming languages
 
-if [ -e "$HOME/.ghcup/env" ]
-  then
-    . "$HOME/.ghcup/env"
-fi
+[ -e "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
+[ -e "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-if [ -e "$HOME/.cargo/env" ]
-  then
-    . "$HOME/.cargo/env"
-fi
 
 if command -v nvim &> /dev/null; then 
 	export EDITOR=nvim
