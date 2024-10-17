@@ -45,8 +45,10 @@ return {
   'tpope/vim-commentary',    -- gcc to uncomment line , Vgc , ...
   'tpope/vim-repeat',        -- repeat lots more things
   'tpope/vim-speeddating',   -- increment dates with Ctrl-A / 
+  'kirasok/cmp-hledger',
                              -- decrement with Ctrl-X
   'isobit/vim-caddyfile',
+  'Civitasv/cmake-tools.nvim',
   {'lukas-reineke/indent-blankline.nvim', -- indentation guides
     dependencies = {'nvim-treesitter/nvim-treesitter'},
     main="ibl",

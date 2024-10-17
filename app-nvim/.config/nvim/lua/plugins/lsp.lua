@@ -59,6 +59,7 @@ return {
   {"hrsh7th/nvim-cmp",
     dependencies = {
       'hrsh7th/cmp-path',           -- complete paths.
+      'kirasok/cmp-hledger', -- hledger
       --'hrsh7th/cmp-cmdline',        -- complete vim : commands.
       'hrsh7th/cmp-nvim-lsp',       -- complete from LSP.
       'jmbuhr/cmp-pandoc-references',
@@ -99,6 +100,7 @@ return {
       luasnip.filetype_extend("all", { "_" })
 
       -- custom snippets
+      require("luasnip.loaders.from_snipmate").lazy_load({paths="~/.snippets/snippets"})
       require("luasnip.loaders.from_snipmate").lazy_load({paths="~/.snippets"})
       require("luasnip.loaders.from_lua").lazy_load({paths="~/.snippets"})
 
@@ -156,7 +158,8 @@ return {
           { name = 'buffer' },
           { name = 'path' },
           { name = 'cmdline' },
-          { name = 'pandoc_references' }
+          { name = 'pandoc_references' },
+          { name = 'hledger' }
         },
       })
     end

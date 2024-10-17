@@ -9,3 +9,15 @@ snippet hidden
 	
 snippet nonexhaustive
 	#[non_exhaustive]
+
+snippet parser_expr2 parser_expression() fragment for binary operators (conjure-oxide)
+	(
+		"$1",
+		Box::new(Expression::$2) as Box<dyn Fn(_,_,_) -> _>,
+	),
+
+snippet parser_exprvec parser_expression() fragment for vec operators (conjure-oxide)
+	(
+		"$1",
+		Box::new(Expression::$2) as Box<dyn Fn(_, _) -> _>,
+	),
