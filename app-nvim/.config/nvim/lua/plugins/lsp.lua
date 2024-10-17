@@ -101,10 +101,9 @@ return {
 
       -- custom snippets
       require("luasnip.loaders.from_snipmate").lazy_load({paths="~/.snippets/snippets"})
-      require("luasnip.loaders.from_snipmate").lazy_load({paths="~/.snippets"})
-      require("luasnip.loaders.from_lua").lazy_load({paths="~/.snippets"})
+      require("luasnip.loaders.from_lua").lazy_load({paths="~/.snippets/luasnippets"})
 
-      vim.keymap.set('n', "Se", function() require("luasnip.loaders").edit_snippet_files({
+      vim.keymap.set('n', "<leader>Se", function() require("luasnip.loaders").edit_snippet_files({
 	  extend = function(ft, paths)
 	    if #paths == 0 then
 	      return {
