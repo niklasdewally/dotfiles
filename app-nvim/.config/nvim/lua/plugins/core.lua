@@ -45,6 +45,7 @@ return {
   'tpope/vim-commentary',    -- gcc to uncomment line , Vgc , ...
   'tpope/vim-repeat',        -- repeat lots more things
   'tpope/vim-speeddating',   -- increment dates with Ctrl-A / 
+  'sakhnik/nvim-gdb',
   'kirasok/cmp-hledger',
                              -- decrement with Ctrl-X
   'isobit/vim-caddyfile',

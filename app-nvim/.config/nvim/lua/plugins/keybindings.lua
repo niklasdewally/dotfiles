@@ -15,7 +15,7 @@ return {
       -- Define keybind groups
       wk.add({
           {'<leader>S', group = "[S]nippets"},
-          {'<leader>d', group = "LSP: [d]ocument"},
+          {'<leader>d', group = "[d]ebug / LSP: [d]ocument"},
           {'<leader>w', group = "LSP: [w]orkspace"},
           {'<leader>l', group = "[l]ist"},
           {'<leader>h', group = "Git [h]unk"},
