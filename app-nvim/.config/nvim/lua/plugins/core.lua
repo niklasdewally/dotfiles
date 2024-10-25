@@ -15,6 +15,10 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.termguicolors=true
 
+-- netrw left hand side tree
+vim.g.netrw_liststyle=3 -- use tree by default in netrw
+vim.keymap.set('n','<Leader>f','<cmd>20Lexplore<cr>',{desc='toggle file tree'})
+
 return {
   -- colour scheme
   --{ 'sainnhe/gruvbox-material', 

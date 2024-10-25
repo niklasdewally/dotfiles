@@ -11,6 +11,7 @@ return {
     },
   config = function(opts,_)
       local wk = require("which-key")
+
       wk.setup(opts)
       -- Define keybind groups
       wk.add({
@@ -20,11 +21,14 @@ return {
           {'<leader>l', group = "[l]ist"},
           {'<leader>h', group = "Git [h]unk"},
           {'<leader>s', group = "[s]earch"},
+          --{'<leader>f', group= "[f]ile"  }, 
           {'<leader><leader>', proxy="<LocalLeader>",group="local"},
           {'<LocalLeader>l', desc="[l]atex"},
           {'<LocalLeader>r', desc="[r]ust"},
           {'gc', desc="[c]ommentary"}
       })
     end
+
+
 }
 }

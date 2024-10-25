@@ -16,27 +16,27 @@ local function lsp_on_attach(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>r', vim.lsp.buf.rename, '[R]ename')
-  nmap('<leader>c', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>r', vim.lsp.buf.rename, '[r]ename')
+  nmap('<leader>c', vim.lsp.buf.code_action, '[c]ode action')
 
-  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('gd', require('telescope.builtin').lsp_definitions, '[g]oto [d]efinition')
+  nmap('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
+  nmap('gI', require('telescope.builtin').lsp_implementations, '[g]oto [I]mplementation')
+  nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'type [d]efinition')
+  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[d]ocument [s]ymbols')
+  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[w]orkspace [s]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
+  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[w]orkspace [a]dd Folder')
+  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[w]orkspace [r]emove Folder')
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
+  end, '[w]orkspace [l]ist Folders')
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -44,13 +44,16 @@ local function lsp_on_attach(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
   require('otter').activate({'python','r','rust'}, true, true,nil)
   vim.lsp.inlay_hint.enable(true,{bufnr=bufnr})
+  vim.keymap.set('n','<leader>f',vim.lsp.buf.format ,{buffer=bufnr, desc = 'LSP: [f]ormat'})
 
 end
 
 local function rust_on_attach(_,bufnr) 
 
-  vim.keymap.set('n','<LocalLeader>rm','<cmd>RustLsp expandMacro<CR>', { buffer = bufnr, desc =  'expand [m]acro'})
+  vim.keymap.set('n','<LocalLeader>m',function() vim.cmd.RustLsp('expandMacro') end, { buffer = bufnr, desc =  'Rust: expand [m]acro'})
+  vim.keymap.set('n','<LocalLeader>d',function() vim.cmd.RustLsp('renderDiagnostic') end, { buffer = bufnr, desc =  'Rust: render [d]iagnostics'})
   lsp_on_attach(_,bufnr)
+  vim.keymap.set('n','<leader>c',function() vim.cmd.RustLsp('codeAction') end,{buffer=bufnr, desc = 'LSP: [c]ode action'})
 end
 
 return {
