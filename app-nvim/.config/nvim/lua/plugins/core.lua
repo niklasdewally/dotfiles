@@ -15,7 +15,7 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.termguicolors=true
 
-vim.opt.formatoptions:append {"a"}
+--vim.opt.formatoptions:append {"a"}
 vim.o.spell = true
 
 -- netrw left hand side tree
