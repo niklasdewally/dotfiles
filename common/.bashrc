@@ -129,4 +129,5 @@ fi
 
 
 # run local configuration last
-[ -e "$HOME/.bashrc.local" ] && . "$HOME/bashrc.local"
+[ -e "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
+
