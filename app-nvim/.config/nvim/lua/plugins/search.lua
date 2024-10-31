@@ -40,7 +40,7 @@ return {
       vim.keymap.set('n', '<leader>sf', "<cmd>TodoTelescope keywords=FIX,FIXME,FIXIT,ERROR,WARNING<cr>", { desc = '[s]earch [f]ixmes' })
       vim.keymap.set('n', '<leader>sF', require('telescope.builtin').find_files, { desc = '[s]earch [F]iles' })
       vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[s]earch by [g]rep' })
-      vim.keymap.set('n', '<leader>sg', require('telescope.builtin').git_files, { desc = '[s]earch [G]it Files' })
+      vim.keymap.set('n', '<leader>sG', require('telescope.builtin').git_files, { desc = '[s]earch [G]it Files' })
       vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[s]earch [h]elp' })
       vim.keymap.set('n', '<leader>sl', require('telescope.builtin').loclist, { desc = '[s]earch [l]oclist' })
       vim.keymap.set('n', '<leader>sm', require('telescope.builtin').man_pages, { desc = '[s]earch [m]an pages' })

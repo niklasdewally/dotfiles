@@ -21,7 +21,7 @@ return {
           {'<leader>l', group = "[l]ist"},
           {'<leader>h', group = "Git [h]unk"},
           {'<leader>s', group = "[s]earch"},
-          --{'<leader>f', group= "[f]ile"  }, 
+          {'<leader>T', group = "[T]reesitter"},
           {'<leader><leader>', proxy="<LocalLeader>",group="local"},
           {'<LocalLeader>l', desc="[l]atex"},
           {'<LocalLeader>r', desc="[r]ust"},
