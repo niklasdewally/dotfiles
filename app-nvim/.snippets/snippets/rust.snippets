@@ -1,13 +1,17 @@
 snippet docattr
 	#[doc(${1:hidden})]
 
-snippet dochidden
+autosnippet dochidden
 	#[doc(hidden)]
 
-snippet hidden
+autosnippet #dh
 	#[doc(hidden)]
-	
-snippet nonexhaustive
+
+
+autosnippet nonexhaustive
+	#[non_exhaustive]
+
+autosnippet #ne
 	#[non_exhaustive]
 
 snippet parser_expr2 parser_expression() fragment for binary operators (conjure-oxide)
@@ -21,3 +25,15 @@ snippet parser_exprvec parser_expression() fragment for vec operators (conjure-o
 		"$1",
 		Box::new(Expression::$2) as Box<dyn Fn(_, _) -> _>,
 	),
+
+autosnippet !rr rule
+	#[register_rule(("Minion", ${2:4400}))]
+	fn ${1:rule_name}(expr: &Expr, m: &Model) -> ApplicationResult {
+		${3:todo!()}
+	}
+
+autosnippet !rna rule not applicable
+	return Err(RuleNotApplicable);
+
+autosnippet td todo!()
+	todo!()

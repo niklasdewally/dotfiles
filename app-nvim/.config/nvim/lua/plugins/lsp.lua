@@ -1,6 +1,7 @@
 -- vim: cc=79
 -- LSP, Completion, Snippets, ...
 
+
 -- override settings here!
 local servers = {
 }
@@ -141,7 +142,13 @@ return {
           ['<C-y>'] = cmp.mapping.confirm { select = true },
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-Space>'] = cmp.mapping(function() 
+            if cmp.visible() then
+              cmp.confirm({select=true})
+            else 
+              cmp.complete()
+            end
+          end, {'i','c','s'}),
           ['<C-l>'] = cmp.mapping(function()
             if luasnip.expand_or_locally_jumpable() then
               luasnip.expand_or_jump()
@@ -154,9 +161,9 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
+          { name = 'luasnip', option = {show_autosnippets = true} },
           { name = 'nvim_lsp' },
           { name = 'otter' },
-          { name = 'luasnip' },
           { name = 'buffer' },
           { name = 'path' },
           { name = 'cmdline' },

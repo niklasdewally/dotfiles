@@ -128,6 +128,10 @@ then
 fi
 
 
+[ $(command -v fzf) ] && eval "$(fzf --bash)"
 # run local configuration last
 [ -e "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
 
+
+# Created by `pipx` on 2024-11-15 18:12:26
+export PATH="$PATH:/Users/niklas/.local/bin"

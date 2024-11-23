@@ -21,6 +21,10 @@
   # log changes from main
   lc = log --abbrev-commit --decorate --oneline --numstat --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" main..HEAD
 
+  # https://jordanelver.co.uk/blog/2020/06/04/fixing-commits-with-git-commit-fixup-and-git-rebase-autosquash/
+  fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+
+
 [pull]
   rebase = true
 

@@ -12,3 +12,5 @@ snippet header
   # Date: ${5:`strftime('%Y/%m/%d')`}
 
 
+snippet ?cmdexists
+  [ command -v ${1} ] || { >&2 echo "${2:fatal: ${1} not found!}"; exit 1; }
