@@ -22,6 +22,16 @@ vim.o.spell = true
 vim.g.netrw_liststyle=3 -- use tree by default in netrw
 vim.keymap.set('n','<Leader>f','<cmd>20Lexplore<cr>',{desc='toggle file tree'})
 
+-- vimwiki config
+
+-- highlight checked tasks
+vim.g.vimwiki_hl_cb_checked =1
+vim.g.vimwiki_listsyms = '○◐●✓'
+vim.g.vimwiki_listsym_rejected = '✗'
+vim.g.vimwiki_folding='list'
+vim.g.vimwiki_filetypes = {'markdown','pandoc'}
+vim.g.vimwiki_list = {{syntax= 'markdown', ext= '.md'}}
+
 return {
   -- colour scheme
   --{ 'sainnhe/gruvbox-material', 
@@ -52,6 +62,7 @@ return {
   'tpope/vim-commentary',    -- gcc to uncomment line , Vgc , ...
   'tpope/vim-repeat',        -- repeat lots more things
   'tpope/vim-speeddating',   -- increment dates with Ctrl-A / 
+  'vimwiki/vimwiki',
   'sakhnik/nvim-gdb',
   'kirasok/cmp-hledger',
                              -- decrement with Ctrl-X

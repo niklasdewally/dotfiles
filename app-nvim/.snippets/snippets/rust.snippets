@@ -27,9 +27,9 @@ snippet parser_exprvec parser_expression() fragment for vec operators (conjure-o
 	),
 
 autosnippet !rr rule
-	#[register_rule(("Minion", ${2:4400}))]
+	#[register_rule(("${3:Minion}", ${2:4400}))]
 	fn ${1:rule_name}(expr: &Expr, m: &Model) -> ApplicationResult {
-		${3:todo!()}
+		${4:todo!()}
 	}
 
 autosnippet !rna rule not applicable
