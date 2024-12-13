@@ -4,8 +4,8 @@
 	defaultBranch = main
 
 [user]
-  name= "Niklas Dewally"
-  email= "niklas@dewally.com"
+	name = Niklas Dewally
+	email = niklas@dewally.com
 
 [core]
   editor = nvim 
