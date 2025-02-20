@@ -27,3 +27,5 @@ fi
 if [ -e "$HOME/.profile.local" ]; then
 	. "$HOME/.profile.local"
 fi
+
+[ -f "/home/nd60/.ghcup/env" ] && . "/home/nd60/.ghcup/env" # ghcup-env
