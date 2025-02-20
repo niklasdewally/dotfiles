@@ -9,6 +9,7 @@
 
 [core]
   editor = nvim 
+	pager = delta
   autocrlf = input
   excludesFile=~/.gitignore.global
 
@@ -21,23 +22,28 @@
   # log changes from main
   lc = log --abbrev-commit --decorate --oneline --numstat --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" main..HEAD
 
+  logmsgs = log --pretty="%B"
+
   # https://jordanelver.co.uk/blog/2020/06/04/fixing-commits-with-git-commit-fixup-and-git-rebase-autosquash/
   fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
 
+  ref = show -s --pretty=reference
 
 [pull]
   rebase = true
 
 [rebase]
-  autosquash = true
+  autosquash = false 
   autostash = true
 
   # automatically restack branches that depend on changed commits.
   # https://andrewlock.net/working-with-stacked-branches-in-git-is-easier-with-update-refs/
   updateRefs = true
+	rescheduleFailedExec = true
 
 [merge]
   tool = nvim
+	conflictStyle = zdiff3
 
 [fetch]
   prune = true
@@ -45,10 +51,26 @@
 [mergetool]
   prompt = false
 
-[mergetool "nvim"]
-  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[advice]
+	macheteEditorSelection = false
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+    dark = true
+    navigate = true
+    line-numbers = true
+    side-by-side = true
+
+
+[mergetool "nvim"]
+
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+

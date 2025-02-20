@@ -2,7 +2,8 @@ snippet lang
 	language ESSENCE' 1.0
 
 autosnippet !lang
-	language ${1:ESSENCE' 1.0}
+	language ${2:ESSENCE' 1.0}
+	$1
 
 snippet dom create domain with letting
 	letting $1 be domain $2
@@ -15,3 +16,11 @@ snippet gi
 
 snippet fi
 	find $1 : int($2..$3)
+
+snippet st
+	such that
+	  $1
+
+autosnippet !st
+	such that
+	  $1

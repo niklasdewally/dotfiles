@@ -1,3 +1,7 @@
 [build]
 rustc-wrapper = "/opt/homebrew/bin/sccache"
 
+[profile.profiling]
+inherits = "release"
+debug = true
+debug-assertions = false

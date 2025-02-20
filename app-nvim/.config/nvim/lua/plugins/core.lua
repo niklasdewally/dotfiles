@@ -48,8 +48,13 @@ return {
   --},
   {'rebelot/kanagawa.nvim', -- more colours
     dependencies = {'nvim-treesitter/nvim-treesitter'},
+    -- config = function(_,_)
+    --   vim.cmd("colorscheme kanagawa")
+    -- end
+  },
+  {'sainnhe/everforest', -- more colours
     config = function(_,_)
-      vim.cmd("colorscheme kanagawa")
+      vim.cmd("colorscheme everforest")
     end
   },
   'sainnhe/everforest',      -- even more colours
