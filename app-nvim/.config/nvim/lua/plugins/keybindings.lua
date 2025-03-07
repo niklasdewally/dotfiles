@@ -19,6 +19,7 @@ return {
           {'<leader>d', group = "[d]ebug / LSP: [d]ocument"},
           {'<leader>w', group = "LSP: [w]orkspace"},
           {'<leader>l', group = "[l]ist"},
+          {'<leader>g', group = "[l]ist"},
           {'<leader>h', group = "Git [h]unk"},
           {'<leader>s', group = "[s]earch"},
           {'<leader>T', group = "[T]reesitter"},

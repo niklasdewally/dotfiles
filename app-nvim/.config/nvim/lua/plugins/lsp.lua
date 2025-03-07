@@ -31,6 +31,8 @@ local function lsp_on_attach(_, bufnr)
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
+  nmap('<leader>H', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, 'toggle inlay [H]ints')
+
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[w]orkspace [a]dd Folder')
