@@ -183,6 +183,7 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "mrcjkb/rustaceanvim",
+      'mrcjkb/haskell-tools.nvim',
       "hrsh7th/nvim-cmp",                  -- completion engine
       { 'j-hui/fidget.nvim', opts = {} }, -- useful status stuf for lsp
     },
@@ -247,6 +248,20 @@ return {
           on_attach= rust_on_attach 
         }}
     end
-  }
+  },
+
+      {
+        'mrcjkb/haskell-tools.nvim',
+        version = '^4', -- Recommended
+        lazy = false, -- This plugin is already lazy
+        init = function()
+          vim.g.haskell_tools = {
+            hls = {
+              on_attach = lsp_on_attach,
+          }
+          }
+        end
+
+      },
 
 }

@@ -48,6 +48,7 @@ return {
       vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[s]earch [s]elect Telescope' })
       vim.keymap.set('n', '<leader>st', "<cmd>TodoTelescope<cr>", { desc = '[s]earch [t]odos' })
       vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[s]earch current [w]ord' })
+
     end
   },
   -- highlight and list todos 
