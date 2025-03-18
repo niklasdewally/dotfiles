@@ -24,8 +24,6 @@ return {
           {'<leader>s', group = "[s]earch"},
           {'<leader>T', group = "[T]reesitter"},
           {'<leader><leader>', proxy="<LocalLeader>",group="local"},
-          {'<LocalLeader>l', desc="[l]atex"},
-          {'<LocalLeader>r', desc="[r]ust"},
           {'gc', desc="[c]ommentary"}
       })
     end

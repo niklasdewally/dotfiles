@@ -54,9 +54,8 @@ end
 
 local function rust_on_attach(_,bufnr) 
 
-  vim.keymap.set('n','<LocalLeader>m',function() vim.cmd.RustLsp('expandMacro') end, { buffer = bufnr, desc =  'Rust: expand [m]acro'})
-  vim.keymap.set('n','<LocalLeader>d',function() vim.cmd.RustLsp('renderDiagnostic') end, { buffer = bufnr, desc =  'Rust: render [d]iagnostics'})
   lsp_on_attach(_,bufnr)
+  -- more keymaps set in after/fttype/rust.lua
   vim.keymap.set('n','<leader>c',function() vim.cmd.RustLsp('codeAction') end,{buffer=bufnr, desc = 'LSP: [c]ode action'})
 end
 
