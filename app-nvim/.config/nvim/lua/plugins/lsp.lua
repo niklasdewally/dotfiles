@@ -2,6 +2,7 @@
 -- LSP, Completion, Snippets, ...
 
 
+
 -- override settings here!
 local servers = {
 }
@@ -241,9 +242,15 @@ return {
   {
     'mrcjkb/rustaceanvim',
     version = '^5', -- Recommended
+    lazy=false,
     ft = { 'rust' },
     init = function()
       vim.g.rustaceanvim = {
+        ra_multiplex = {
+          Opts = {
+          enable=false
+          }
+        },
         server = {
           on_attach= rust_on_attach 
         }}
