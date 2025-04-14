@@ -21,6 +21,11 @@ source ~/.bashrc
 
 echo "..done!"
 
+
+echo "setting up nvim"
+nvim -c "LazyUpdate" -c "TSUpdateSync" -c "q"
+echo "..done!"
+
 echo "setting up rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 source ~/.cargo/env
