@@ -139,3 +139,4 @@ export PATH="$PATH:/Users/niklas/.local/bin"
 # run local configuration last
 [ -e "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
 
+. "$HOME/.cargo/env"
