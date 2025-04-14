@@ -16,11 +16,16 @@
 [alias]
   # https://www.durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
   
+  m = machete
+
+  ms = machete status --list-commits-with-hash
+
   # log graph
   lg = log --all --abrev-commit --decorate --oneline --graph
 
   # log changes from main
   lc = log --abbrev-commit --decorate --oneline --numstat --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" main..HEAD
+  lco = log --abbrev-commit --decorate --oneline --numstat --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue" main..HEAD
 
   logmsgs = log --pretty="%B"
 

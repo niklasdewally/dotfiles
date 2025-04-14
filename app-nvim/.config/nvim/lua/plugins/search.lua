@@ -11,7 +11,8 @@ vim.keymap.set("n","<leader>ld",function() vim.diagnostic.setqflist() end,{desc 
 
 return {
   {'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    -- FIXME: update to a release branch for nvim v0.11 once one is made
+    commit= 'a4ed82509cecc56df1c7138920a1aeaf246c0ac5',
     dependencies = {
       {'nvim-lua/plenary.nvim'},
 -- Fuzzy Finder Algorithm which requires local dependencies to be built.

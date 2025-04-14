@@ -1,7 +1,13 @@
 List of improvements to make next time I want to change my vimrc:
 ================================================================
 
-Move user snippets to its own folder in dotfiles and vim config. Make the "edit
-snippets" in vim automatically create / go to this custom snippets folder.
+* Move user snippets to its own folder in dotfiles and vim config. Make the "edit
+  snippets" in vim automatically create / go to this custom snippets folder.
 
-Snippet for underlining in RST.
+* Snippet for underlining in RST.
+
+* C-j C-k to move around in telescope
+
+* Update LSP and completion stuff to use nvim 0.11
+    + https://github.com/neovim/nvim-lspconfig/issues/3494
+    + https://gpanders.com/blog/whats-new-in-neovim-0-11/

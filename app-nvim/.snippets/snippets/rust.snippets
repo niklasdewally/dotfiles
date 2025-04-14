@@ -38,3 +38,7 @@ autosnippet !rna rule not applicable
 
 autosnippet td todo!()
 	todo!()
+
+autosnippet unlist
+	let ${1:exprs} = ${2:inner}.unwrap_list().ok_or(RuleNotApplicable)?;
+
