@@ -1,9 +1,4 @@
 # device specific profile
-
-export SSH_ASKPASS="/opt/homebrew/bin/ssh-askpass"
-
-eval $(keychain --eval)
-
 if type brew &>/dev/null
 then
   HOMEBREW_PREFIX="$(brew --prefix)"
@@ -30,3 +25,8 @@ export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
 export PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
 export "PATH=/opt/conjure-2.5.1:$PATH"
 [ -d "/opt/savilerow-latest" ] &&  export "PATH=/opt/savilerow-latest:$PATH"
+
+
+export SSH_ASKPASS="/opt/homebrew/bin/ssh-askpass"
+
+eval $(keychain --eval)
