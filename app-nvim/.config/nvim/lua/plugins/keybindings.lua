@@ -1,4 +1,8 @@
--- wey binding groups
+-- key binding groups
+
+-- g{ and g} to move to new paragraph, not to the spaces between them
+vim.keymap.set('n','g}','2}{j',{noremap=true, desc='into next paragraph'})
+vim.keymap.set('n','g{','2{j',{noremap=true, desc='into previous paragraph'})
 
 return {
 {"folke/which-key.nvim",
@@ -31,3 +35,5 @@ return {
 
 }
 }
+
+
