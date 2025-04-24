@@ -1,0 +1,26 @@
+# vim: filetype=gitconfig:
+
+
+[core]
+  pager = delta
+
+[alias]
+  m = machete
+  ms = machete status --list-commits-with-hash
+
+[advice]
+  macheteEditorSelection = false
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  dark = true
+  navigate = true
+  line-numbers = true
+  side-by-side = true
+
+
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+

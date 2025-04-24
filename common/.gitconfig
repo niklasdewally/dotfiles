@@ -1,0 +1,54 @@
+# vim: filetype=gitconfig:
+
+[alias]
+  lg = log --all --abrev-commit --decorate --oneline --graph ; log graph 
+
+  ; log changes from main
+  lc = log --abbrev-commit --decorate --oneline --numstat --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" main..HEAD
+  lco = log --abbrev-commit --decorate --oneline --numstat --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue" main..HEAD
+  logmsgs = log --pretty="%B"
+
+  ; https://jordanelver.co.uk/blog/2020/06/04/fixing-commits-with-git-commit-fixup-and-git-rebase-autosquash/
+  fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+
+  ref = show -s --pretty=reference
+
+[core]
+  editor = nvim 
+  autocrlf = input
+  excludesFile=~/.gitignore.global
+
+[interactive]
+    diffFilter = delta --color-only
+
+[fetch]
+  prune = true
+
+[init]
+  defaultBranch = main
+
+[include]
+  path = "~/.gitconfig.local"
+
+[merge]
+  tool = nvim
+  conflictStyle = zdiff3
+
+[mergetool]
+  prompt = false
+
+[pull]
+  rebase = true
+
+[rebase]
+  autosquash = false 
+  autostash = true
+  updateRefs = true; automatically restack branches that depend on changed commits.
+  rescheduleFailedExec = true
+
+[user]
+  name = "Niklas Dewally"
+  email = "niklas@dewally.com"
+
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
