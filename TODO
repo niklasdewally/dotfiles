@@ -11,3 +11,27 @@ List of improvements to make next time I want to change my vimrc:
 * Update LSP and completion stuff to use nvim 0.11
     + https://github.com/neovim/nvim-lspconfig/issues/3494
     + https://gpanders.com/blog/whats-new-in-neovim-0-11/
+
+* Better vimsurround setup
+
+* Any more timpope / folke plugins to install?
+  https://github.com/echasnovski/mini.nvim
+
+* Remove a lot of stuff now in nvim natively!
+  https://boltless.me/posts/neovim-config-without-plugins-2025/
+
+  e.g. lsp_config, LSP keymaps, completion, builtin commenting (gcc), builtin, treesitter folding 
+
+  See also https://github.com/boltlessengineer/NativeVim, https://github.com/boltlessengineer/nvim_rocks
+
+  Perhaps next time try a mostly no plugin nvim setup (like native vim) and then add things as needed?
+
+
+
+* Virtual lines diagnostics for rust (https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines)
+
+* Use tresitter for more things (https://gpanders.com/blog/whats-new-in-neovim-0-11/#improved-hover-documentation)
+
+* Remove timpope vim-unimpaired, as a lot of that is now in nvim core:
+  https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines
+

@@ -130,6 +130,8 @@ fi
 
 [ $(command -v fzf) ] && eval "$(fzf --bash)"
 
+# if we have nvim, use it as the manpager
+[ $(command -v nvim) ] && export MANPAGER='nvim +Man!'
 # Created by `pipx` on 2024-11-15 18:12:26
 export PATH="$PATH:/Users/niklas/.local/bin"
 
