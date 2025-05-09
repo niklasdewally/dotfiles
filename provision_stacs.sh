@@ -13,7 +13,7 @@ echo "setting up dotfiles"
 rm -rf ~/.bashrc ~/.bash_profile ~/.profile ~/.tmux.conf ~/.ipython ~/.bashrc.d ~/.gitconfig
 
 # load dotfiles from network home
-stow -t ${HOME} -d /cs/home/nd60/dotfiles common app-nvim device-stacs
+stow --dotfiles -t ${HOME} -d /cs/home/nd60/dotfiles common app-nvim device-stacs
 
 # apply them
 source ~/.profile

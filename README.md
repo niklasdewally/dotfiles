@@ -15,12 +15,12 @@ The contents of each folder are symlinked to `$HOME` using GNU Stow.
 
 **Install dotfiles on Mac:**
 ```
-stow --dir=. --target="$HOME" common mac
+stow --dotfiles --dir=. --target="$HOME" common mac
 ```
 
 **Uninstall dotfiles:**
 ```
-stow --dir=. --target="$HOME" -D common mac
+stow --dotfiles --dir=. --target="$HOME" -D common mac
 ```
 
 ## Upgrading Nvim

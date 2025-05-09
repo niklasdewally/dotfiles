@@ -1,0 +1,2 @@
+* config: the main configuration
+* plugins: plugin specifications to be loaded by lazy.nvim 
