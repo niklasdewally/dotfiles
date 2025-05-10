@@ -65,3 +65,4 @@ end, { desc = 'Toggle diagnostic virtual_lines' })
 -- ZEN MODE
 
 vim.keymap.set('n','<leader>z', function() require("zen-mode").toggle() end, { desc = 'Toggle zen-mode' })
+vim.keymap.set('n','<leader>t', ':Twilight<CR>', { desc = 'Toggle twilight' })

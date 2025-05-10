@@ -33,3 +33,7 @@ List of improvements to make next time I want to change my vimrc:
 * Remove timpope vim-unimpaired, as a lot of that is now in nvim core:
   https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines
 
+
+* How to change window split sizes without mouse?
+
+* Readd some sort of git plugin -- maybe move away from fugitive?
