@@ -3,19 +3,19 @@
 -- File-type specific keymaps should be put in after/ftplugin/<filetype>.lua
 
 local wk = require("which-key")
-      -- Define keybind groups
-      wk.add({
-          {'<leader>S', group = "[S]nippets"},
-          {'<leader>d', group = "[d]ebug / LSP: [d]ocument"},
-          {'<leader>w', group = "LSP: [w]orkspace"},
-          {'<leader>l', group = "[l]ist"},
-          {'<leader>g', group = "[l]ist"},
-          {'<leader>h', group = "Git [h]unk"},
-          {'<leader>s', group = "[s]earch"},
-          {'<leader>T', group = "[T]reesitter"},
-          {'<leader><leader>', proxy="<LocalLeader>",group="local"},
-          {'gc', desc="[c]ommentary"}
-      })
+-- Define keybind groups
+wk.add({
+  {'<leader>S', group = "[S]nippets"},
+  {'<leader>d', group = "[d]ebug / LSP: [d]ocument"},
+  {'<leader>w', group = "LSP: [w]orkspace"},
+  {'<leader>l', group = "[l]ist"},
+  {'<leader>g', group = "[l]ist"},
+  {'<leader>h', group = "Git [h]unk"},
+  {'<leader>s', group = "[s]earch"},
+  {'<leader>T', group = "[T]reesitter"},
+  {'<leader><leader>', proxy="<LocalLeader>",group="local"},
+  {'gc', desc="[c]ommentary"}
+})
 -- Quicklist menu setup
 vim.keymap.set("n","<leader>lo","<cmd>copen<cr>",{desc = "[l]ist [o]pen"})
 vim.keymap.set("n","<leader>lc","<cmd>ccl<cr>",{desc = "[l]ist [c]lose"})
@@ -53,3 +53,11 @@ vim.keymap.set("n","<leader>lf","<cmd>TodoQuickFix keywords=FIX,FIXME,FIXIT,ERRO
 -- g{ and g} to move to new paragraph, not to the spaces between them
 vim.keymap.set('n','g}','2}{j',{noremap=true, desc='into next paragraph'})
 vim.keymap.set('n','g{','2{j',{noremap=true, desc='into previous paragraph'})
+
+-- DIAGNOSTICS / LSP
+
+-- :h diagnostic-toggle-virtual-lines-example
+vim.keymap.set('n', 'gK', function()
+  local new_config = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle diagnostic virtual_lines' })

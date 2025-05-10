@@ -26,11 +26,9 @@ List of improvements to make next time I want to change my vimrc:
 
   Perhaps next time try a mostly no plugin nvim setup (like native vim) and then add things as needed?
 
-
-
 * Virtual lines diagnostics for rust (https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines)
 
-* Use tresitter for more things (https://gpanders.com/blog/whats-new-in-neovim-0-11/#improved-hover-documentation)
+* Use treesitter for more things (https://gpanders.com/blog/whats-new-in-neovim-0-11/#improved-hover-documentation)
 
 * Remove timpope vim-unimpaired, as a lot of that is now in nvim core:
   https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines
