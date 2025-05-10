@@ -13,8 +13,8 @@ wk.add({
   {'<leader>h', group = "Git [h]unk"},
   {'<leader>s', group = "[s]earch"},
   {'<leader>T', group = "[T]reesitter"},
-  {'<leader><leader>', proxy="<LocalLeader>",group="local"},
-  {'gc', desc="[c]ommentary"}
+  {'<leader>z', group = "[z]en-mode"},
+  {'<leader><leader>', proxy="<LocalLeader>",group="local"}
 })
 -- Quicklist menu setup
 vim.keymap.set("n","<leader>lo","<cmd>copen<cr>",{desc = "[l]ist [o]pen"})
@@ -63,6 +63,6 @@ vim.keymap.set('n', 'gK', function()
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
 -- ZEN MODE
-
-vim.keymap.set('n','<leader>z', function() require("zen-mode").toggle() end, { desc = 'Toggle zen-mode' })
-vim.keymap.set('n','<leader>t', ':Twilight<CR>', { desc = 'Toggle twilight' })
+vim.keymap.set('n','<leader>zt', ':Twilight<CR>', { desc = 'Toggle twilight' })
+vim.keymap.set('n','<leader>zz', function() require("zen-mode").toggle({plugins = { twilight = {enabled = false }}}) end, { desc = 'Toggle zen-mode' })
+vim.keymap.set('n','<leader>zZ', function() require("zen-mode").toggle({plugins = { twilight = {enabled = true }}}) end, { desc = 'Toggle zen-mode with twilight' })

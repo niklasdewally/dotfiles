@@ -29,7 +29,8 @@ return {
         },
 
         tmux = {enabled = true}, -- disable tmux statusline when in zenmode
-        todo = {enabled = true} -- disable todo comment highlighting in zenmode
+        todo = {enabled = true}, -- disable todo comment highlighting in zenmode
+        twilight = {enabled = false} -- enable twilight manually
       }
     }
   },
