@@ -23,6 +23,24 @@ stow --dotfiles --dir=. --target="$HOME" common mac
 stow --dotfiles --dir=. --target="$HOME" -D common mac
 ```
 
+## Installing nix
+
+Some packages are installed by nix home-manager
+
+1. `stow --dotfiles --dir=. --target="$HOME" nix-homemanager`
+2. install nix: https://docs.determinate.systems/
+3. Install nix home manager:
+
+    ```
+    cd ~/.config/home-manager/
+    nix run .
+    ```
+4. Install things using nix home-manager:
+
+    ```
+    home-manager switch
+    ```
+
 ## Upgrading Nvim
 
 When upgrading `nvim` dotfiles, remember to delete all nvim data directores.
