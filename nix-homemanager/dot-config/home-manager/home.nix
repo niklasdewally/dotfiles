@@ -1,5 +1,12 @@
 { config, pkgs, unstable-pkgs, ... }:
 
+let 
+  tex = (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-medium ebgaramond listings; });
+  my-r = with pkgs; (rWrapper.override { packages = with rPackages; [
+    tidyverse
+  ]; });
+
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -34,7 +41,31 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
     unstable-pkgs.neovim
+
+    # clangd, etc.
+    unstable-pkgs.clang-tools
+
+    # rustup, rust analyzer, etc
+    unstable-pkgs.rustup
+
+    my-r
+    tex
+    unstable-pkgs.quarto
+
+    unstable-pkgs.fzf
+    unstable-pkgs.ripgrep
+    unstable-pkgs.delta
+    unstable-pkgs.hyperfine
+
+    # bash linting
+    unstable-pkgs.shfmt
+    unstable-pkgs.shellcheck
+    unstable-pkgs.shellharden
+
+
+
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
