@@ -3,7 +3,11 @@
 let 
   tex = (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-medium ebgaramond listings; });
   my-r = with pkgs; (rWrapper.override { packages = with rPackages; [
-    tidyverse
+    dplyr
+    tidyr
+    readr
+    ggplot2
+    forcats
   ]; });
 
 in
@@ -63,6 +67,8 @@ in
     unstable-pkgs.shfmt
     unstable-pkgs.shellcheck
     unstable-pkgs.shellharden
+
+    pkgs.bitwarden-cli
 
 
 
