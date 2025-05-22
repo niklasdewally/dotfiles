@@ -53,24 +53,24 @@ in {
     unstable-pkgs.neovim
 
     # clangd, etc.
-    unstable-pkgs.clang-tools
+    pkgs.clang-tools
 
     # rustup, rust analyzer, etc
-    unstable-pkgs.rustup
+    pkgs.rustup
 
     my-r
     tex
-    unstable-pkgs.quarto
+    pkgs.quarto
 
-    unstable-pkgs.fzf
-    unstable-pkgs.ripgrep
-    unstable-pkgs.delta
+    pkgs.fzf
+    pkgs.ripgrep
+    pkgs.delta
     unstable-pkgs.hyperfine
 
     # bash linting
-    unstable-pkgs.shfmt
-    unstable-pkgs.shellcheck
-    unstable-pkgs.shellharden
+    pkgs.shfmt
+    pkgs.shellcheck
+    pkgs.shellharden
 
     pkgs.bitwarden-cli
   ];
