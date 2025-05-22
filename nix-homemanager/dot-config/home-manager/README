@@ -1,0 +1,4 @@
+to bootstrap:
+
+nix profile install home-manager
+home-manager switch --flake {macos,linux}

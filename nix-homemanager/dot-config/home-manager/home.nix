@@ -1,4 +1,4 @@
-{ config, pkgs, unstable-pkgs, ... }:
+{ config, pkgs, unstable-pkgs, myuser, myhome, ... }:
 
 let 
   tex = (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-medium ebgaramond listings; });
@@ -14,8 +14,8 @@ in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "niklas";
-  home.homeDirectory = "/Users/niklas";
+  home.username = myuser;
+  home.homeDirectory = myhome;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
