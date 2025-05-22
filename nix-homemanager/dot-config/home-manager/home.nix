@@ -61,18 +61,21 @@ in {
     my-r
     tex
     pkgs.quarto
+    pkgs.pandoc
 
-    pkgs.fzf
-    pkgs.ripgrep
+    pkgs.bitwarden-cli
     pkgs.delta
+    pkgs.fzf
+    pkgs.gh
+    pkgs.pandoc
+    pkgs.ripgrep
     unstable-pkgs.hyperfine
 
     # bash linting
-    pkgs.shfmt
     pkgs.shellcheck
     pkgs.shellharden
+    pkgs.shfmt
 
-    pkgs.bitwarden-cli
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
