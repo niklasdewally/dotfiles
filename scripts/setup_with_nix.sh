@@ -13,7 +13,7 @@ stow="stow --dotfiles -t ${HOME}"
 # check dependencies
 
 function ensure_installed() {
-	if ! [ -x $(command -v "${1}") ]; then
+	if ! [ -x "$(command -v ${1})" ]; then
 		echo "FATAL: ${1} is not installed" >/dev/stderr
 		exit 1
 	fi
@@ -26,7 +26,7 @@ ensure_installed nix
 cd "$(dirname "$0")"
 cd ..
 
-if [ -x $(command -v "home-manager") ]; then
+if [ -x "$(command -v home-manager)" ]; then
 	echo " * found nix home-manager"
 	echo "-- updating nix home-manager state --"
 	nix shell 'nixpkgs#stow' --command ${stow} nix-homemanager
