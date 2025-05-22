@@ -1,21 +1,25 @@
-{ config, pkgs, unstable-pkgs, myuser, myhome, ... }:
-
-let 
-  tex = (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-medium ebgaramond listings; });
-  my-r = with pkgs; (rWrapper.override { packages = with rPackages; [
-    dplyr
-    tidyr
-    readr
-    ggplot2
-    forcats
-  ]; });
-
-in
 {
+  config,
+  pkgs,
+  unstable-pkgs,
+  machineArgs,
+  ...
+}: let
+  tex = pkgs.texlive.combine {inherit (pkgs.texlive) scheme-medium ebgaramond listings;};
+  my-r = with pkgs; (rWrapper.override {
+    packages = with rPackages; [
+      dplyr
+      tidyr
+      readr
+      ggplot2
+      forcats
+    ];
+  });
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = myuser;
-  home.homeDirectory = myhome;
+  home.username = machineArgs.username;
+  home.homeDirectory = machineArgs.homeDirectory;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -69,9 +73,6 @@ in
     unstable-pkgs.shellharden
 
     pkgs.bitwarden-cli
-
-
-
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
