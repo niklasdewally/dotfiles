@@ -1,6 +1,0 @@
-To bootstrap:
-
-1. create a configuration for this device (with its username and hostname) in flake.nix, following the existing examples.
-2. install the home manager config:
-
-	nix run home-manager -- switch

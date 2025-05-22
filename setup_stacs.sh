@@ -21,7 +21,6 @@ source ~/.bashrc
 
 echo "..done!"
 
-
 echo "setting up nvim"
 nvim -c "LazyUpdate" -c "TSUpdateSync" -c "q"
 echo "..done!"
