@@ -71,10 +71,10 @@ shopt -s globstar
 set -o vi 
 
 # load pandoc completion if pandoc is on the system
-[ -x $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
+[ -x $(command -v pandoc 2> /dev/null) ] || eval "$(pandoc --bash-completion)"
 
 # gh cli completion
-[ -x $(command -v gh) ] && eval "$(gh completion -s bash)"
+[ -x $(command -v gh 2>/dev/null) ] || eval "$(gh completion -s bash)"
 
 # fzf bash completion for nice ctrl-r 
 if [ -e /usr/share/doc/fzf/examples/key-bindings.bash ]; then
@@ -132,13 +132,6 @@ fi
 
 # if we have nvim, use it as the manpager
 [ $(command -v nvim) ] && export MANPAGER='nvim +Man!'
-# Created by `pipx` on 2024-11-15 18:12:26
-export PATH="$PATH:/Users/niklas/.local/bin"
-
-[ -f "/home/nd60/.ghcup/env" ] && . "/home/nd60/.ghcup/env" # ghcup-env
-[ -f "$HOME/.cargo/env" ] && . "${HOME}/.cargo/env" # cargo
 
 # run local configuration last
 [ -e "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
-
-. "$HOME/.cargo/env"

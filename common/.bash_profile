@@ -12,7 +12,3 @@ fi
 if [ -e "$HOME/.bashrc" ]; then
 	. "$HOME/.bashrc"
 fi
-
-# Created by `pipx` on 2024-11-15 18:12:26
-export PATH="$PATH:/Users/niklas/.local/bin"
-. "$HOME/.cargo/env"
