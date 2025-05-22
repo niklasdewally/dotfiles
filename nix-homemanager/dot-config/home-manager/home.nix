@@ -69,6 +69,7 @@ in {
     pkgs.gh
     pkgs.pandoc
     pkgs.ripgrep
+    pkgs.tmux
     unstable-pkgs.hyperfine
 
     # bash linting

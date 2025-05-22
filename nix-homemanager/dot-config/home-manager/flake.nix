@@ -50,11 +50,12 @@
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
     # if the config name is "username@hostname", home-manager will automatically run the right config for each device.
-    homeConfigurations."nik@cau.dewally.com" = mkHomeConfiguration {
+    homeConfigurations."nik@cau" = mkHomeConfiguration {
       system = "x86_64-linux";
       username = "nik";
       hostname = "cau.dewally.com";
       homeDirectory = "/home/nik";
+      extraModules = [./linux.nix];
     };
 
     homeConfigurations."niklas@niklas-air" = mkHomeConfiguration {
