@@ -52,6 +52,7 @@ in {
 
     unstable-pkgs.neovim
 
+    pkgs.stow
     # clangd, etc.
     pkgs.clang-tools
 
