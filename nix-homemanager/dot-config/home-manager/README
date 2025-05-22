@@ -2,3 +2,9 @@ to bootstrap:
 
 nix profile install home-manager
 home-manager switch --flake {macos,linux}
+
+Todo: 
+
+cleanup multi-system / cross device config stuff 
+
+- https://github.com/Misterio77/nix-starter-configs/blob/main/standard/flake.nix 
