@@ -57,11 +57,11 @@ B_WHITE='\[\e[01;97m\]'
 #END
 
 function i_am_mac() {
-  [ $(uname) = "Darwin" ] && [ $(whoami) = "niklas" ]
+  [[ $(uname) = "Darwin" ]] && [[ $(whoami) = "niklas" ]]
 }
 
 function i_am_labs() {
-  [ $(uname) = "Linux" ] && [ $(whoami) = "nd60" ]
+  [[ $(uname) = "Linux" ]] && [[ $(whoami) = "nd60" ]]
 }
 
 
@@ -71,10 +71,10 @@ shopt -s globstar
 set -o vi 
 
 # load pandoc completion if pandoc is on the system
-[ -x $(command -v pandoc 2> /dev/null) ] || eval "$(pandoc --bash-completion)"
+[[ $(command -v pandoc) ]] && eval "$(pandoc --bash-completion)"
 
 # gh cli completion
-[ -x $(command -v gh 2>/dev/null) ] || eval "$(gh completion -s bash)"
+[[ $(command -v gh) ]] && eval "$(gh completion -s bash)"
 
 # fzf bash completion for nice ctrl-r 
 if [ -e /usr/share/doc/fzf/examples/key-bindings.bash ]; then
@@ -93,7 +93,12 @@ fi
 export PROMPT_DIRTRIM=3
 
 colour_my_prompt () {
-    local __host="$BOLD\h$CLEARALL"
+    # am i in a distrobox?
+    if [[ $CONTAINER_ID ]]; then 
+      local __host="$BOLD\h${CLEARALL}${WHITE}(${CONTAINER_ID})${CLEARALL}"
+    else
+      local __host="$BOLD\h$CLEARALL"
+    fi
     local __current_dir="$COL\w$CLEARALL"
 
     # see https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
@@ -128,10 +133,10 @@ then
 fi
 
 
-[ $(command -v fzf) ] && eval "$(fzf --bash)"
+[[ $(command -v fzf) ]] && eval "$(fzf --bash)"
 
 # if we have nvim, use it as the manpager
-[ $(command -v nvim) ] && export MANPAGER='nvim +Man!'
+[[ $(command -v nvim) ]] && export MANPAGER='nvim +Man!'
 
 # run local configuration last
-[ -e "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
+[[ -e "$HOME/.bashrc.local" ]] && . "$HOME/.bashrc.local"
