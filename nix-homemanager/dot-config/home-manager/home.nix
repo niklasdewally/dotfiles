@@ -54,7 +54,7 @@ in {
 
     pkgs.stow
     # clangd, etc.
-    pkgs.clang-tools
+    #pkgs.clang-tools
 
     # rustup, rust analyzer, etc
     pkgs.rustup
@@ -77,7 +77,6 @@ in {
     pkgs.shellcheck
     pkgs.shellharden
     pkgs.shfmt
-
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -13,6 +13,10 @@
 [ -d "$HOME/root/resources/scripts" ] && export "PATH=$HOME/root/resources/scripts:$PATH"
 [ -d "/opt/conjure" ] &&  export "PATH=/opt/conjure:$PATH"
 
+
+# Nix home-manager
+[[ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
 # Environments for programming languages
 
 [ -e "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
