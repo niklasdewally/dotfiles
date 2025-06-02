@@ -16,6 +16,7 @@
     libclang
     valgrind
     nodejs
+    jdk23
   ];
 
   home.sessionVariables = with pkgs; {
