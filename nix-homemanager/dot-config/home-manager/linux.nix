@@ -17,6 +17,15 @@
     valgrind
     nodejs
     jdk23
+    parallel-full
+    minizinc
+    beets
+    keychain
+    xclip
+    heaptrack
+    massif-visualizer
+    kcachegrind
+    sccache
   ];
 
   home.sessionVariables = with pkgs; {

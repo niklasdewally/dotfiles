@@ -13,6 +13,7 @@
       readr
       ggplot2
       forcats
+      tikzDevice
     ];
   });
 in {
