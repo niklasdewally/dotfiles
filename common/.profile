@@ -6,8 +6,11 @@
 # to add a bash / interactive terminal specific setting, use .bashrc instead
 
 
-# Path
+# ssh agent
 
+[ $(command -v "keychain") ] && eval $(keychain --eval)
+
+# Path
 [ -d "$HOME/local/bin" ] && export "PATH=$HOME/local/bin:$PATH"
 [ -d "$HOME/.bin" ] && export "PATH=$HOME/.bin:$PATH"
 [ -d "$HOME/root/resources/scripts" ] && export "PATH=$HOME/root/resources/scripts:$PATH"

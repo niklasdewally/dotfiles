@@ -4,6 +4,10 @@
 # run global settings first
 [ -e /etc/bashrc ] && source /etc/bashrc
 
+# load ssh agent from keychain if its installed
+
+[ $(command -v keychain) ] && eval $(keychain --eval)
+
 # run completion scripts from .bashrc.d
 for file in ~/.bashrc.d/*; do
   . "$file"
