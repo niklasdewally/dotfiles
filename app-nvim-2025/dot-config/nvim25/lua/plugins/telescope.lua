@@ -19,6 +19,10 @@ return {
 
     config = function(_,_)
       require('telescope').setup({
+        pickers = {
+          colorscheme = {
+            enable_preview = true
+          }},
         defaults = { 
           mappings = { 
             i = { 
