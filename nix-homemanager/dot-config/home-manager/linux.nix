@@ -8,11 +8,15 @@
   ...
 }: {
   home.packages = with pkgs; [
-    clang 
+    # clang 
+    llvmPackages_16.clang # ghcup only supports llvm 11-16
+    llvmPackages_16.libcxx# ghcup only supports llvm 11-16
     libz
     cmake
     gdb
     gnumake
+    gmp
+    ncurses
     libclang
     valgrind
     nodejs
@@ -24,8 +28,9 @@
     xclip
     heaptrack
     massif-visualizer
-    kcachegrind
+    kdePackages.kcachegrind
     sccache
+    yubikey-manager
   ];
 
   home.sessionVariables = with pkgs; {
@@ -59,4 +64,5 @@
             }/include"
           }";
   };
+
 }
