@@ -8,9 +8,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    # clang 
-    llvmPackages_16.clang # ghcup only supports llvm 11-16
-    llvmPackages_16.libcxx# ghcup only supports llvm 11-16
+    clang
     libz
     cmake
     gdb

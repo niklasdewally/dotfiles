@@ -1,23 +1,31 @@
 List of improvements to make next time I want to change my vimrc:
 ================================================================
 
-* Move user snippets to its own folder in dotfiles and vim config. Make the "edit
-  snippets" in vim automatically create / go to this custom snippets folder.
++ [-] Move user snippets to its own folder in dotfiles and vim config. 
+      Make the "edit snippets" in vim automatically create / go to this 
+      custom snippets folder.
 
-* Snippet for underlining in RST.
++ [-] Snippet for underlining in RST.
 
-* C-j C-k to move around in telescope
++ [/] C-j C-k to move around in telescope
 
-* Update LSP and completion stuff to use nvim 0.11
++ [/] Update LSP and completion stuff to use nvim 0.11
     + https://github.com/neovim/nvim-lspconfig/issues/3494
     + https://gpanders.com/blog/whats-new-in-neovim-0-11/
 
-* Better vimsurround setup
++ [ ] Add back workspace symbols, document symbols using telescope.
+  - one that only shows functions and types in a document, not local vars?
 
-* Any more timpope / folke plugins to install?
++ [ ] !td snippet
+
++ [ ]  Better vimsurround setup
+
++ [ ]  autocomplete?? (whats the keybind again?)
+
++ [ ]  Any more timpope / folke plugins to install?
   https://github.com/echasnovski/mini.nvim
 
-* Remove a lot of stuff now in nvim natively!
++ [/] Remove a lot of stuff now in nvim natively!
   https://boltless.me/posts/neovim-config-without-plugins-2025/
 
   e.g. lsp_config, LSP keymaps, completion, builtin commenting (gcc), builtin, treesitter folding 
@@ -26,14 +34,23 @@ List of improvements to make next time I want to change my vimrc:
 
   Perhaps next time try a mostly no plugin nvim setup (like native vim) and then add things as needed?
 
-* Virtual lines diagnostics for rust (https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines)
++ [/]  Virtual lines diagnostics for rust (https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines)
+    (gK)
 
 * Use treesitter for more things (https://gpanders.com/blog/whats-new-in-neovim-0-11/#improved-hover-documentation)
 
 * Remove timpope vim-unimpaired, as a lot of that is now in nvim core:
   https://gpanders.com/blog/whats-new-in-neovim-0-11/#virtual-lines
 
++ [ ] How to change window split sizes without mouse?
 
-* How to change window split sizes without mouse?
++ [/] Readd some sort of git plugin -- maybe move away from fugitive?
+  - some way to go to next conflict
+  - diff3 conflict style seems broken with fugitive...
 
-* Readd some sort of git plugin -- maybe move away from fugitive?
+
+* Red squiggly lines for errors, yellow for warnings, etc with rust.
+
+* format using lsp
+
+* find todo should also find rust todo!()
