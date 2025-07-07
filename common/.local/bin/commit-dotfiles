@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# Auto-commit dotfile changes
+#
+# Author: niklasdewally
+# Date: 2025/07/07
+
+
+set -e
+
+pushd ~/.dotfiles
+git add .
+git commit -m "automated dotfiles commit"
+git push 
+popd
+

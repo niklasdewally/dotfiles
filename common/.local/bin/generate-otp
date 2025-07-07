@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# Generates an oauth one time password with my yubikey
+#
+# Author: niklasdewally
+# Date: 2025/07/07
+
+set -e 
+
+read -srp "Enter password: " password
+echo "" >/dev/stderr
+
+# check whether password is correct
+ykman oath accounts list -p "$password" >/dev/null
+
+account=$(ykman oath accounts list -p "$password" | cut -d: -f1 | fzf --border --border-label "Select account")
+ykman oath accounts code -s "$account" -p "$password"
