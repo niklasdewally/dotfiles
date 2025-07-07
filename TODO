@@ -16,11 +16,13 @@ List of improvements to make next time I want to change my vimrc:
 + [ ] Add back workspace symbols, document symbols using telescope.
   - one that only shows functions and types in a document, not local vars?
 
-+ [ ] !td snippet
++ [/] !td snippet
 
 + [ ]  Better vimsurround setup
 
-+ [ ]  autocomplete?? (whats the keybind again?)
++ [-]  autocomplete?? (whats the keybind again?)
+
+        (C-x C-o)
 
 + [ ]  Any more timpope / folke plugins to install?
   https://github.com/echasnovski/mini.nvim
@@ -50,13 +52,13 @@ List of improvements to make next time I want to change my vimrc:
   - diff3 conflict style seems broken with fugitive...
 
 
-* Red squiggly lines for errors, yellow for warnings, etc with rust.
++ [/] Red squiggly lines for errors, yellow for warnings, etc with rust.
 
-* format using lsp
++ [/] format using lsp
 
 * find todo should also find rust todo!()
 
-+ [ ] run shellcheck as a diagnostic?
++ [/] run shellcheck as a diagnostic?
       - I want to do this without an extra plugin, or lsp server if possible.
         To find out how, none-ls is a plugin that does this, as is mason.
 
@@ -77,4 +79,4 @@ List of improvements to make next time I want to change my vimrc:
   - https://lobste.rs/s/5sxrrp/why_i_got_rid_all_my_neovim_plugins
 
 
-+ [ ] Use conform for formatting
++ [-] Use conform for formatting
