@@ -27,6 +27,7 @@ List of improvements to make next time I want to change my vimrc:
 
 + [/] Remove a lot of stuff now in nvim natively!
   https://boltless.me/posts/neovim-config-without-plugins-2025/
+  https://web.archive.org/web/20250324234646/https://boltless.me/posts/neovim-config-without-plugins-2025//
 
   e.g. lsp_config, LSP keymaps, completion, builtin commenting (gcc), builtin, treesitter folding 
 
@@ -54,3 +55,26 @@ List of improvements to make next time I want to change my vimrc:
 * format using lsp
 
 * find todo should also find rust todo!()
+
++ [ ] run shellcheck as a diagnostic?
+      - I want to do this without an extra plugin, or lsp server if possible.
+        To find out how, none-ls is a plugin that does this, as is mason.
+
+      - diagnostic api?
+
+      - Perhaps use https://github.com/mfussenegger/nvim-lint. Unlike the plugins
+        null-ls/none-ls, ALE, this does not create a fake LSP for linters.
+        Instead, it uses the diagnostic api.
+
++ [  ] remove blink, make snippets go through completefunc instead
+      https://www.reddit.com/r/neovim/comments/rddugs/snipcomplua_luasnip_companion_plugin_for_omni/
+
+      See the above article on neovim config without plugins - can also use
+      treesitter as a query source too, and have fuzzy completeopt!
+
++ [ ] Read "why i got rid of all my neovim plugins" 
+  - https://yobibyte.github.io/vim.html
+  - https://lobste.rs/s/5sxrrp/why_i_got_rid_all_my_neovim_plugins
+
+
++ [ ] Use conform for formatting

@@ -7,8 +7,6 @@
 --   * Rust
 --   * Haskell
 
--- TODO: linters, shellcheck, etc...
-
 -- TODO: install script for all these!
 -- (maybe use nix?)
 vim.lsp.enable({
