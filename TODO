@@ -82,3 +82,4 @@ List of improvements to make next time I want to change my vimrc:
 + [-] Use conform for formatting
 
 + [ ] Copy some ideas from primagens setup? https://github.com/ThePrimeagen
+   - fugitive config https://github.com/ThePrimeagen/init.lua/blob/83dcf4ca7aa2a7be59e0daffe3fe4e9ef1fa5992/lua/theprimeagen/lazy/fugitive.lua
