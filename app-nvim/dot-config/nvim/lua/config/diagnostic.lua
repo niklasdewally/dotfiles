@@ -14,9 +14,11 @@
 -- Setup linters
 local lint = require('lint')
 
+-- TODO: add hledger, luacheck
 lint.linters_by_ft = {
-  sh = {'shellcheck'},
-  bash = {'shellcheck'},
+  sh = {'shellcheck','bash'},
+  bash = {'shellcheck','bash'},
+  awk = {'gawk'},
 }
 
 -- Lint on save and file open
