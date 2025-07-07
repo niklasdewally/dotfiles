@@ -19,6 +19,9 @@ lint.linters_by_ft = {
   sh = {'shellcheck','bash'},
   bash = {'shellcheck','bash'},
   awk = {'gawk'},
+  text = {'vale'},
+  md = {'vale'},
+  gitcommit = {'vale'},
 }
 
 -- Lint on save and file open

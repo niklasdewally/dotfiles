@@ -48,3 +48,5 @@ ensure_installed stow
 echo "-- installing dotfiles --"
 
 $stow common app-nvim app-pandoc "device-${device}"
+
+vale sync
