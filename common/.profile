@@ -11,7 +11,7 @@
 [ $(command -v "keychain") ] && eval $(keychain --eval)
 
 # Path
-[ -d "$HOME/local/bin" ] && export "PATH=$HOME/local/bin:$PATH"
+[ -d "$HOME/.local/bin" ] && export "PATH=$HOME/.local/bin:$PATH"
 [ -d "$HOME/.bin" ] && export "PATH=$HOME/.bin:$PATH"
 [ -d "$HOME/root/resources/scripts" ] && export "PATH=$HOME/root/resources/scripts:$PATH"
 [ -d "/opt/conjure" ] &&  export "PATH=/opt/conjure:$PATH"
