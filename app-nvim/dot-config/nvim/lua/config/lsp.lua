@@ -27,4 +27,13 @@ vim.lsp.enable({
   'vimls', -- neovim
 })
 
-
+-- runs when lsp activates
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my.lsp', {}),
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    -- add <leader>f to format buffer if supported
+    if client:supports_method('textDocument/formatting') then
+      vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, {desc = "LSP: [f]ormat buffer"})
+    end
+  end})

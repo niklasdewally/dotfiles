@@ -11,3 +11,4 @@ end
 
 local_nmap('m',function() vim.cmd.RustLsp('expandMacro') end,'expand [m]acro')
 local_nmap('d',function() vim.cmd.RustLsp('renderDiagnostic') end,'render [d]iagnostics')
+
