@@ -20,7 +20,7 @@ lint.linters_by_ft = {
   bash = {'shellcheck','bash'},
   awk = {'gawk'},
   text = {'vale'},
-  md = {'vale'},
+  markdown = {'vale'},
   gitcommit = {'vale'},
 }
 
