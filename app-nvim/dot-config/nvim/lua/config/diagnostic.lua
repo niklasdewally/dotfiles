@@ -11,7 +11,6 @@
 --  + ../plugins/lint.lua:  installs nvim-lint, the plugin that provides the linter configs that I 
 --                          use.
 
-
 -- Setup linters
 local lint = require('lint')
 

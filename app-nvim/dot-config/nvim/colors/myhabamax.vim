@@ -8,6 +8,15 @@ hi! link StatusLine Normal
 hi! link StatusLineNc Normal
 hi! VertSplit NONE
 
+" make error underlines the correct colour... 
+" I manually set the colours to be the same as DiagnosticError,
+" DiagnosticWarn, ... by checking :highlight.
+hi! DiagnosticUnderlineError gui=undercurl guisp=Red
+hi! DiagnosticUnderlineWarn gui=undercurl guisp=Orange
+hi! DiagnosticUnderlineInfo gui=undercurl guisp=LightBlue
+hi! DiagnosticUnderlineHint gui=undercurl guisp=LightGrey
+hi! DiagnosticUnderlineOk gui=undercurl guisp=LightGreen
+
 
 " always show horizontal seperators 
 " see :h fillchars
