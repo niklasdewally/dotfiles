@@ -78,7 +78,10 @@ in {
     pkgs.shellcheck
     pkgs.shellharden
     pkgs.shfmt
+
     pkgs.vale
+
+    pkgs.lua-language-server
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
