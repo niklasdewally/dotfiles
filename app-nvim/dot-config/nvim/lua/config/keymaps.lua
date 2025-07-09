@@ -26,6 +26,7 @@ vim.keymap.set("n","<leader>ld",function() vim.diagnostic.setqflist() end,{desc 
 -- TELESCOPE SEARCHES
 vim.keymap.set('n', '<leader>s?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>s<space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n','<leader>sc', require('niklasdewally.telescope.pickers').git_ref, {desc = '[s]earch git [c]itation (copies citation to clipboard and "0)'})
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
 vim.keymap.set('n', '<leader>se', function() require('telescope.builtin').diagnostics({["severity"]="error"}) end, { desc = '[s]earch [e]rrors' })
 vim.keymap.set('n', '<leader>sf', "<cmd>TodoTelescope keywords=FIX,FIXME,FIXIT,ERROR,WARNING<cr>", { desc = '[s]earch [f]ixmes' })

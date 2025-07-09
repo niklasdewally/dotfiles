@@ -37,3 +37,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, {desc = "LSP: [f]ormat buffer"})
     end
   end})
+
