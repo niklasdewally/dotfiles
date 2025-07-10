@@ -5,7 +5,7 @@
 
   ; log changes from main
   lc = log --abbrev-commit --decorate --oneline --numstat --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" main..HEAD
-  lco = log --abbrev-commit --decorate --oneline --numstat --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue" main..HEAD
+  lco = log --abbrev-commit --decorate --oneline --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue" main..HEAD
   logmsgs = log --pretty="%B"
 
   ; https://jordanelver.co.uk/blog/2020/06/04/fixing-commits-with-git-commit-fixup-and-git-rebase-autosquash/
