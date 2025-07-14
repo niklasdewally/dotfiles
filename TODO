@@ -96,3 +96,6 @@ List of improvements to make next time I want to change my vimrc:
   workflow: set [q to go through each file thats broken. use [d to go through the file.
 
 + [ ] working autocomplete for commands and nvim lua in ctrl-f mode
+
+
++ [ ] Telescope find/list implementations of a trait
