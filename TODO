@@ -83,3 +83,16 @@ List of improvements to make next time I want to change my vimrc:
 
 + [ ] Copy some ideas from primagens setup? https://github.com/ThePrimeagen
    - fugitive config https://github.com/ThePrimeagen/init.lua/blob/83dcf4ca7aa2a7be59e0daffe3fe4e9ef1fa5992/lua/theprimeagen/lazy/fugitive.lua
+
++  [ ] list files with diagnostic issues (not the diagnostics themselves)
+
++ [ ] Add keybind to open lua shell
+
++ [ ] Add keybind to open terminal, and paste terminal result into vim on exit
+  as per:
+  - https://yobibyte.github.io/vim.html
+  - https://lobste.rs/s/5sxrrp/why_i_got_rid_all_my_neovim_plugins
+
+  workflow: set [q to go through each file thats broken. use [d to go through the file.
+
++ [ ] working autocomplete for commands and nvim lua in ctrl-f mode
