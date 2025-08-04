@@ -20,6 +20,8 @@ wk.add({
 vim.keymap.set("n","<leader>lo","<cmd>copen<cr>",{desc = "[l]ist [o]pen"})
 vim.keymap.set("n","<leader>lc","<cmd>ccl<cr>",{desc = "[l]ist [c]lose"})
 vim.keymap.set("n","<leader>ld",function() vim.diagnostic.setqflist() end,{desc = "[l]ist [d]iagnostics"})
+vim.keymap.set("n","<leader>le",function() myLib.diagnostic.setqf_files_with_errors(true) end, {desc = "[l]ist files with [e]rrors"})
+vim.keymap.set("n","<leader>lw",function() myLib.diagnostic.setqf_files_with_warnings(true) end, {desc = "[l]ist files with [w]arnings"})
 
 -- also, use [q and ]q from vim-unimpaired, and ctrl-q to send telescope to quickfix
 

@@ -39,10 +39,9 @@ function M.setqf_files_with_errors(open_quickfix)
   for bufnr, numdiagnostics in pairs(buffers) do
     table.insert(items, {
       bufnr = bufnr,
-      text = "contains " .. numdiagnostics .. " errors"
+      text = "contains " .. numdiagnostics .. " errors."
     })
   end
-  print(buffers)
 
   local what = {
     title = "Files with errors",
@@ -50,23 +49,45 @@ function M.setqf_files_with_errors(open_quickfix)
   }
   vim.fn.setqflist({}, 'r', what)
   if open_quickfix then
-    vim.fn.copen()
+    vim.cmd("copen")
   end
 end
 
 --- Populates the quickfix list with all files containing errors or warnings.
 function M.setqf_files_with_warnings(open_quickfix)
-  local buffers = M.get_files_with_diagnostics({ min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR })
+  local buffers_with_errors = M.get_files_with_diagnostics(vim.diagnostic.severity.ERROR)
+  local buffers_with_warnings = M.get_files_with_diagnostics(vim.diagnostic.severity.WARN)
 
+  -- map from bufnr to { warnings = ..., errors = ... }
+  local buffers = {}
+
+  for bufnr, num_errors in pairs(buffers_with_errors) do
+    buffers[bufnr] = { errors = num_errors, warnings = 0 }
+  end
+
+  for bufnr, num_warnings in pairs(buffers_with_warnings) do
+    if buffers[bufnr] then
+      buffers[bufnr].warnings = num_warnings
+    else
+      buffers[bufnr] = { errors = 0, warnings = num_warnings }
+    end
+  end
+
+  -- convert into quickfix-list items 
   local items = {}
 
-  for bufnr, numdiagnostics in pairs(buffers) do
+  for bufnr, info in pairs(buffers) do
+    local errors = info.errors;
+    local warnings = info.warnings;
+
+    local sign = errors > 0 and "E" or "W"
+
     table.insert(items, {
       bufnr = bufnr,
-      text = "contains " + numdiagnostics + " errors or warnings"
+      sign = sign,
+      text = "contains " .. errors .. " errors and " .. warnings .. " warnings."
     })
   end
-  print(buffers)
 
   local what = {
     title = "Files with errors or warnings",
@@ -74,7 +95,7 @@ function M.setqf_files_with_warnings(open_quickfix)
   }
   vim.fn.setqflist({}, 'r', what)
   if open_quickfix then
-    vim.fn.copen()
+    vim.cmd("copen")
   end
 end
 
