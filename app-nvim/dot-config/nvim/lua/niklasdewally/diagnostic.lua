@@ -73,7 +73,7 @@ function M.setqf_files_with_warnings(open_quickfix)
     end
   end
 
-  -- convert into quickfix-list items 
+  -- convert into quickfix-list items
   local items = {}
 
   for bufnr, info in pairs(buffers) do
