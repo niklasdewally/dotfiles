@@ -99,3 +99,5 @@ List of improvements to make next time I want to change my vimrc:
 
 
 + [ ] Telescope find/list implementations of a trait
+
++ https://github.com/folke/trouble.nvim
