@@ -58,3 +58,6 @@
   cmd = nvim -c DiffConflicts "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
   trustExitCode = true
   keepBackup = false
+
+[diff]
+    tool=nvimdiff

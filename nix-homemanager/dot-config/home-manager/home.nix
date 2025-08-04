@@ -5,7 +5,7 @@
   machineArgs,
   ...
 }: let
-  tex = pkgs.texlive.combine {inherit (pkgs.texlive) scheme-medium ebgaramond listings;};
+  tex = pkgs.texlive.combine {inherit (pkgs.texlive) scheme-medium ebgaramond listings pgf preview grfext;};
   my-r = with pkgs; (rWrapper.override {
     packages = with rPackages; [
       dplyr
@@ -14,6 +14,7 @@
       ggplot2
       forcats
       tikzDevice
+      tinytex
     ];
   });
 in {
@@ -65,7 +66,7 @@ in {
     pkgs.quarto
     pkgs.pandoc
 
-    pkgs.bitwarden-cli
+    # pkgs.bitwarden-cli
     pkgs.delta
     pkgs.fzf
     pkgs.gh
