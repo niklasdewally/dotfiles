@@ -21,8 +21,10 @@ function M.get_files_with_diagnostics(severity)
   -- for each diagnostic, if it has a buffer, add it to our set
   for _, d in pairs(diagnostics) do
     if d.bufnr then
-      if not bufs[d.bufnr] then
-        bufs[d.bufnr] = (bufs[d.bufnr] or 0) + 1
+      if bufs[d.bufnr] then
+        bufs[d.bufnr] = bufs[d.bufnr] + 1
+      else
+        bufs[d.bufnr] = 1;
       end
     end
   end
