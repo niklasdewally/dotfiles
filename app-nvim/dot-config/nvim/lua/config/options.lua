@@ -27,6 +27,9 @@ vim.o.cursorline = true
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
+-- start with foldlevel=2 i.e. 2 levels folded.
+vim.o.foldlevelstart = 2
+
 vim.o.smartcase = true
 vim.o.smartindent = true
 

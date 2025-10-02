@@ -18,6 +18,8 @@ hi! DiagnosticUnderlineHint gui=undercurl guisp=LightGrey
 hi! DiagnosticUnderlineOk gui=undercurl guisp=LightGreen
 
 
+hi! IblScope ctermfg=Yellow guisp=Yellow
+
 " always show horizontal seperators 
 " see :h fillchars
 set laststatus=3
