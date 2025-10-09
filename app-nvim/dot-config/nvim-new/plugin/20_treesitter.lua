@@ -18,8 +18,6 @@ local treesitter_languages = {
   'lua'
 }
 
--- require("nvim-treesitter").install(treesitter_languages)
-
 local installed_languages = require('nvim-treesitter').get_installed()
 
 -- if any languages above are not installed, install them

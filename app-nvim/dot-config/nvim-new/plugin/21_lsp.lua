@@ -2,10 +2,16 @@
 
 -- Lsp servers to enable. See :h lspconfig-all for a full list of supported servers.
 
--- The following languages should not be enabled manually, as they are configured by a plugin:
+-- The following language servers should not be enabled here, as they are
+-- configured by a plugin:
+--
 --   * Essence / Conjure 
 --   * Rust
 --   * Haskell
+--
+--   See: 40_language_plugins.
+--
+-- Override settings for specific servers can can be found in after/lsp/<lang>.lua.
 
 vim.pack.add({
   -- default lsp configurations

@@ -1,0 +1,49 @@
+{
+  "plugins": {
+    "conjure.nvim": {
+      "rev": "8860265",
+      "src": "https://github.com/niklasdewally/conjure.nvim"
+    },
+    "diffconflicts": [],
+    "everforest": [],
+    "evergarden": [],
+    "fidget.nvim": [],
+    "gitsigns.nvim": [],
+    "haskell-tools.nvim": {
+      "src": "https://github.com/mrcjkb/haskell-tools.nvim"
+    },
+    "indent-blankline.nvim": [],
+    "kanagawa-paper.nvim": [],
+    "mini.nvim": [],
+    "nvim-lspconfig": [],
+    "nvim-treesitter": {
+      "version": "'main'"
+    },
+    "otter.nvim": {
+      "rev": "fc0aa35",
+      "src": "https://github.com/jmbuhr/otter.nvim"
+    },
+    "quarto-nvim": {
+      "rev": "0e94915",
+      "src": "https://github.com/quarto-dev/quarto-nvim"
+    },
+    "rustaceanvim": {
+      "src": "https://github.com/mrcjkb/rustaceanvim"
+    },
+    "sequoia.nvim": [],
+    "vague.nvim": [],
+    "vim-fugitive": [],
+    "vim-nand2tetris-syntax": {
+      "rev": "f5d4360",
+      "src": "https://github.com/sevko/vim-nand2tetris-syntax"
+    },
+    "vim-slime": {
+      "rev": "67b24bf",
+      "src": "https://github.com/jpalardy/vim-slime"
+    },
+    "vimtex": {
+      "rev": "5c457a8a",
+      "src": "https://github.com/lervag/vimtex"
+    }
+  }
+}
