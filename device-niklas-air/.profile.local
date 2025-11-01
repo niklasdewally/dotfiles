@@ -33,3 +33,4 @@ export "PATH=/opt/conjure-2.5.1:$PATH"
 export SSH_ASKPASS="/opt/homebrew/bin/ssh-askpass"
 
 eval $(keychain --eval)
+
