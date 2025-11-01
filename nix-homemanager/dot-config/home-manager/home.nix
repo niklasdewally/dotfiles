@@ -52,7 +52,7 @@ in {
     #   echo "Hello, ${config.home.username}!"
     # '')
 
-    unstable-pkgs.neovim
+    # unstable-pkgs.neovim
 
     pkgs.stow
     # clangd, etc.

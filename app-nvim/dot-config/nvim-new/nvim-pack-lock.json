@@ -4,19 +4,49 @@
       "rev": "8860265",
       "src": "https://github.com/niklasdewally/conjure.nvim"
     },
-    "diffconflicts": [],
-    "everforest": [],
-    "evergarden": [],
-    "fidget.nvim": [],
-    "gitsigns.nvim": [],
+    "diffconflicts": {
+      "rev": "4972d14",
+      "src": "https://github.com/whiteinge/diffconflicts"
+    },
+    "everforest": {
+      "rev": "0909c23",
+      "src": "https://github.com/sainnhe/everforest"
+    },
+    "evergarden": {
+      "rev": "951d0c4",
+      "src": "https://github.com/everviolet/nvim"
+    },
+    "fidget.nvim": {
+      "rev": "e32b672",
+      "src": "https://github.com/j-hui/fidget.nvim"
+    },
+    "gitsigns.nvim": {
+      "rev": "20ad441",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "haskell-tools.nvim": {
+      "rev": "b8f8a5d",
       "src": "https://github.com/mrcjkb/haskell-tools.nvim"
     },
-    "indent-blankline.nvim": [],
-    "kanagawa-paper.nvim": [],
-    "mini.nvim": [],
-    "nvim-lspconfig": [],
+    "indent-blankline.nvim": {
+      "rev": "005b560",
+      "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
+    },
+    "kanagawa-paper.nvim": {
+      "rev": "1f8b3ae",
+      "src": "https://github.com/thesimonho/kanagawa-paper.nvim"
+    },
+    "mini.nvim": {
+      "rev": "429e5f9",
+      "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "a89bfcf",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
     "nvim-treesitter": {
+      "rev": "64f4755b",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
     "otter.nvim": {
@@ -28,11 +58,21 @@
       "src": "https://github.com/quarto-dev/quarto-nvim"
     },
     "rustaceanvim": {
+      "rev": "be0d1d1",
       "src": "https://github.com/mrcjkb/rustaceanvim"
     },
-    "sequoia.nvim": [],
-    "vague.nvim": [],
-    "vim-fugitive": [],
+    "sequoia.nvim": {
+      "rev": "f6b9339",
+      "src": "https://github.com/forest-nvim/sequoia.nvim"
+    },
+    "vague.nvim": {
+      "rev": "5689afd",
+      "src": "https://github.com/vague2k/vague.nvim"
+    },
+    "vim-fugitive": {
+      "rev": "61b51c0",
+      "src": "https://github.com/tpope/vim-fugitive"
+    },
     "vim-nand2tetris-syntax": {
       "rev": "f5d4360",
       "src": "https://github.com/sevko/vim-nand2tetris-syntax"
