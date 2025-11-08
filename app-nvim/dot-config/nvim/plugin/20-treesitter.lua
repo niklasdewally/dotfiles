@@ -7,15 +7,16 @@ vim.pack.add({{src = "https://github.com/nvim-treesitter/nvim-treesitter",versio
 -- languages to enable treesitter with
 local treesitter_languages = {
   'bash',
-  'python',
-  'rust',
   'c',
+  'comment',
   'cpp',
   'gitcommit',
   'javascript',
-  'typescript',
-  'comment',
-  'lua'
+  'ledger',
+  'lua',
+  'python',
+  'rust',
+  'typescript'
 }
 
 local installed_languages = require('nvim-treesitter').get_installed()
