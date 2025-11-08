@@ -20,7 +20,16 @@
 --  per buffer. ftplugin should contain buffer specific settings / keymaps we
 --  only want to see in buffers of that language.
 
-addPlugs({
+
+-- Haskell global configuration
+
+-- Rust global configuration
+
+-- Vimtex global configuration
+vim.g.vimtex_view_method = 'skim'
+vim.g.conjure_use_oxide_lsp=true
+
+loadPlugins({
   -- Essence / Essence Prime
   "https://github.com/niklasdewally/conjure.nvim",
 
@@ -41,11 +50,3 @@ addPlugs({
   "https://github.com/quarto-dev/quarto-nvim",
 })
 
--- Haskell global configuration
-
--- Rust global configuration
-
--- Vimtex global configuration
-vim.g.vimtex_view_method = 'skim'
-
--- vim.g.conjure_use_oxide_lsp=1

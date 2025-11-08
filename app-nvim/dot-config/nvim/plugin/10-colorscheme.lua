@@ -1,6 +1,6 @@
 -- Colour schemes I like
 
-addPlugs({
+loadPlugins({
   "https://github.com/thesimonho/kanagawa-paper.nvim",
   "https://github.com/vague2k/vague.nvim",
   "https://github.com/forest-nvim/sequoia.nvim",

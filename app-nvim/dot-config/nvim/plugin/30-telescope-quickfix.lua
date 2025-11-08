@@ -19,7 +19,7 @@ end
 -- If hooks need to run on install, run this before `addPlugs()`
 vim.api.nvim_create_autocmd('PackChanged', { callback = hooks })
 
-addPlugs({
+loadPlugins({
   { src = "https://github.com/nvim-telescope/telescope.nvim",           version = "master"},
   { src = "https://github.com/nvim-lua/plenary.nvim"},
   { src = "https://github.com/nvim-tree/nvim-web-devicons" },
@@ -47,5 +47,5 @@ require('telescope').setup({
 require('telescope').load_extension('fzf')
 
 -- nvim-pqf: nicer quickfix box
-addPlugs({"https://github.com/yorickpeterse/nvim-pqf"})
+loadPlugins({"https://github.com/yorickpeterse/nvim-pqf"})
 require('pqf').setup()

@@ -14,6 +14,6 @@ end
 -- If hooks need to run on install, run this before `addPlugs()`
 vim.api.nvim_create_autocmd('PackChanged', { callback = hooks })
 
-addPlugs({"https://github.com/L3MON4D3/LuaSnip"})
+loadPlugins({"https://github.com/L3MON4D3/LuaSnip"})
 
 

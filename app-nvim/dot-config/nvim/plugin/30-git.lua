@@ -1,6 +1,6 @@
 -- git related plugins
 
-addPlugs({
+loadPlugins({
   -- :Git and lots of good stuff
   "https://github.com/tpope/vim-fugitive",
 

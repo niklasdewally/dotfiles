@@ -2,7 +2,7 @@
 
 -- FIXME: currently todo highlighting only works when in a file with a treesitter grammar
 
-addPlugs({{src = "https://github.com/nvim-treesitter/nvim-treesitter",version = "main"}})
+loadPlugins({{src = "https://github.com/nvim-treesitter/nvim-treesitter",version = "main"}})
 
 -- languages to enable treesitter with
 local treesitter_languages = {
