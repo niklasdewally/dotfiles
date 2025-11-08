@@ -1,7 +1,7 @@
 -- list of global keybinds
 
 -- use whichkey to show keybinds
-vim.pack.add({
+addPlugs({
   { src = 'https://github.com/folke/which-key.nvim',       version = vim.version.range('^3.0') },
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' }
 })

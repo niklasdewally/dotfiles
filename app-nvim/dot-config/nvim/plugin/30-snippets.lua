@@ -11,9 +11,9 @@ local hooks = function(ev)
   end
 end
 
--- If hooks need to run on install, run this before `vim.pack.add()`
+-- If hooks need to run on install, run this before `addPlugs()`
 vim.api.nvim_create_autocmd('PackChanged', { callback = hooks })
 
-vim.pack.add({"https://github.com/L3MON4D3/LuaSnip"})
+addPlugs({"https://github.com/L3MON4D3/LuaSnip"})
 
 

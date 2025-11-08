@@ -13,7 +13,7 @@
 --
 -- Override settings for specific servers can can be found in after/lsp/<lang>.lua.
 
-vim.pack.add({
+addPlugs({
   -- default lsp configurations
     "https://github.com/neovim/nvim-lspconfig",
   -- show lsp status in bottom right

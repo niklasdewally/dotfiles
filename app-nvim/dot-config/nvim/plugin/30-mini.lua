@@ -4,7 +4,7 @@
 --
 -- dependencies: treesitter, lsp (as these plugins are lsp and treesitter aware)
 
-vim.pack.add({'https://github.com/nvim-mini/mini.nvim'})
+addPlugs({'https://github.com/nvim-mini/mini.nvim'})
 
 -- enable individual mini plugins:
 --

@@ -1,6 +1,6 @@
 --- Completion using blink.cmp, and extra completion sources
 
-vim.pack.add({
+addPlugs({
   { src = 'https://github.com/saghen/blink.cmp',         version = vim.version.range('~1') },
   { src = 'https://github.com/Kaiser-Yang/blink-cmp-git' }
 })

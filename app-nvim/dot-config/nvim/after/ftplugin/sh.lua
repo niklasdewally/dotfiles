@@ -5,5 +5,3 @@ vim.bo.formatexpr = nil
 if vim.fn.executable("shfmt") then
 vim.bo.formatprg = "shfmt -"
 end
-
-

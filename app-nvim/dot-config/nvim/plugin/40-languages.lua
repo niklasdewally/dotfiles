@@ -20,7 +20,7 @@
 --  per buffer. ftplugin should contain buffer specific settings / keymaps we
 --  only want to see in buffers of that language.
 
-vim.pack.add({
+addPlugs({
   -- Essence / Essence Prime
   "https://github.com/niklasdewally/conjure.nvim",
 
@@ -47,3 +47,5 @@ vim.pack.add({
 
 -- Vimtex global configuration
 vim.g.vimtex_view_method = 'skim'
+
+-- vim.g.conjure_use_oxide_lsp=1

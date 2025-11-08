@@ -2,7 +2,7 @@
 --
 -- reconfigure using C-c v (memomic: v = variables)
 
-vim.pack.add({"https://github.com/jpalardy/vim-slime"})
+addPlugs({"https://github.com/jpalardy/vim-slime"})
 
 vim.g.slime_bracketed_paste = 1
 vim.g.slime_target = "tmux"

@@ -1,6 +1,6 @@
 -- git related plugins
 
-vim.pack.add({
+addPlugs({
   -- :Git and lots of good stuff
   "https://github.com/tpope/vim-fugitive",
 
