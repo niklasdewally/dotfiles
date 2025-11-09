@@ -10,11 +10,11 @@
 --
 -- * Treesitter setup can be found in plugin/20_treesitter.lua.
 --
--- Global (vim.g) settings should be placed in plugin/ not ftplugin/, 
+-- Global (vim.g) settings should be placed in plugin/ not ftplugin/,
 -- after/plugin, or plugin so that:
 --
 --  1. they are loaded before the plugin is
---  2. they are only loaded once. 
+--  2. they are only loaded once.
 --
 --  If global settings are placed in ftplugin instead, they will be loaded once
 --  per buffer. ftplugin should contain buffer specific settings / keymaps we
@@ -27,17 +27,19 @@
 
 -- Vimtex global configuration
 vim.g.vimtex_view_method = 'skim'
-vim.g.conjure_use_oxide_lsp=true
+
+-- Conjure global configuration
+vim.g.conjure_use_oxide_lsp = true
 
 loadPlugins({
   -- Essence / Essence Prime
   "https://github.com/niklasdewally/conjure.nvim",
 
-  -- Haskell 
-  {src = 'https://github.com/mrcjkb/haskell-tools.nvim'},
+  -- Haskell
+  { src = 'https://github.com/mrcjkb/haskell-tools.nvim' },
 
   -- Rust
-  {src = 'https://github.com/mrcjkb/rustaceanvim'},
+  { src = 'https://github.com/mrcjkb/rustaceanvim' },
 
   -- Latex
   'https://github.com/lervag/vimtex',
@@ -49,4 +51,3 @@ loadPlugins({
   "https://github.com/jmbuhr/otter.nvim",
   "https://github.com/quarto-dev/quarto-nvim",
 })
-
