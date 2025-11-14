@@ -1,4 +1,4 @@
--- lsp server configuration
+-- lsp server configuration 
 
 -- Lsp servers to enable. See :h lspconfig-all for a full list of supported servers.
 
@@ -17,7 +17,11 @@ loadPlugins({
   -- default lsp configurations
     "https://github.com/neovim/nvim-lspconfig",
   -- show lsp status in bottom right
-    "https://github.com/j-hui/fidget.nvim"
+    "https://github.com/j-hui/fidget.nvim",
+  -- linting
+  --
+  -- note: linters are enabled in after/ftplugin files, not here!
+    "https://github.com/mfussenegger/nvim-lint"
 })
 
 vim.lsp.enable({
