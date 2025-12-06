@@ -24,6 +24,8 @@ loadPlugins({
     "https://github.com/mfussenegger/nvim-lint"
 })
 
+require("fidget").setup {}
+
 vim.lsp.enable({
   'asm_lsp', -- asm
   'awk_ls',  -- awk

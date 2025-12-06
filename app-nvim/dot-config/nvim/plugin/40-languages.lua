@@ -29,7 +29,7 @@
 vim.g.vimtex_view_method = 'skim'
 
 -- Conjure global configuration
-vim.g.conjure_use_oxide_lsp = true
+-- vim.g.conjure_use_oxide_lsp = true
 
 loadPlugins({
   -- Essence / Essence Prime
