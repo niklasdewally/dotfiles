@@ -30,6 +30,7 @@ vim.lsp.enable({
   'asm_lsp', -- asm
   'awk_ls',  -- awk
   'bashls',  -- bash
+  'basedpyright', -- python lsp
   'clangd', -- c
   'cmake', -- cmake
   'elp', -- erlang
@@ -41,7 +42,7 @@ vim.lsp.enable({
   'marksman', -- markdown
   'r_language_server', -- r
   'ruff', -- python linter
-  'pylsp', -- python lsp
+  -- 'pylsp', -- python lsp
   'vimls', -- neovim
 })
 
