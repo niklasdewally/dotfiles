@@ -21,12 +21,14 @@ local treesitter_languages = {
 
 local installed_languages = require('nvim-treesitter').get_installed()
 
+-- TODO: currently this blocks, fix!
+
 -- if any languages above are not installed, install them
-for _,lang in pairs(treesitter_languages) do
-  if not installed_languages[lang] then
-    require("nvim-treesitter").install({lang})
-  end
-end
+-- for _,lang in pairs(treesitter_languages) do
+--   if not installed_languages[lang] then
+--     require("nvim-treesitter").install({lang})
+--   end
+-- end
 
 -- use treesitter for the languages above 
 vim.api.nvim_create_autocmd('FileType', {
