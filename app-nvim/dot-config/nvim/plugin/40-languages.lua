@@ -31,6 +31,13 @@ vim.g.vimtex_view_method = 'skim'
 -- Conjure global configuration
 -- vim.g.conjure_use_oxide_lsp = true
 
+-- Ledger global configuration
+vim.g.ledger_bin = "hledger"
+vim.g.ledger_fuzzy_account_completion = 1
+vim.g.ledger_date_format = "%Y-%m-%d"
+vim.g.ledger_align_at = 70
+vim.g.ledger_default_commodity="£"
+
 loadPlugins({
   -- Essence / Essence Prime
   "https://github.com/niklasdewally/conjure.nvim",
@@ -50,4 +57,7 @@ loadPlugins({
   -- quarto, plus dependencies
   "https://github.com/jmbuhr/otter.nvim",
   "https://github.com/quarto-dev/quarto-nvim",
+  
+  -- ledger
+  "https://github.com/ledger/vim-ledger"
 })

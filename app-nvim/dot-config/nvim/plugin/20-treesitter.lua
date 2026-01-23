@@ -2,7 +2,10 @@
 
 -- FIXME: currently todo highlighting only works when in a file with a treesitter grammar
 
-loadPlugins({{src = "https://github.com/nvim-treesitter/nvim-treesitter",version = "main"}})
+loadPlugins({
+  {src = "https://github.com/nvim-treesitter/nvim-treesitter",version = "main"},
+  "https://github.com/mtrajano/tssorter.nvim" -- sort by treesitter node
+})
 
 -- languages to enable treesitter with
 local treesitter_languages = {
@@ -44,4 +47,17 @@ vim.api.nvim_create_autocmd('FileType', {
       -- indentation, provided by nvim-treesitter
       vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end
+})
+
+
+-- treesitter sorting
+require('tssorter').setup({
+  sortables = {
+    ledger = {
+      entry = {
+        node = 'journal_item',
+        ordinal = 'date'
+      }
+    }
+  }
 })

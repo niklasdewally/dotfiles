@@ -18,6 +18,13 @@ M.check = function()
     vim.health.warn("shellcheck: not found.", {"Install shellcheck to enable bash linting."})
   end
 
+  if vim.fn.executable("hledger")
+  then
+    vim.health.ok("hledger: found, using as ledger linter.")
+  else
+    vim.health.warn("hledger: not found.", {"Install hledger to enable ledger linting."})
+  end
+
 end
 
 return M
