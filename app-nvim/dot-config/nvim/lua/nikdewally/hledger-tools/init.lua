@@ -134,8 +134,6 @@ function M.sortBuffer()
 
   end
 
-
-
   vim.api.nvim_buf_set_text(0, 0, 0, -1, -1, file_lines)
 end
 
