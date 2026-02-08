@@ -115,7 +115,7 @@ local function sortJournalEntries(entries)
 end
 
 
---- Sorts, in place, the journal file in the current buffer by date and original location in the file.
+--- Sorts in-place the journal file in the current buffer by date and original location in the file.
 ---
 --- By sorting journal entries with the same date by their original ordering in the file, we ensure that value assertions still work.
 ---
