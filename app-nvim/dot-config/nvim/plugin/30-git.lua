@@ -11,4 +11,11 @@ loadPlugins({
   "https://github.com/lewis6991/gitsigns.nvim"
 })
 
-require('gitsigns').setup()
+require('gitsigns').setup({
+  on_attach = function(bufnr)
+    vim.keymap.set("n","]g",
+      function() require("gitsigns").nav_hunk("next") end,{desc = "Next git hunk", buffer = bufnr})
+
+    vim.keymap.set("n","[g",
+      function() require("gitsigns").nav_hunk("prev") end,{desc = "Previous git hunk", buffer = bufnr})
+end})

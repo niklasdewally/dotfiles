@@ -66,15 +66,16 @@ map_s('s', 'select telescope', function() require('telescope.builtin').builtin()
 map_s('t', 'todos', "<cmd>TodoTelescope<cr>")
 map_s('w', 'current word', function() require('telescope.builtin').grep_string() end)
 
--- SEARCHING THROUGH TODOS
-vim.keymap.set("n", "]t", function() require('todo-comments').jump_next() end, { desc = "Next todo comment" })
-vim.keymap.set("n", "[t", function() require('todo-comments').jump_prev() end, { desc = "Previous todo comment" })
-vim.keymap.set("n", "]f",
-  function() require('todo-comments').jump_next({ keywords = { "FIX", "FIXME", "FIXIT", "ERROR", "WARNING" } }) end,
-  { desc = "Next fix comment" })
-vim.keymap.set("n", "[f",
-  function() require('todo-comments').jump_next({ keywords = { "FIX", "FIXME", "FIXIT", "ERROR", "WARNING" } }) end,
-  { desc = "Previous fix comment" })
 vim.keymap.set("n", "<leader>lt", "<cmd>TodoQuickFix<cr>", { desc = "[l]ist [t]odos" })
 vim.keymap.set("n", "<leader>lf", "<cmd>TodoQuickFix keywords=FIX,FIXME,FIXIT,ERROR,WARNING<cr>",
   { desc = "[l]ist [f]ixmes" })
+
+-- BRACKET COMMANDS
+local function mapn(key,desc,fn)
+  vim.keymap.set("n",key,fn,{desc = desc})
+end
+
+mapn("]t", "Next todo comment",     function() require('todo-comments').jump_next() end)
+mapn("[t", "Previous todo comment", function() require('todo-comments').jump_prev() end )
+mapn("]f", "Next fix comment",      function() require('todo-comments').jump_next({ keywords = { "FIX", "FIXME", "FIXIT", "ERROR", "WARNING" } }) end)
+mapn("[f", "Previous fix comment",  function() require('todo-comments').jump_prev({ keywords = { "FIX", "FIXME", "FIXIT", "ERROR", "WARNING" } }) end)
