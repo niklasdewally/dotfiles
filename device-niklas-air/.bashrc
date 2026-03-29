@@ -1,12 +1,7 @@
 # vim: foldmethod=marker foldmarker=#START,#END ft=bash
 
-
 # run global settings first
 [ -e /etc/bashrc ] && source /etc/bashrc
-
-# load ssh agent from keychain if its installed
-
-# [ $(command -v keychain) ] && eval $(keychain --eval)
 
 # run completion scripts from .bashrc.d
 for file in ~/.bashrc.d/*; do
@@ -64,10 +59,6 @@ function i_am_mac() {
   [[ $(uname) = "Darwin" ]] && [[ $(whoami) = "niklas" ]]
 }
 
-function i_am_labs() {
-  [[ $(uname) = "Linux" ]] && [[ $(whoami) = "nd60" ]]
-}
-
 
 
 alias vim=nvim
@@ -85,7 +76,7 @@ if [ -e /usr/share/doc/fzf/examples/key-bindings.bash ]; then
   source /usr/share/doc/fzf/examples/key-bindings.bash
 fi
 
-# colour mac differently than ssh / school devices
+# colour mac differently than ssh devices
 if i_am_mac
 then 
   COL=$B_LYELLOW
