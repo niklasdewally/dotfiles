@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+if command -v tmux; then 
+  echo "tmux already installed, skipping setup"
+  exit 0
+fi
+
+if [[ "$(uname -s)" == "Darwin" ]] && command -v brew >/dev/null 2>&1; then
+	echo "brew detected: installing tmux "
+	set -v
+	brew install tmux
+	set +v
+elif command -v apt >/dev/null 2>&1; then
+	echo "apt detected: installing tmux"
+	sudo -v
+	set -v
+	sudo apt install -y tmux
+	set +v
+fi

@@ -1,0 +1,22 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[ui]
+default-command = "log"
+diff-editor = "meld"
+merge-editor = "meld"
+
+[user]
+name = "Niklas Dewally"
+email = "niklas@dewally.com"
+
+[templates]
+git_push_bookmark = '"nik/push-" ++ change_id.short()'
+
+[git]
+# Prevent pushing work in progress or anything explicitly labeled "private"
+private-commits = "description('wip:*') | description('private:*') | description('WIP:*')"
+
+[revset-aliases]
+'branch(x)' = '::x ~::trunk()'
+'branch_point(x,y)' = 'latest(::x & ::y,1)'
+

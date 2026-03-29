@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ "$(uname -s)" == "Darwin" ]] && command -v brew >/dev/null 2>&1; then
+	echo "brew detected: installing things"
+	set -v
+	brew install delta
+	set +v
+elif command -v apt >/dev/null 2>&1; then
+	echo "apt detected: installing things"
+	sudo -v
+	set -v
+	sudo apt install -y delta
+	set +v
+fi

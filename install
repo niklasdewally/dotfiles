@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# install: installs dotfiles
+#
+# ./install pkgs..
+# set -x
+set -e
+
+script_dir="$(dirname "$0")"
+
+# ensure gnu stow is installed
+if ! command -v stow >/dev/null 2>&1; then
+	echo "GNU stow is not installed, attempting to install it:"
+	if [[ "$(uname -s)" == "Darwin" ]] && command -v brew >/dev/null 2>&1; then
+		echo "-- attempting to install using brew"
+		brew install stow
+	elif command -v apt >/dev/null 2>&1; then
+		echo "-- attempting to install using sudo apt install"
+		sudo apt install stow
+	else
+		echo "FATAL: could not find gnu stow, or any way to install it."
+		exit 2
+	fi
+
+	echo "-- done"
+fi
+
+stow -R \
+	--target "$HOME" \
+	--dir "$script_dir" \
+	"$@"
+
+echo "Stowed: $*"
+echo "Running post-install scripts:"
+for pkg in "$@"; do
+	if [[ -x "$script_dir/$pkg/setup" ]]; then
+		echo "-- running setup script for $pkg"
+    "./$script_dir/$pkg/setup"
+	else
+		echo "-- skipping setup for $pkg: $script_dir/$pkg/setup does not exist or is not executable."
+	fi
+done

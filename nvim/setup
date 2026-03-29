@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ "$(uname -s)" == "Darwin" ]] && command -v brew >/dev/null 2>&1; then
+	echo "brew detected: installing editor tools"
+	set -v
+	brew install ripgrep fzf shellcheck shfmt
+	brew install --cask font-fira-code-nerd-font
+	set +v
+elif command -v apt >/dev/null 2>&1; then
+	echo "apt detected: installing editor tools"
+	sudo -v
+	set -v
+	sudo apt install -y shfmt shellcheck clangd ripgrep fzf
+	set +v
+fi
+
+if command -v R >/dev/null 1>&2; then
+	echo "R detected: installing r_language_server"
+	R -e 'install.packages("languageserver",repos="https://cran.ma.imperial.ac.uk")'
+else
+	echo "WARN: R not detected, skipping r_language_server install"
+fi
