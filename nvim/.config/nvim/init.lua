@@ -1,3 +1,15 @@
+-- Register post-install hooks for plugins.
+-- These must be placed before the first vim.pack.add call - see
+-- https://echasnovski.com/blog/2026-03-13-a-guide-to-vim-pack.html#hooks 
+
+vim.api.nvim_create_autocmd('PackChanged', { callback = function(ev)
+  local name, kind = ev.data.spec.name, ev.data.kind
+  if name == 'nvim-treesitter' and kind == 'update' then
+    if not ev.data.active then vim.cmd.packadd('nvim-treesitter') end
+    vim.cmd('TSUpdate')
+  end
+end })
+
 -- calls vim.pack.add with load = true, instead of the default load=false.
 --
 -- Plugin contents are loaded immediately after installation; therefore, 
