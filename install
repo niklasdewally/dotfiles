@@ -25,9 +25,20 @@ if ! command -v stow >/dev/null 2>&1; then
 	echo "-- done"
 fi
 
+# --no-folding
+# Only symlink files, not directories.
+#
+# Without this flag, when trying to stow a file in a directory that does not 
+# exist, stow will symlink the entire directory. Creating additional files in 
+# that directory will make them appear in .dotfiles as well, which is not what 
+# I want.
+#
+# https://news.ycombinator.com/item?id=7927930
+
 stow -R \
 	--target "$HOME" \
 	--dir "$script_dir" \
+  --no-folding \
 	"$@"
 
 echo "Stowed: $*"
