@@ -3,10 +3,21 @@
 # install: installs dotfiles
 #
 # ./install pkgs..
+#
+# ./install --skip-setup pkgs
+#
+# The second form symlinks the given packages but skips the setup scripts.
+#
 # set -x
 set -e
 
 script_dir="$(dirname "$0")"
+skip_setup=false
+
+if [[ "$1" == "--skip-setup" ]]; then
+	skip_setup=true
+	shift 1
+fi
 
 # ensure gnu stow is installed
 if ! command -v stow >/dev/null 2>&1; then
@@ -28,9 +39,9 @@ fi
 # --no-folding
 # Only symlink files, not directories.
 #
-# Without this flag, when trying to stow a file in a directory that does not 
-# exist, stow will symlink the entire directory. Creating additional files in 
-# that directory will make them appear in .dotfiles as well, which is not what 
+# Without this flag, when trying to stow a file in a directory that does not
+# exist, stow will symlink the entire directory. Creating additional files in
+# that directory will make them appear in .dotfiles as well, which is not what
 # I want.
 #
 # https://news.ycombinator.com/item?id=7927930
@@ -38,15 +49,21 @@ fi
 stow -R \
 	--target "$HOME" \
 	--dir "$script_dir" \
-  --no-folding \
+	--no-folding \
 	"$@"
 
 echo "Stowed: $*"
-echo "Running post-install scripts:"
+
+if [ "$skip_setup" = true ] ; then
+  echo "Skipping post-install setup scripts."
+	exit 0
+fi
+
+echo "Running post-install setup scripts:"
 for pkg in "$@"; do
 	if [[ -x "$script_dir/$pkg/setup" ]]; then
 		echo "-- running setup script for $pkg"
-    "./$script_dir/$pkg/setup"
+		"./$script_dir/$pkg/setup"
 	else
 		echo "-- skipping setup for $pkg: $script_dir/$pkg/setup does not exist or is not executable."
 	fi
