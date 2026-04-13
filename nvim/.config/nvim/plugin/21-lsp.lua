@@ -46,6 +46,10 @@ vim.lsp.enable({
   'vimls', -- neovim
 })
 
+local function map_s_lsp(suffix, desc, func)
+  vim.keymap.set('n', '<leader>s' .. suffix, func, { desc = '[LSP] Search ' .. desc })
+end
+
 -- runs when lsp activates
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('my.lsp', {}),
@@ -55,4 +59,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client:supports_method('textDocument/formatting') then
       vim.keymap.set('n', 'grf', vim.lsp.buf.format)
     end
+
+    -- lsp workplace symbols telescope search 
+    -- FIXME: the below doesnt work for some reason
+    -- map_s_lsp('w', 'workplace symbols', function() require('telescope.builtin').lsp_dynamic_workplace_symbols() end)
+    
+    map_s_lsp('s', 'document symbols', function() vim.cmd([[:Telescope lsp_document_symbols]]) end)
   end})

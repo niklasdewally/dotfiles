@@ -47,6 +47,8 @@ local function map_s(suffix, desc, func)
 end
 
 
+-- more of these are in 21-lsp.lua in the lsp attach autocmd
+
 -- TODO: port from previous config
 -- vim.keymap.set('n','<leader>sc', require('niklasdewally.telescope.pickers').git_ref, {desc = '[s]earch git [c]itation (copies citation to clipboard and "0)'})
 
@@ -62,9 +64,9 @@ map_s('h', 'help', function() require('telescope.builtin').help_tags() end)
 map_s('l', 'loclist', function() require('telescope.builtin').loclist() end)
 map_s('m', 'man pages', function() require('telescope.builtin').man_pages() end)
 map_s('r', 'resume', function() require('telescope.builtin').resume() end)
-map_s('s', 'select telescope', function() require('telescope.builtin').builtin() end)
+map_s('S', 'select telescope', function() require('telescope.builtin').builtin() end)
 map_s('t', 'todos', "<cmd>TodoTelescope<cr>")
-map_s('w', 'current word', function() require('telescope.builtin').grep_string() end)
+map_s('W', 'current word', function() require('telescope.builtin').grep_string() end)
 
 vim.keymap.set("n", "<leader>lt", "<cmd>TodoQuickFix<cr>", { desc = "[l]ist [t]odos" })
 vim.keymap.set("n", "<leader>lf", "<cmd>TodoQuickFix keywords=FIX,FIXME,FIXIT,ERROR,WARNING<cr>",
