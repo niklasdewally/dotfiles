@@ -72,3 +72,5 @@
 
 [interactive]
   diffFilter = delta --color-only
+[safe]
+	directory = /usr/local/src/neovim

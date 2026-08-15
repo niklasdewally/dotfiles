@@ -38,5 +38,5 @@ fi
 
 [ -f "/home/nd60/.ghcup/env" ] && . "/home/nd60/.ghcup/env" # ghcup-env
 
-export LEDGER_FILE="$HOME/.ledger/2025.journal"
+export LEDGER_FILE="$HOME/.ledger/main.journal"
 export PATH="$PATH:$HOME/.ledger/bin"

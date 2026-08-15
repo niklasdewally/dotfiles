@@ -42,7 +42,6 @@ vim.lsp.enable({
   'marksman', -- markdown
   'r_language_server', -- r
   'ruff', -- python linter
-  -- 'pylsp', -- python lsp
   'vimls', -- neovim
 })
 

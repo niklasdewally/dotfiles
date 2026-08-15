@@ -26,7 +26,7 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
-export "PATH=/opt/conjure-2.5.1:$PATH"
+export "PATH=/opt/conjure-2.6.0:$PATH"
 [ -d "/opt/savilerow-latest" ] &&  export "PATH=/opt/savilerow-latest:$PATH"
 
 

@@ -29,6 +29,8 @@ end })
 -- See: https://github.com/neovim/neovim/pull/35270
 --  - https://github.com/neovim/neovim/pull/35270#issuecomment-3180056509
 --  - :h :packadd (especially the bits about packadd!)
+
+vim.o.exrc = true
 function loadPlugins (spec)
   vim.pack.add(spec,{load=true,confirm=false})
 end
