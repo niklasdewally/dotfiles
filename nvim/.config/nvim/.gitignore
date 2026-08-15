@@ -1,1 +1,4 @@
 nvim-pack-lock.json
+
+# to prevent accidental data leakage, do not sync this
+snippets/  

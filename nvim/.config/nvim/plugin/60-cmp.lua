@@ -9,7 +9,6 @@ local blink = require('blink.cmp')
 
 -- to
 blink.setup({
-  snippets = { preset = 'luasnip' },
   keymap = { preset = 'default' },
   completion = {
     -- don't automatically show the completion menu
@@ -20,7 +19,7 @@ blink.setup({
   },
 
   sources = {
-    default = { 'lsp', 'buffer', 'snippets', 'path' },
+    default = { 'lsp', 'buffer', 'path' },
   -- TODO: add more sources
     per_filetype = {
       -- ..

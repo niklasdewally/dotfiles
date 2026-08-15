@@ -19,6 +19,7 @@ vim.g.maplocalleader = '\\'
 require("which-key").add({
   -- leader groups and aliases
   { "<leader>s",        group = "search" },
+  { "<leader>S",        group = "snippets" },
   { "<leader>l",        group = "list" },
   { "<leader><leader>", group = "local-leader",        proxy = "<LocalLeader>" },
   -- { "<leader>l", proxy = "gr" , group = "lsp"},
@@ -81,3 +82,27 @@ mapn("]t", "Next todo comment",     function() require('todo-comments').jump_nex
 mapn("[t", "Previous todo comment", function() require('todo-comments').jump_prev() end )
 mapn("]f", "Next fix comment",      function() require('todo-comments').jump_next({ keywords = { "FIX", "FIXME", "FIXIT", "ERROR", "WARNING" } }) end)
 mapn("[f", "Previous fix comment",  function() require('todo-comments').jump_prev({ keywords = { "FIX", "FIXME", "FIXIT", "ERROR", "WARNING" } }) end)
+
+
+-- SNIPPETS
+
+vim.keymap.set(
+    { "n", "x" }, -- when used in visual mode, prefills the selection as snippet body
+    "<leader>Sa",
+    function() require("scissors").addNewSnippet() end,
+    { desc = "[S]nippet: [a]dd" }
+)
+
+vim.keymap.set(
+    "n",
+    "<leader>Se",
+    function() require("scissors").editSnippet() end,
+    { desc = "[S]nippet: [e]dit" }
+)
+
+vim.keymap.set(
+    "n",
+    "<leader>Se",
+    function() require("scissors").editSnippet() end,
+    { desc = "[S]nippet: [e]dit" }
+)
