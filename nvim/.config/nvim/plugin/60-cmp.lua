@@ -11,11 +11,13 @@ local blink = require('blink.cmp')
 blink.setup({
   keymap = { preset = 'default' },
   completion = {
-    -- don't automatically show the completion menu
-    menu = { auto_show = false },
-
-    -- only show documentation popup when manually triggered.
-    documentation = { auto_show = false },
+    menu = {
+      draw = {
+        columns = { { "label", "label_description", gap = 1 }, { "kind_icon", gap = 1}, { "kind" } }
+      },
+      auto_show = false
+    },
+    documentation = { auto_show = true , auto_show_delay_ms = 200},
   },
 
   sources = {
