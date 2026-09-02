@@ -1,10 +1,17 @@
 -- run code blocks with vim slime
 local runner = require("quarto.runner")
-vim.keymap.set("n", "<localleader>rc", runner.run_cell,  { desc = "run cell", silent = true })
-vim.keymap.set("n", "<localleader>ra", runner.run_above, { desc = "run cell and above", silent = true })
-vim.keymap.set("n", "<localleader>rA", runner.run_all,   { desc = "run all cells", silent = true })
-vim.keymap.set("n", "<localleader>rl", runner.run_line,  { desc = "run line", silent = true })
-vim.keymap.set("v", "<localleader>r",  runner.run_range, { desc = "run visual range", silent = true })
-vim.keymap.set("n", "<localleader>RA", function()
+
+local wk = require("which-key")
+
+wk.add({
+  {"<localleader>r", group = "[r]un"}
+})
+
+vim.keymap.set("n", "<localleader>rc", runner.run_cell,  { desc = "[r]un cell", silent = true })
+vim.keymap.set("n", "<localleader>ra", runner.run_above, { desc = "[r]un cell and [a]bove", silent = true })
+vim.keymap.set("n", "<localleader>rA", runner.run_all,   { desc = "[r]un [a]ll cells", silent = true })
+vim.keymap.set("n", "<localleader>rl", runner.run_line,  { desc = "[r]un [l]ine", silent = true })
+vim.keymap.set("v", "<localleader>rr",  runner.run_range, { desc = "[r]un visual [r]ange", silent = true })
+vim.keymap.set("n", "<localleader>rL", function()
   runner.run_all(true)
-end, { desc = "run all cells of all languages", silent = true })
+end, { desc = "[r]un all cells of all languages", silent = true })
