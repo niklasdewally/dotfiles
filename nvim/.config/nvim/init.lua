@@ -34,3 +34,13 @@ vim.o.exrc = true
 function loadPlugins (spec)
   vim.pack.add(spec,{load=true,confirm=false})
 end
+
+vim.api.nvim_create_user_command('PackClean', function()
+  local plugins_to_delete = vim.iter(vim.pack.get())
+   :filter(function(x) return not x.active end)
+   :map(function(x) return x.spec.name end )
+   :totable()
+
+  print("Deleting plugins: " .. plugins_to_delete)
+  vim.pack.del(plugins_to_delete)
+end, {})
