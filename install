@@ -19,38 +19,47 @@ if [[ "$1" == "--skip-setup" ]]; then
 	shift 1
 fi
 
-# ensure gnu stow is installed
-if ! command -v stow >/dev/null 2>&1; then
-	echo "GNU stow is not installed, attempting to install it:"
-	if [[ "$(uname -s)" == "Darwin" ]] && command -v brew >/dev/null 2>&1; then
-		echo "-- attempting to install using brew"
-		brew install stow
-	elif command -v apt >/dev/null 2>&1; then
-		echo "-- attempting to install using sudo apt install"
-		sudo apt install stow
-	else
-		echo "FATAL: could not find gnu stow, or any way to install it."
-		exit 2
-	fi
-
-	echo "-- done"
+if command -v stow >/dev/null 2>&1; then
+  echo "found GNU stow"
+  stow="GNU"
+elif command -v xstow > /dev/null 2>&1; then
+  echo "found xstow"
+  stow="xstow"
+else
+  echo "FATAL: cannot find xstow or gnu stow!"
+  exit 1
 fi
 
-# --no-folding
-# Only symlink files, not directories.
-#
-# Without this flag, when trying to stow a file in a directory that does not
-# exist, stow will symlink the entire directory. Creating additional files in
-# that directory will make them appear in .dotfiles as well, which is not what
-# I want.
-#
-# https://news.ycombinator.com/item?id=7927930
 
-stow -R \
-	--target "$HOME" \
-	--dir "$script_dir" \
-	--no-folding \
-	"$@"
+if [ stow == "GNU" ]; then
+  # --no-folding
+  # Only symlink files, not directories.
+  #
+  # Without this flag, when trying to stow a file in a directory that does not
+  # exist, stow will symlink the entire directory. Creating additional files in
+  # that directory will make them appear in .dotfiles as well, which is not what
+  # I want.
+  #
+  # https://news.ycombinator.com/item?id=7927930
+
+  stow -R \
+    --target "$HOME" \
+    --dir "$script_dir" \
+    --no-folding \
+    --ignore='^setup$' \
+    --ignore='^README\.md$' \
+    --ignore='.DS_Store' \
+    "$@"
+elif [ stow == "xstow" ]; then
+  xstow -R \
+    -target "$HOME" \
+    -dir "$script_dir" \
+    -ire '^setup$' \
+    -ire '^README\.md$' \
+    -ire '^.DS_Store$' \
+    "$@"
+
+fi
 
 echo "Stowed: $*"
 
