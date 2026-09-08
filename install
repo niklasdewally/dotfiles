@@ -31,7 +31,7 @@ else
 fi
 
 
-if [ stow == "GNU" ]; then
+if [[ $stow == "GNU" ]]; then
   # --no-folding
   # Only symlink files, not directories.
   #
@@ -50,15 +50,14 @@ if [ stow == "GNU" ]; then
     --ignore='^README\.md$' \
     --ignore='.DS_Store' \
     "$@"
-elif [ stow == "xstow" ]; then
+elif [[ $stow == "xstow"  ]]; then
   xstow -R \
     -target "$HOME" \
     -dir "$script_dir" \
-    -ire '^setup$' \
-    -ire '^README\.md$' \
-    -ire '^.DS_Store$' \
+    -ire '(^setup$|^README\.md$|.DS_Store|.stow-local-ignore)' \
     "$@"
-
+else
+  exit 1
 fi
 
 echo "Stowed: $*"
